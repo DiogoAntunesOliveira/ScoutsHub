@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_estatisticas">
+
+    <fragment
+        android:id="@+id/navigation_estatisticas"
+        android:name="com.example.aplicacaoprojeto.ui.EstatisticasFragment"
+        android:label="@string/title_estatisticas"
+        tools:layout="@layout/fragment_estatisticas" />
+    <!--
+        <fragment
+            android:id="@+id/navigation_atividade"
+                android:name="com.example.aplicacaoprojeto.ui.AtividadesFragment"
+            android:label="@string/title_atividade"
+            tools:layout="@layout/fragment_atividades" />
+
+        <fragment
+            android:id="@+id/navigation_material"
+            android:name="com.example.aplicacaoprojeto.ui.MateriaisFragment"
+            android:label="@string/title_material"
+            tools:layout="@layout/fragment_materiais" />
+
+        <fragment
+            android:id="@+id/navigation_materialUsadoAtividade"
+            android:name="com.example.aplicacaoprojeto.ui.MateriaisUsadosAtividadeFragment"
+            android:label="@string/title_materialUsadoAtividade"
+            tools:layout="@layout/fragment_materiais_usado_atividade" />
+
+        <fragment
+            android:id="@+id/navigation_perfil"
+            android:name="com.example.aplicacaoprojeto.ui.PerfisFragment"
+            android:label="@string/title_perfil"
+            tools:layout="@layout/fragment_perfis" />
+
+        <fragment
+            android:id="@+id/navigation_equipa"
+            android:name="com.example.aplicacaoprojeto.ui.EquipasFragment"
+            android:label="@string/title_equipa"
+            tools:layout="@layout/fragment_equipas" />
+
+        <fragment
+            android:id="@+id/navigation_seccao"
+            android:name="com.example.aplicacaoprojeto.ui.SeccoesFragment"
+            android:label="@string/title_seccao"
+            tools:layout="@layout/fragment_seccoes" />
+
+        <fragment
+            android:id="@+id/navigation_utilizador"
+            android:name="com.example.aplicacaoprojeto.ui.UtilizadoresFragment"
+            android:label="@string/title_utilizador"
+            tools:layout="@layout/fragment_utilizadores" />
+
+        <fragment
+            android:id="@+id/navigation_tipo_utilizador"
+            android:name="com.example.aplicacaoprojeto.ui.TiposUtilizadorFragment"
+            android:label="@string/title_tipo_utilizador"
+            tools:layout="@layout/fragment_tipos_utilizador" />
+
+        <fragment
+            android:id="@+id/navigation_instrucao"
+            android:name="com.example.aplicacaoprojeto.ui.InstrucoesFragment"
+            android:label="@string/title_instrucoes"
+            tools:layout="@layout/fragment_instrucoes" />
+
+        <fragment
+            android:id="@+id/navigation_instrucao_utilizador"
+            android:name="com.example.aplicacaoprojeto.ui.InstrucoesUtilizadorFragment"
+            android:label="@string/title_instrucao_utilizador"
+            tools:layout="@layout/fragment_instrucoes_utilizador" />
+    -->
+
+    </navigation>

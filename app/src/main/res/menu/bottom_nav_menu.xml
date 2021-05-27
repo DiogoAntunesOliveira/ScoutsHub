@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_estatisticas"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_estatisticas" />
+    <!--
+        <item
+            android:id="@+id/navigation_atividade"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/title_atividade" />
+
+        <item
+            android:id="@+id/navigation_material"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_material" />
+
+        <item
+            android:id="@+id/navigation_materialUsadoAtividade"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_materialUsadoAtividade" />
+
+        <item
+            android:id="@+id/navigation_perfil"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/Perfil" />
+
+        <item
+            android:id="@+id/navigation_equipa"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_equipa" />
+
+        <item
+            android:id="@+id/navigation_seccao"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_seccao" />
+
+        <item
+            android:id="@+id/navigation_utilizador"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_utilizador" />
+
+        <item
+            android:id="@+id/navigation_tipo_utilizador"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_tipo_utilizador" />
+
+        <item
+            android:id="@+id/navigation_instrucao"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_instrucao" />
+
+        <item
+            android:id="@+id/navigation_instrucao_utilizador"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/title_instrucao_utilizador" />
+    -->
+</menu>

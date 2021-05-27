@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">AplicacaoProjeto</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_atividade">Atividade</string>
+    <string name="title_material">Material</string>
+    <string name="title_materialUsadoAtividade">MaterialUsadoEmAtividade</string>
+    <string name="Perfil">Perfil</string>
+    <string name="title_equipa">Equipa</string>
+    <string name="title_seccao">Seccao</string>
+    <string name="title_utilizador">Utilizador</string>
+    <string name="title_tipo_utilizador">TipoUtilizador</string>
+    <string name="title_instrucoes">Instrucoes</string>
+    <string name="title_instrucao_utilizador">InstrucaoUtilizador</string>
+    <string name="title_perfil">Perfil</string>
+    <string name="title_instrucao">Instrucao</string>
+    <string name="title_estatisticas">Estatisticas</string>
+</resources>
