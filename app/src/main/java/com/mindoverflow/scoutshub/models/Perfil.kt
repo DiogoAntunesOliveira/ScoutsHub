@@ -6,7 +6,7 @@ class Perfil {
 
     var idPerfil                : Int?                 = null
     var nome                    : String?              = null
-    var dtNasc                 : String?                = null
+    var dtNasc                  : String?              = null
     var genero                  : String?              = null
     var contacto                : Int?                 = null
     var morada                  : String?              = null
@@ -24,7 +24,7 @@ class Perfil {
     constructor(
         idPerfil                        : Int?,
         nome                            : String?,
-        dtNasc                         : String?,
+        dtNasc                          : String?,
         genero                          : String?,
         contacto                        : Int?,
         morada                          : String?,

@@ -3,11 +3,11 @@ package com.mindoverflow.scoutshub.models
 import org.json.JSONObject
 
 class Atividade {
-    var idAtividade     : Int? = null
+    var idAtividade     : Int?    = null
     var nome            : String? = null
     var tipo            : String? = null
     var descricao       : String? = null
-    var custo           : Int? = null
+    var custo           : Int?    = null
     var local           : String? = null
     var localInicio     : String? = null
     var localFim        : String? = null
