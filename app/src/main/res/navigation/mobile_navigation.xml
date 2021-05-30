@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_atividade">
+    app:startDestination="@+id/navigation_perfil">
 
     <fragment
         android:id="@+id/navigation_atividade"
@@ -11,15 +11,18 @@
         android:label="@string/title_atividade"
         tools:layout="@layout/fragment_atividades" />
 
+    <fragment
+        android:id="@+id/navigation_perfil"
+        android:name="com.mindoverflow.scoutshub.ui.PerfisFragment"
+        android:label="@string/title_perfil"
+        tools:layout="@layout/fragment_perfis" />
+
+    <fragment
+        android:id="@+id/navigation_estatisticas"
+        android:name="com.mindoverflow.scoutshub.ui.EstatisticasFragment"
+        android:label="@string/title_estatisticas"
+        tools:layout="@layout/fragment_estatisticas" />
     <!--
-        <fragment
-            android:id="@+id/navigation_estatisticas"
-            android:name="com.mindoverflow.scoutshub.ui.EstatisticasFragment"
-            android:label="@string/title_estatisticas"
-            tools:layout="@layout/fragment_eisticas" />
-
-
-
             <fragment
                 android:id="@+id/navigation_material"
                 android:name="scoutshuberiaisFragment"
@@ -32,11 +35,7 @@
                 android:label="@string/title_materialUsadoAtividade"
                 tools:layout="@layout/fragment_materiais_usado_atividade" />
 
-            <fragment
-                android:id="@+id/navigation_perfil"
-                android:name="scoutshubfisFragment"
-                android:label="@string/title_perfil"
-                tools:layout="@layout/fragment_perfis" />
+
 
             <fragment
                 android:id="@+id/navigation_equipa"
