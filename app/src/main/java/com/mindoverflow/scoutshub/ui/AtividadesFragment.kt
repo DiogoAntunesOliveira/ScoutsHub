@@ -24,7 +24,13 @@ class AtividadesFragment : Fragment() {
     ): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_atividades, container, false)
-
         return rootView
+
+
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        
     }
 }
