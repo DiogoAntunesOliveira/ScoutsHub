@@ -17,4 +17,11 @@
     <string name="title_instrucao">Instrucao</string>
     <string name="title_estatisticas">Estatisticas</string>
     <string name="title_Atividades">Atividades</string>
+
+    <string-array name="departamentos">
+        <item>Departamento 1</item>
+        <item>Departamento 2</item>
+        <item>Departamento 3</item>
+        <item>Departamento 4</item>
+    </string-array>
 </resources>
