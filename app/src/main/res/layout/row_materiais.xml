@@ -13,7 +13,7 @@
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_add" />
+        app:srcCompat="@drawable/ic_image_default" />
 
     <ImageView
         android:id="@+id/plusSelected"
@@ -24,7 +24,7 @@
         android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/checkbox_on_background" />
+        app:srcCompat="@drawable/ic_option_selected" />
 
     <TextView
         android:id="@+id/textViewTipo"
@@ -32,6 +32,7 @@
         android:layout_height="31dp"
         android:layout_marginStart="44dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
         android:paddingLeft="3dp"
         android:text="Tipo"
         app:layout_constraintStart_toEndOf="@+id/plusSelect"
@@ -43,6 +44,7 @@
         android:layout_height="31dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/poppins_medium"
         android:paddingLeft="3dp"
         android:text="ID"
         android:textAlignment="center"
@@ -60,24 +62,26 @@
         android:layout_height="21dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="--"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toEndOf="@+id/quantidade"
         app:layout_constraintTop_toBottomOf="@+id/textViewTipo" />
 
     <TextView
         android:id="@+id/quantidade"
-        android:layout_width="85dp"
-        android:layout_height="21dp"
+        android:layout_width="105dp"
+        android:layout_height="20dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="220dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="Quantidade:"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/plusSelect"
         app:layout_constraintTop_toBottomOf="@+id/textViewTipo" />
 
