@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 
 class InstrucoesFragment : Fragment() {
     var instrucoes : MutableList<Instrucao> = arrayListOf()
-    lateinit var adapter : InstrucoesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,14 +23,6 @@ class InstrucoesFragment : Fragment() {
     ): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_instrucoes, container, false)
-
-        val listInstrucoes = rootView.findViewById<ListView>(R.id.listViewInstrucoes)
-        adapter = InstrucoesAdapter()
-        listInstrucoes.adapter = adapter
-
-        val instrucao = Instrucao(null, "Como montar uma tenda", "Tutorial de como montar uma tenda", "fdsfsdfsdfte")
-        instrucoes.add(instrucao)
-
         return rootView
     }
 
@@ -39,37 +30,6 @@ class InstrucoesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         GlobalScope.launch (Dispatchers.Main){
-            adapter.notifyDataSetChanged()
-        }
-    }
-
-    inner class InstrucoesAdapter : BaseAdapter() {
-        override fun getCount(): Int {
-            return instrucoes.size
-        }
-
-        override fun getItem(position: Int): Any {
-            return instrucoes[position]
-        }
-
-        override fun getItemId(position: Int): Long {
-            return 0
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = layoutInflater.inflate(R.layout.row_instrucoes, parent, false)
-            
-            //val idInstrucao = rowView.findViewById<TextView>(R.id.textViewIdInstrucao)
-            val titulo = rowView.findViewById<TextView>(R.id.textViewTitulo)
-            val descricao = rowView.findViewById<TextView>(R.id.textViewDescricao)
-            val imagemURL = rowView.findViewById<TextView>(R.id.textViewImagem)
-
-            //idInstrucao.text = instrucoes[position].idInstrucao.toString()
-            titulo.text = instrucoes[position].titulo
-            descricao.text = instrucoes[position].descricao
-            imagemURL.text = instrucoes[position].imagem
-
-            return rowView
         }
     }
 }

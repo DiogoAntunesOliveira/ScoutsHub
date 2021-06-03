@@ -7,9 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
+import android.widget.BaseAdapter
 import com.airbnb.lottie.LottieAnimationView
+import com.google.android.material.imageview.ShapeableImageView
+import com.mindoverflow.scoutshub.models.Atividade
 
 class AtividadesActivity : AppCompatActivity() {
+
+    var showOptions : MutableList<String> = arrayListOf()
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,5 +55,31 @@ class AtividadesActivity : AppCompatActivity() {
     private var y2 = 0f
     val MIN_DISTANCE = 150
 
+
+    inner class ActivitiesAdapter : BaseAdapter(){
+        override fun getCount(): Int {
+            return showOptions.size
+        }
+
+        override fun getItem(position: Int): Any {
+            return showOptions[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return 0
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            val rowView = layoutInflater.inflate(R.layout.row_activities_option, parent, false)
+
+            var imageViewOption = rowView.findViewById<ShapeableImageView>(R.id.optionImage)
+            var tileViewOption = rowView.findViewById<ShapeableImageView>(R.id.optionTitle)
+            var descriptionViewOption = rowView.findViewById<ShapeableImageView>(R.id.optionDescrition)
+
+            return  rowView
+
+        }
+
+    }
 
 }

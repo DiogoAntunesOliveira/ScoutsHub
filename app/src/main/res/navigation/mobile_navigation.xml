@@ -12,6 +12,13 @@
         tools:layout="@layout/fragment_atividades" />
 
     <fragment
+        android:id="@+id/navigation_material"
+        android:name="com.mindoverflow.scoutshub.ui.MateriaisFragment"
+        android:label="@string/title_material"
+        tools:layout="@layout/fragment_materiais" />
+
+
+    <fragment
         android:id="@+id/navigation_perfil"
         android:name="com.mindoverflow.scoutshub.ui.PerfisFragment"
         android:label="@string/title_perfil"
@@ -22,19 +29,14 @@
         android:name="com.mindoverflow.scoutshub.ui.EstatisticasFragment"
         android:label="@string/title_estatisticas"
         tools:layout="@layout/fragment_estatisticas" />
-    <!--
-            <fragment
-                android:id="@+id/navigation_material"
-                android:name="scoutshuberiaisFragment"
-                android:label="@string/title_material"
-                tools:layout="@layout/fragment_materiais" />
 
+
+<!--
             <fragment
                 android:id="@+id/navigation_materialUsadoAtividade"
                 android:name="scoutshuberiaisUsadosAtividadeFragment"
                 android:label="@string/title_materialUsadoAtividade"
                 tools:layout="@layout/fragment_materiais_usado_atividade" />
-
 
 
             <fragment

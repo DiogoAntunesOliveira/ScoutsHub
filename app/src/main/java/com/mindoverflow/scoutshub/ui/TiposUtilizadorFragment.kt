@@ -17,7 +17,6 @@ import kotlinx.coroutines.launch
 class TiposUtilizadorFragment : Fragment() {
 
     var tipoUtilizadores : MutableList<TipoUtilizador> = arrayListOf()
-    lateinit var adapter : TipoUtilizadorAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,14 +24,6 @@ class TiposUtilizadorFragment : Fragment() {
     ): View? {
 
         val rootView = inflater.inflate(R.layout.fragment_tipos_utilizador, container, false)
-
-        val listTipoUtilizador = rootView.findViewById<ListView>(R.id.listViewTipoUtilizador)
-        adapter = TipoUtilizadorAdapter()
-        listTipoUtilizador.adapter = adapter
-
-        val tipoUtilizador = TipoUtilizador(1, "Administrador")
-        tipoUtilizadores.add(tipoUtilizador)
-
         return rootView
     }
 
@@ -40,35 +31,8 @@ class TiposUtilizadorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         GlobalScope.launch (Dispatchers.Main){
-            adapter.notifyDataSetChanged()
+           //adapter.notifyDataSetChanged()
         }
 
-    }
-
-    inner class TipoUtilizadorAdapter : BaseAdapter() {
-        override fun getCount(): Int {
-            return tipoUtilizadores.size
-        }
-
-        override fun getItem(position: Int): Any {
-            return tipoUtilizadores[position]
-        }
-
-        override fun getItemId(position: Int): Long {
-            return 0
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = layoutInflater.inflate(R.layout.row_tipos_utilizador, parent, false)
-
-            val idTipoUtilizador = rowView.findViewById<TextView>(R.id.textViewIdTipo)
-            val designacao = rowView.findViewById<TextView>(R.id.textViewDesignacao)
-
-
-            idTipoUtilizador.text = tipoUtilizadores[position].id_tipo.toString()
-            designacao.text = tipoUtilizadores[position].designacao
-
-            return rowView
-        }
     }
 }
