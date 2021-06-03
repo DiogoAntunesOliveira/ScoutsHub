@@ -17,7 +17,7 @@ class NovaAtividadeActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_nova_atividade)
+        setContentView(R.layout.activity_adicionar_atividade)
 
         val texto = findViewById<TextView>(R.id.textView2)
 
