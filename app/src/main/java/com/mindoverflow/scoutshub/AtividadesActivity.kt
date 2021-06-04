@@ -1,7 +1,6 @@
 package com.mindoverflow.scoutshub
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +8,12 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.imageview.ShapeableImageView
-import com.mindoverflow.scoutshub.models.Atividade
+import com.mindoverflow.scoutshub.ui.CalendarioAtividadesActivity
 
 class AtividadesActivity : AppCompatActivity() {
 
@@ -22,13 +24,27 @@ class AtividadesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_atividades)
 
-        // swipe to exit
+        //Swipe para sair
         val viewSwipe = findViewById<View>(R.id.viewSwipe)
         val closeAnimation = findViewById<LottieAnimationView>(R.id.closeAnimation)
+
+
+        //É dado assignment dos buttons
+        val vercalendario = findViewById<ConstraintLayout>(R.id.constraintLayout)
+        val atividadesdisponiveis = findViewById<ConstraintLayout>(R.id.constraintLayout2)
+        val guiadeinstrucoes = findViewById<ConstraintLayout>(R.id.constraintLayout3)
+
+        vercalendario.setOnClickListener{
+            val intent = Intent(this, CalendarioAtividadesActivity::class.java)
+            this.startActivity(intent)
+        }
+
 
         closeAnimation.setOnClickListener{
             finish()
         }
+
+
 
         viewSwipe.isClickable = true
         viewSwipe.setOnTouchListener { view, motionEvent ->

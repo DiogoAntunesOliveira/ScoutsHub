@@ -32,6 +32,9 @@
         <activity android:name=".ui.ConfirmNewActivity" >
         </activity>
 
+        <activity android:name=".ui.CalendarioAtividadesActivity" >
+        </activity>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
