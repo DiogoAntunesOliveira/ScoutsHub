@@ -59,4 +59,5 @@ dependencies {
     implementation 'com.github.AAChartModel:AAChartCore-Kotlin:-SNAPSHOT'
     implementation 'com.android.support:multidex:1.0.3'
     compile 'com.github.sundeepk:compact-calendar-view:3.0.0'
+    implementation 'com.applandeo:material-calendar-view:1.7.0'
 }
