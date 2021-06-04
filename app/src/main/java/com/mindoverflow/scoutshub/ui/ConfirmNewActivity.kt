@@ -7,6 +7,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import com.mindoverflow.scoutshub.AtividadesActivity
 import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.TESTE_DIC_KEY
@@ -23,6 +24,8 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_confirmar_atividade)
 
+
+        supportActionBar!!.hide()
 
         val dataAtividadePreviousActivity = intent.getStringExtra("dataAtividade" )
         val nomeCompletoPreviousActivity = intent.getStringExtra("nomeCompleto" )
@@ -75,7 +78,7 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
             println(dataAtividade)
             println(nomeCompleto)
             println(descricao)
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this,AtividadesActivity::class.java)
             this.startActivity(intent)
         }
 
