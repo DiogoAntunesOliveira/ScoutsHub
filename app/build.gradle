@@ -56,5 +56,5 @@ dependencies {
     implementation 'com.airbnb.android:lottie:3.7.0'
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
     implementation 'com.github.AAChartModel:AAChartCore-Kotlin:-SNAPSHOT'
-
+    implementation 'com.android.support:multidex:1.0.3'
 }
