@@ -2,6 +2,7 @@ package com.mindoverflow.scoutshub.ui
 
 import android.content.Intent
 import android.graphics.Color
+import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -42,6 +43,12 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
         supportActionBar!!.hide()
 
         findViewById<TextView>(R.id.textView5).setText("<")
+
+        findViewById<ImageView>(R.id.imageadicionar).setOnClickListener {
+            val intent = Intent(this,NovaAtividadeActivity::class.java)
+            startActivity(intent)
+
+        }
 
 
         compactCalendar =

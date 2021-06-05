@@ -120,4 +120,11 @@
         app:srcCompat="@drawable/ic_baseline_close_24"
         app:tint="#000000" />
 
+    <ImageView
+        android:id="@+id/imageadicionar"
+        android:layout_width="80dp"
+        android:layout_height="154dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
