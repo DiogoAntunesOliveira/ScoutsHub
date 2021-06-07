@@ -42,10 +42,11 @@
             android:id="@+id/textViewPerfilEscuteiroNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="176dp"
+            android:layout_marginStart="144dp"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_medium"
+            android:fontFamily="@font/poppins_semibold"
             android:text="TextView"
+            android:textSize="@dimen/_20sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -93,12 +94,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroContacto" />
 
+
         <TextView
             android:id="@+id/textViewPerfilEscuteiroCodigoPostal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="179dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="176dp"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,121 +110,68 @@
             android:id="@+id/textViewPerfilEscuteiroNin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroCodigoPostal" />
-
 
         <TextView
             android:id="@+id/textViewPerfilEscuteiroTotalAtivParticip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="176dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroNin"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/motionLayout"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="60dp"
-            app:layoutDescription="@xml/descriptor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroTotalAtivParticip"
-            tools:showPaths="true">
-
-            <ImageView
-                android:id="@+id/imageView0"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/image0" />
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/image1"
-                app:layout_constraintStart_toEndOf="@+id/imageView0"/>
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/image2"
-                app:layout_constraintStart_toEndOf="@+id/imageView1"/>
-
-            <ImageView
-                android:id="@+id/imageView3"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/image3"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"/>
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:scaleType="fitXY"
-                android:contentDescription="@string/image4"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"/>
-
-            <androidx.constraintlayout.helper.widget.Carousel
-                android:id="@+id/carousel"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:carousel_backwardTransition="@+id/backward"
-                app:carousel_emptyViewsBehavior="gone"
-                app:carousel_firstView="@+id/imageView2"
-                app:carousel_forwardTransition="@+id/forward"
-                app:carousel_infinite="true"
-                app:carousel_nextState="@+id/next"
-                app:carousel_previousState="@+id/previous"
-                app:constraint_referenced_ids="imageView0,imageView1,imageView2,imageView3,imageView4"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroTotalAtivParticip" />
-
-        </androidx.constraintlayout.motion.widget.MotionLayout>
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroNin" />
 
         <Button
             android:id="@+id/buttonEditProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginEnd="160dp"
+            android:layout_marginTop="1020dp"
             android:text="Edit Profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.517"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/motionLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <Button
             android:id="@+id/buttonLogOut"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:layout_marginBottom="100dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginEnd="157dp"
+            android:layout_marginBottom="50dp"
             android:text="Log Out"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.476"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/buttonEditProfile"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonEditProfile" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroTotalAtivParticip"
+            tools:itemCount="1"
+            tools:layout_editor_absoluteX="3dp"
+            tools:listitem="@layout/item_past_activities" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </ScrollView>

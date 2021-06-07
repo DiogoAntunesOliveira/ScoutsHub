@@ -63,10 +63,10 @@ class PerfisFragment : Fragment() {
         nin.text = perfil.nin.toString()
         totalAtivParticip.text = perfil.totalAtivParticip.toString()
 
-        val carousel = rootView.findViewById<Carousel>(R.id.carousel)
+        //val carousel = rootView.findViewById<Carousel>(R.id.carousel)
 
 
-        carousel.setAdapter(object : Carousel.Adapter {
+        /*carousel.setAdapter(object : Carousel.Adapter {
             override fun count(): Int {
                 // need to return the number of items we have in the carousel
 
@@ -83,60 +83,8 @@ class PerfisFragment : Fragment() {
                 // called when an item is set
 
             }
-        })
+        })*/
 
         return rootView
     }
-
-
-/*    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        GlobalScope.launch (Dispatchers.Main){
-            adapter.notifyDataSetChanged()
-        }
-    }
-
-    inner class PerfilAdapter : BaseAdapter() {
-        override fun getCount(): Int {
-            return perfis.size
-        }
-
-        override fun getItem(position: Int): Any {
-            return perfis[position]
-        }
-
-        override fun getItemId(position: Int): Long {
-            return 0
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val rowView = layoutInflater.inflate(R.layout.row_perfis, parent, false)
-
-            //val idPerfil = rowView.findViewById<TextView>(R.id.textViewIdPerfil)
-            val nomeUtilizador = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroNome)
-            val dtNasc = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroDataNasc)
-            val genero = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroGenero)
-            val contacto = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroContacto)
-            val morada = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroMorada)
-            val codigoPostal = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroCodigoPostal)
-            val nin = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroNin)
-            val totalAtivParticip = rowView.findViewById<TextView>(R.id.textViewPerfilEscuteiroTotalAtivParticip)
-            //val idEquipa = rowView.findViewById<TextView>(R.id.textViewIdEquipa)
-
-            //idPerfil.text = perfis[position].idPerfil.toString()
-            nomeUtilizador.text = perfis[position].nome
-            dtNasc.text = perfis[position].dtNasc
-            genero.text = perfis[position].genero
-            contacto.text = perfis[position].contacto.toString()
-            morada.text = perfis[position].morada
-            codigoPostal.text = perfis[position].codigoPostal
-            nin.text = perfis[position].dtNasc
-            totalAtivParticip.text = perfis[position].totalAtivParticip.toString()
-            //idEquipa.text = perfis[position].idEquipa.toString()
-
-            return rowView
-        }
-
-    }*/
 }

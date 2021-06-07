@@ -62,14 +62,7 @@ class NovaAtividadeActivity : AppCompatActivity() {
 
             }
 
-
-
-
         }
-
-    }
-
-    companion object {
 
     }
 }
