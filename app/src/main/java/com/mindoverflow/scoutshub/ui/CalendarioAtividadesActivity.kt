@@ -30,10 +30,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
     var atividades: MutableList<Atividade> = arrayListOf()
     var compactCalendar: CompactCalendarView? = null
     private val dateFormatMonth = SimpleDateFormat("MMMM- yyyy", Locale.getDefault())
-
-    var listevent: MutableList<String> = arrayListOf()
     lateinit var adapterlisteventos: ArrayAdapter<String>
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,11 +41,27 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.textView5).setText("<")
 
+        var listevent: MutableList<String> = arrayListOf()
+
+
+        var coreslist: MutableList<Int> = arrayListOf(
+            Color.parseColor("#ff0000"), Color.parseColor("#000000"),
+            Color.parseColor("#FF8F00"), Color.parseColor("#038a34"),
+            Color.parseColor("#00ff00"), Color.parseColor("#8591ff"),
+            Color.parseColor("#00fff2"), Color.parseColor("#FFFF00"),
+            Color.parseColor("#0040ff"), Color.parseColor("#6AA84F"),
+            Color.parseColor("#ae00ff"), Color.parseColor("#97D6EC"),
+            Color.parseColor("#ff0077"),
+            Color.parseColor("#37474F"),
+        )
+        var coraleatoria = coreslist.random()
+
         findViewById<ImageView>(R.id.imageadicionar).setOnClickListener {
             val intent = Intent(this,NovaAtividadeActivity::class.java)
             startActivity(intent)
 
         }
+
 
 
         compactCalendar =
@@ -59,6 +72,23 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         adapterlisteventos =
             ArrayAdapter<String>(this, R.layout.row_calendario, listevent)
+
+        var eventosapagar : MutableList<Event> = arrayListOf(
+            Event(coraleatoria, 1607040400000L, "Teachers' Professional Day"),
+            Event(coraleatoria, 1624273932000, "Tessdate"),
+            Event(coraleatoria, 1624274932000, "Teste"),
+            Event(coraleatoria, 1623082189198, "Dia 7"),
+            Event(coraleatoria, 1626562800000, "Inicio Sao Joao"),
+            Event(coraleatoria, 1626822000000, "Fim Sao Joao")
+        )
+
+
+        for(Event in eventosapagar){
+          var coranterior = coraleatoria
+            coraleatoria = coreslist.random()
+           if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
+            compactCalendar!!.addEvent(Event(coraleatoria,Event.timeInMillis,Event.data))
+        }
 
 
 
@@ -93,12 +123,8 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         dataselecionada.text = dataatual
 
-        val ev1 = Event(Color.RED, 1607040400000L, "Teachers' Professional Day")
-        val ev2 = Event(Color.BLUE, 1624273932000, "Tessdate")
-        val ev3 = Event(Color.GREEN, 1624274932000, "Teste")
-        compactCalendar!!.addEvent(ev1)
-        compactCalendar!!.addEvent(ev2)
-        compactCalendar!!.addEvent(ev3)
+
+
         compactCalendar!!.setListener(object : CompactCalendarView.CompactCalendarViewListener {
             override fun onDayClick(dateClicked: Date) {
                 listViewCalendarioEventos.setAdapter(null)
