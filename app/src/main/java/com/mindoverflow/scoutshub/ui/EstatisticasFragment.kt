@@ -6,13 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import bit.linux.tinyspacex.Helpers
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.gms.common.internal.service.Common
+import com.google.android.material.imageview.ShapeableImageView
 import com.mindoverflow.scoutshub.R
 import org.json.JSONObject
 import java.lang.Exception
@@ -56,6 +59,10 @@ class EstatisticasFragment : Fragment() {
         return rootView
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 
 
 }

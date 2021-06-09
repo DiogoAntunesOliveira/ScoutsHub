@@ -42,10 +42,10 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/img_dish"
+                android:id="@+id/vard_item_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@mipmap/campingimage"
+                android:src="@drawable/bryce_canyon"
                 android:paddingTop="@dimen/_8sdp"/>
         </RelativeLayout>
 

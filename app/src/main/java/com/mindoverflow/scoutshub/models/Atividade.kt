@@ -16,9 +16,6 @@ class Atividade {
     var dataInicio      : String? = null
     var dataFim         : String? = null
 
-    constructor(){
-
-    }
 
     constructor(
         idAtividade     : Int?,
@@ -46,6 +43,10 @@ class Atividade {
         this.urlLocal       = urlLocal
         this.dataInicio     = dataInicio
         this.dataFim        = dataFim
+    }
+
+    constructor(){
+
     }
 
 
