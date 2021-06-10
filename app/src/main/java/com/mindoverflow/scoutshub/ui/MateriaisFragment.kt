@@ -16,6 +16,7 @@ import com.mindoverflow.scoutshub.models.Material
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 
 class MateriaisFragment : Fragment() {
@@ -28,6 +29,7 @@ class MateriaisFragment : Fragment() {
     var nomeRecebido : String? = null
     var descricaoRecebida : String? = null
     var dataRecebida : String? = null
+    var materiaisselecionados : TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,8 +54,7 @@ class MateriaisFragment : Fragment() {
 
         listaMateriais.adapter = adapter
 
-
-
+        materiaisselecionados = rootView.findViewById(R.id.numeroselecionado)
 
         val equipa = Material(null, "Tendas", 14)
         materiais.add(equipa)
@@ -129,6 +130,7 @@ class MateriaisFragment : Fragment() {
 
 
 
+
             idMaterial.text = materiais[position].idMaterial.toString()
             tipoMaterial.text = materiais[position].tipo
             quantidade.text = materiais[position].quantidade.toString()
@@ -143,7 +145,7 @@ class MateriaisFragment : Fragment() {
                     imageselected.visibility = View.INVISIBLE;
                     selectedRowsIds.remove(idMaterial.text as String)
                     rowView.setBackground(context?.let { it1 -> ContextCompat.getDrawable(it1, R.color.white) })
-
+                    materiaisselecionados?.text = (Integer.parseInt(materiaisselecionados?.text.toString())-1).toString()
 
                     println("              ------  Estou invisivel  ------                    ")
                 }
@@ -152,6 +154,8 @@ class MateriaisFragment : Fragment() {
                     imageselected.visibility = View.VISIBLE
                     selectedRowsIds.add(idMaterial.text as String)
                     rowView.setBackground(context?.let { it1 -> ContextCompat.getDrawable(it1, R.drawable.rounded_corner) });
+                    materiaisselecionados?.text = (Integer.parseInt(materiaisselecionados?.text as String)+1).toString()
+
                     println("              -------  Estou visivel  ------                     ")
                 }
                 else{
