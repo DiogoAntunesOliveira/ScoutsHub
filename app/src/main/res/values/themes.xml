@@ -36,5 +36,34 @@
         <!-- Customize your theme here. -->
 
     </style>">
+    <style name="FullscreenTheme" parent="Theme.AplicacaoProjeto">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="Transparent" parent="Theme.AplicacaoProjeto">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+
+        <item name="android:backgroundDimEnabled">true</item>
+
+    </style>
+
+
+    <style name="CardThemeActivities" parent="Theme.AplicacaoProjeto">
+        <!-- Primary brand color. -->
+        <item name="android:editTextColor">#EE8300</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+    </style>
 
 </resources>
