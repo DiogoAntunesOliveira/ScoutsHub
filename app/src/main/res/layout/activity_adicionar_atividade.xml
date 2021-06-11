@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.applandeo.materialcalendarview.CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="340dp"
+        android:layout_height="375dp"
+        android:layout_marginBottom="11dp"
+        android:background="@color/white"
+        android:divider="@color/white"
+        android:duplicateParentState="false"
+        android:fadeScrollbars="false"
+        android:fitsSystemWindows="false"
+        android:isScrollContainer="false"
+        android:keepScreenOn="false"
+        android:overScrollMode="never"
+        android:scrollbarAlwaysDrawHorizontalTrack="false"
+        android:scrollbarAlwaysDrawVerticalTrack="false"
+        android:selectedWeekBackgroundColor="@color/white"
+        app:anotherMonthsDaysLabelsColor="#00FFFFFF"
+        app:backgroundTint="@color/white"
+        app:datePicker="true"
+        app:eventsEnabled="false"
+        app:headerColor="@color/white"
+        app:headerLabelColor="@color/black"
+        app:highlightedDaysLabelsColor="#C1A086"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloAddActivity"
+        app:selectionColor="#C1A086"
+        app:selectionLabelColor="#FFF"
+        app:todayLabelColor="#C1A086">
+
+        <TextView
+            android:id="@+id/diaEscolhido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="--/--/----"
+            android:textSize="16sp" />
+    </com.applandeo.materialcalendarview.CalendarView>
+
+    <EditText
+        android:id="@+id/editTextDescricao"
+        android:layout_width="319dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="41dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/rounded_corner"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:gravity="start|top"
+        android:hint="Descrição"
+        android:inputType="text"
+        android:paddingLeft="12dp"
+        android:paddingTop="12dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonNextNewActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNomeCompleto" />
+
+    <EditText
+        android:id="@+id/editTextNomeCompleto"
+        android:layout_width="327dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="46dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="13dp"
+        android:background="@drawable/rounded_corner"
+        android:ems="10"
+        android:fontFamily="@font/poppins_medium"
+        android:hint="Nome Completo"
+        android:inputType="textPersonName"
+        android:paddingLeft="12dp"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextDescricao"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <Button
+        android:id="@+id/buttonNextNewActivity"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="36dp"
+        android:background="@drawable/rounded_corner"
+        android:fontFamily="@font/poppins_medium"
+        android:text="NEXT"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextDescricao" />
+
+    <TextView
+        android:id="@+id/tituloAddActivity"
+        android:layout_width="373dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Adicionar Actividade"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
