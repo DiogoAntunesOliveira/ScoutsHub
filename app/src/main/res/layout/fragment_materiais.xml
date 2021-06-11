@@ -13,23 +13,83 @@
         android:layout_height="82dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="64dp"
-        android:background="@android:drawable/ic_media_play"
+        android:background="@drawable/circle"
         app:cornerRadius="3dp"
+        app:icon="@drawable/ic_baseline_arrow_forward_ios_24"
+        app:iconGravity="textTop"
+        app:iconPadding="0dp"
+        app:iconSize="50dp"
+        app:iconTint="#434343"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:fontFamily="@font/poppins_semibold"
+
+        android:text="Stock Disponivel"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="431dp"
+        android:layout_height="98dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/brown_200"
-        app:strokeColor="@color/brown_200" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.086"
+        app:srcCompat="@drawable/top_only_corner" />
+
 
     <ListView
         android:id="@+id/listViewMaterial"
-        android:layout_width="414dp"
-        android:layout_height="733dp"
+        android:layout_width="413dp"
+        android:layout_height="661dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39">
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.989">
 
     </ListView>
+
+    <TextView
+        android:id="@+id/numeroselecionado"
+        android:layout_width="10dp"
+        android:layout_height="22dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="2dp"
+        android:text="0"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/listViewMaterial"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/selecionadotexto"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.574" />
+
+    <TextView
+        android:id="@+id/selecionadotexto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/poppins_medium"
+        android:paddingTop="1dp"
+        android:text="Selecionado : "
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/listViewMaterial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias="0.357" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
