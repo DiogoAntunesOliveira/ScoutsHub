@@ -13,6 +13,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Material
+import com.mindoverflow.scoutshub.ui.Atividades.ConfirmNewActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -70,7 +71,7 @@ class MateriaisFragment : Fragment() {
 
         buttonnextmaterial.setOnClickListener{
 
-            val intent = Intent(activity,ConfirmNewActivity::class.java)
+            val intent = Intent(activity, ConfirmNewActivity::class.java)
             intent.putExtra("IDs", selectedRowsIds)
             intent.putExtra("descricao", descricaoRecebida)
             intent.putExtra("nomeCompleto" , nomeRecebido)

@@ -1,4 +1,4 @@
-package com.mindoverflow.scoutshub
+package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -9,11 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.imageview.ShapeableImageView
-import com.mindoverflow.scoutshub.ui.CalendarioAtividadesActivity
+import com.mindoverflow.scoutshub.R
 
 class AtividadesActivity : AppCompatActivity() {
 
@@ -30,19 +28,25 @@ class AtividadesActivity : AppCompatActivity() {
 
 
         //É dado assignment dos buttons
-        val vercalendario = findViewById<ConstraintLayout>(R.id.constraintLayout)
-        val atividadesdisponiveis = findViewById<ConstraintLayout>(R.id.constraintLayout2)
+        val calendario = findViewById<ConstraintLayout>(R.id.constraintLayout)
+        val availableActivities = findViewById<ConstraintLayout>(R.id.constraintLayout2)
         val guiadeinstrucoes = findViewById<ConstraintLayout>(R.id.constraintLayout3)
 
-        vercalendario.setOnClickListener{
+        calendario.setOnClickListener{
             val intent = Intent(this, CalendarioAtividadesActivity::class.java)
             this.startActivity(intent)
+        }
+
+        availableActivities.setOnClickListener {
+            val intent = Intent(this, AvailableActivitiesActivity::class.java)
+            startActivity(intent)
         }
 
 
         closeAnimation.setOnClickListener{
             finish()
         }
+
 
 
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_atividade"
-        android:name="com.mindoverflow.scoutshub.ui.AtividadesFragment"
+        android:name="com.mindoverflow.scoutshub.ui.Atividades.AtividadesFragment"
         android:label="@string/title_atividade"
         tools:layout="@layout/fragment_atividades" />
 
@@ -20,9 +20,9 @@
 
     <fragment
         android:id="@+id/navigation_perfil"
-        android:name="com.mindoverflow.scoutshub.ui.PerfisFragment"
+        android:name="com.mindoverflow.scoutshub.ui.PerfisFragmentAdministrador"
         android:label="@string/title_perfil"
-        tools:layout="@layout/fragment_perfis" />
+        tools:layout="@layout/fragment_perfil_administrador" />
 
     <fragment
         android:id="@+id/navigation_estatisticas"

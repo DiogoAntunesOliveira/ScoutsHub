@@ -1,11 +1,8 @@
-package com.mindoverflow.scoutshub.ui
+package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.annotation.RequiresApi
@@ -59,7 +56,7 @@ class NovaAtividadeActivity : AppCompatActivity() {
             if(editTextNomeCompleto.text != null && editTextDescricao.text != null){
 
                 //Se não forem null é criado um Intent com o contexto como esta Activity e a proxima activity como classe
-                val intent = Intent(this,ConfirmNewActivity::class.java)
+                val intent = Intent(this, ConfirmNewActivity::class.java)
                 //De seguida é colocado as strings de informação (data , nome e descricao) dentro da string com os seus devidos ids/nomes
                             intent.putExtra("dataAtividade", dataAtividade)
                             intent.putExtra("nomeCompleto", editTextNomeCompleto.text.toString())

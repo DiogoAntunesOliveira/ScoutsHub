@@ -10,7 +10,7 @@
         android:id="@+id/compactcalendar_view"
         android:layout_width="312dp"
         android:layout_height="336dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginTop="11dp"
         android:paddingLeft="10dp"
         android:paddingTop="50dp"
         android:paddingRight="10dp"
@@ -26,109 +26,97 @@
         app:compactCalendarTargetHeight="340dp"
         app:compactCalendarTextColor="@color/black"
         app:compactCalendarTextSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/dataselecionada"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leftArrowImage" />
 
     <ImageView
         android:id="@+id/leftArrowImage"
         android:layout_width="46dp"
         android:layout_height="34dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
-        android:layout_marginBottom="2dp"
         android:background="@drawable/ic_baseline_arrow_left_24"
         android:foreground="@drawable/ic_baseline_arrow_left_24"
         android:scaleType="center"
-        app:layout_constraintBottom_toTopOf="@+id/compactcalendar_view"
         app:layout_constraintEnd_toStartOf="@+id/mesdocalendario"
-        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <ImageView
         android:id="@+id/rightArrowImage"
         android:layout_width="46dp"
         android:layout_height="34dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="11dp"
         android:background="@drawable/ic_baseline_arrow_right_24"
         android:foreground="@drawable/ic_baseline_arrow_right_24"
         android:scaleType="center"
         app:layout_constraintBottom_toTopOf="@+id/compactcalendar_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.579"
-        app:layout_constraintStart_toEndOf="@+id/mesdocalendario"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="1.0"
         app:tint="@color/black" />
 
     <TextView
         android:id="@+id/mesdocalendario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="sans-serif"
         android:text="XXXX-XXXX"
         android:textSize="14sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/compactcalendar_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/dataselecionada"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginTop="29dp"
         android:fontFamily="@font/poppins_medium"
         android:text="DATA SELECIONADA"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/listViewCalendario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/compactcalendar_view"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ListView
         android:id="@+id/listViewCalendario"
-        android:layout_width="384dp"
-        android:layout_height="207dp"
+        android:layout_width="371dp"
+        android:layout_height="166dp"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.592"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/dataselecionada" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="60dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Calendário"
         android:textColor="@color/black"
         android:textSize="28sp"
-        app:layout_constraintBottom_toTopOf="@+id/mesdocalendario"
-        app:layout_constraintEnd_toStartOf="@+id/imageadicionar"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imageView5"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="46dp"
         android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_close_24"
@@ -136,9 +124,13 @@
 
     <ImageView
         android:id="@+id/imageadicionar"
-        android:layout_width="80dp"
-        android:layout_height="154dp"
+        android:layout_width="59dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.785"
+        app:layout_constraintStart_toEndOf="@+id/compactcalendar_view"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

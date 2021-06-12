@@ -1,4 +1,4 @@
-package com.mindoverflow.scoutshub.ui
+package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.content.Intent
 import android.graphics.Color
@@ -50,7 +50,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
 
         findViewById<ImageView>(R.id.imageadicionar).setOnClickListener {
-            val intent = Intent(this,NovaAtividadeActivity::class.java)
+            val intent = Intent(this, NovaAtividadeActivity::class.java)
             startActivity(intent)
 
         }

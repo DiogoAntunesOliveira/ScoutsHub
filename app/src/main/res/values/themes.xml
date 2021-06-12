@@ -66,4 +66,9 @@
         <item name="colorSecondary">@color/teal_200</item>
     </style>
 
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
+
 </resources>

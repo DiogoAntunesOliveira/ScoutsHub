@@ -168,28 +168,7 @@
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <SearchView
-                android:id="@+id/search"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                app:queryBackground="@android:color/transparent"
-            ></SearchView>
-
-            <!-- <SearchView
-                android:id="@+id/search"
-                android:layout_width="match_parent"
-                android:layout_height="75dp"
-                android:elevation="@dimen/_10sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:padding="15dp"
-                android:iconifiedByDefault="false"
-                app:queryBackground="@android:color/transparent"> -->
-
-        </LinearLayout>
+            android:orientation="vertical"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProfile"
@@ -308,6 +287,19 @@
             app:layout_constraintEnd_toStartOf="@+id/textViewPerfilEscuteiroTotalAtivParticip"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="357dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilEscuteiro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

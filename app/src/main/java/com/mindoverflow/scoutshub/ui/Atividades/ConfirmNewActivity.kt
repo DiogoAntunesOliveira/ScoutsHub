@@ -1,4 +1,4 @@
-package com.mindoverflow.scoutshub.ui
+package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,9 +7,9 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import com.mindoverflow.scoutshub.AtividadesActivity
 import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.ui.MateriaisFragment
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.TESTE_DIC_KEY
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.dataAtividade
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.descricao

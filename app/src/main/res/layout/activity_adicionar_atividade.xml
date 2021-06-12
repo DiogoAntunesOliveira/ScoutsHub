@@ -10,27 +10,28 @@
         android:id="@+id/tituloAddActivity"
         android:layout_width="373dp"
         android:layout_height="45dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Adicionar Actividade"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/InsideConstraintLayout"
-        android:layout_width="430dp"
-        android:layout_height="736dp"
-        android:background="@drawable/top_only_corner"
+        android:layout_width="match_parent"
+        android:layout_height="752dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/round_corners_2"
+        android:elevation="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tituloAddActivity"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/tituloAddActivity">
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarView"
@@ -41,9 +42,10 @@
             android:soundEffectsEnabled="true"
             app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.266"
+            app:layout_constraintVertical_bias="0.368"
             app:mcv_firstDayOfWeek="monday"
             app:mcv_selectionColor="@color/brown_200"
             app:mcv_tileHeight="52sp"
@@ -54,7 +56,7 @@
             android:id="@+id/editTextNomeCompleto"
             android:layout_width="330dp"
             android:layout_height="43dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="32dp"
             android:background="@drawable/rounded_corner"
             android:ems="10"
             android:fontFamily="@font/poppins_medium"
@@ -65,6 +67,7 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextDescricao"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
