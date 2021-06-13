@@ -40,7 +40,7 @@ class EditingProfile : AppCompatActivity() {
 
         supportActionBar!!.hide()
 
-        val perfil = Perfil(perfilFromJson.idPerfil, editTextNome.text.toString(), perfilFromJson.imagem, editTextDataNascimento.text.toString(), perfilFromJson.genero, editTextNumeroTelefone.text.toString().toInt(), editTextMorada.text.toString(), editTextCodigoPostal.text.toString(), editTextNin.text.toString().toInt(), 6, 5)
+        val perfil = Perfil(perfilFromJson.idPerfil, editTextNome.text.toString(), editTextDataNascimento.text.toString(), perfilFromJson.genero, editTextNumeroTelefone.text.toString().toInt(), editTextMorada.text.toString(), editTextCodigoPostal.text.toString(), editTextNin.text.toString().toInt(), 6, 5)
 
         val buttonEdit = findViewById<Button>(R.id.buttonEdit)
 
