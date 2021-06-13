@@ -13,7 +13,7 @@
         tools:context=".RocketContentActivity">
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiro"
+            android:id="@+id/textViewPerfilUtilizador"
             android:layout_width="358dp"
             android:layout_height="53dp"
             android:layout_marginTop="28dp"
@@ -34,13 +34,13 @@
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiro"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizador"
             app:srcCompat="@drawable/ic_launcher_foreground"
             tools:ignore="VectorDrawableCompat" />
         <!-- app:shapeAppearanceOverlay="@style/roundedImageView" -->
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroNome"
+            android:id="@+id/textViewPerfilUtilizadorNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -53,7 +53,7 @@
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroDataNasc"
+            android:id="@+id/textViewPerfilUtilizadorDataNasc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -62,10 +62,10 @@
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroNome" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorNome" />
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroGenero"
+            android:id="@+id/textViewPerfilUtilizadorGenero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -74,11 +74,11 @@
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroDataNasc" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorDataNasc" />
 
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroContacto"
+            android:id="@+id/textViewPerfilUtilizadorContacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -87,10 +87,10 @@
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroGenero" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorGenero" />
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroMorada"
+            android:id="@+id/textViewPerfilUtilizadorMorada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -99,10 +99,10 @@
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroContacto" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorContacto" />
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroCodigoPostal"
+            android:id="@+id/textViewPerfilUtilizadorCodigoPostal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -111,10 +111,10 @@
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroMorada" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorMorada" />
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroNin"
+            android:id="@+id/textViewPerfilUtilizadorNin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -123,10 +123,10 @@
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView13"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroCodigoPostal" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorCodigoPostal" />
 
         <TextView
-            android:id="@+id/textViewPerfilEscuteiroTotalAtivParticip"
+            android:id="@+id/textViewPerfilUtilizadorTotalAtivParticip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -135,10 +135,10 @@
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroNin" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorNin" />
 
         <Button
-            android:id="@+id/buttonEditProfile"
+            android:id="@+id/buttonEditPerfilUtilizador"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="1096dp"
@@ -149,7 +149,7 @@
             app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
         <Button
-            android:id="@+id/buttonLogOut"
+            android:id="@+id/buttonLogOutPerfilUtilizador"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginStart="156dp"
@@ -160,7 +160,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonEditProfile"
+            app:layout_constraintTop_toBottomOf="@+id/buttonEditPerfilUtilizador"
             app:layout_constraintVertical_bias="1.0" />
 
         <LinearLayout
@@ -193,7 +193,7 @@
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroTotalAtivParticip" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorTotalAtivParticip" />
 
         <TextView
             android:id="@+id/textView7"
@@ -206,7 +206,7 @@
             android:text="data nasimento:"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroNome"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizadorNome"
             android:textColor="@color/black"/>
 
         <TextView
@@ -284,7 +284,7 @@
             android:fontFamily="@font/poppins_medium"
             android:text="Atividades Parcticipadas:"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/textViewPerfilEscuteiroTotalAtivParticip"
+            app:layout_constraintEnd_toStartOf="@+id/textViewPerfilUtilizadorTotalAtivParticip"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
             android:textColor="@color/black"/>

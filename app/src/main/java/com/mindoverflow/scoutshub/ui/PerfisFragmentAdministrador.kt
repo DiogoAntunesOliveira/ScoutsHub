@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -21,12 +22,14 @@ class PerfisFragmentAdministrador : Fragment() {
     //var perfis : MutableList<Perfil> = arrayListOf()
     //lateinit var adapter : PerfilAdapter
 
+    lateinit var rootView : View
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_perfil_administrador, container, false)
+        rootView = inflater.inflate(R.layout.fragment_perfil_administrador, container, false)
 
         val image0 = R.drawable.bryce_canyon
         val image1 = R.drawable.cathedral_rock
@@ -36,16 +39,16 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val images = arrayListOf(image0, image1, image2, image3, image4)
 
-        val nomeUtilizador = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroNome)
-        val dtNasc = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroDataNasc)
-        val genero = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroGenero)
-        val contacto = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroContacto)
-        val morada = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroMorada)
-        val codigoPostal = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroCodigoPostal)
-        val nin = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroNin)
-        val totalAtivParticip = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroTotalAtivParticip)
+        val nomeUtilizador = rootView.findViewById<TextView>(R.id.textViewPerfilAdminNome)
+        val dtNasc = rootView.findViewById<TextView>(R.id.textViewPerfilAdminDataNasc)
+        val genero = rootView.findViewById<TextView>(R.id.textViewPerfilAdminGenero)
+        val contacto = rootView.findViewById<TextView>(R.id.textViewPerfilAdminContacto)
+        val morada = rootView.findViewById<TextView>(R.id.textViewPerfilAdminMorada)
+        val codigoPostal = rootView.findViewById<TextView>(R.id.textViewPerfilAdminCodigoPostal)
+        val nin = rootView.findViewById<TextView>(R.id.textViewPerfilAdminNin)
+        val totalAtivParticip = rootView.findViewById<TextView>(R.id.textViewPerfilAdminTotalAtivParticip)
 
-        val perfil = Perfil(null, "Jorge", "30/5/2000", "M", 919923205, "Praceta Madalena Fonseca 120 Rés do chão", "9560-010", 123456789, 6, 5)
+        val perfil = Perfil(null, "Jorge", "dfggdr", "30/5/2000", "M", 919923205, "Praceta Madalena Fonseca 120 Rés do chão", "9560-010", 123456789, 6, 5)
 
         nomeUtilizador.text = perfil.nome
         dtNasc.text = perfil.dtNasc
@@ -92,12 +95,19 @@ class PerfisFragmentAdministrador : Fragment() {
 
         //if the administrador clicks the search bar go to a certain activity
 
-        val searchView : SearchView = rootView.findViewById(R.id.search)
+        val searchImage: ImageView = rootView.findViewById(R.id.imageViewSearch)
+        val searchText: TextView = rootView.findViewById(R.id.textViewSearch)
 
-        searchView.setOnSearchClickListener {
-            val intent = Intent (activity, SearchBarActivity::class.java)
+        searchImage.setOnClickListener{
+            val intent = Intent(activity, SearchBarActivity::class.java)
             startActivity(intent)
         }
+
+        searchText.setOnClickListener{
+            val intent = Intent(activity, SearchBarActivity::class.java)
+            startActivity(intent)
+        }
+
 
         return rootView
     }

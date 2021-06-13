@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_perfil"
-        android:name="com.mindoverflow.scoutshub.ui.PerfisFragment"
+        android:name="com.mindoverflow.scoutshub.ui.PerfisFragmentAdministrador"
         android:label="@string/title_perfil"
         tools:layout="@layout/fragment_perfis" />
 

@@ -6,6 +6,7 @@ class Perfil {
 
     var idPerfil                : Int?                 = null
     var nome                    : String?              = null
+    var imagem                  : String?              = null
     var dtNasc                  : String?              = null
     var genero                  : String?              = null
     var contacto                : Int?                 = null
@@ -24,6 +25,7 @@ class Perfil {
     constructor(
         idPerfil                        : Int?,
         nome                            : String?,
+        imagem                          : String?,
         dtNasc                          : String?,
         genero                          : String?,
         contacto                        : Int?,
@@ -35,6 +37,7 @@ class Perfil {
     ) {
         this.idPerfil                   = idPerfil
         this.nome                       = nome
+        this.imagem                     = imagem
         this.dtNasc                    = dtNasc
         this.genero                     = genero
         this.contacto                   = contacto
@@ -50,6 +53,7 @@ class Perfil {
 
         jsonObject.put("id_perfil"                          , idPerfil          )
         jsonObject.put("nome"                               , nome              )
+        jsonObject.put("imagem"                             , imagem              )
         jsonObject.put("data_nascimento"                    , dtNasc           )
         jsonObject.put("genero"                             , genero            )
         jsonObject.put("contacto"                           , contacto          )
@@ -67,6 +71,7 @@ class Perfil {
             val perfil = Perfil()
             perfil.idPerfil             = if (!jsonObject.isNull("id_perfil"                        )) jsonObject.getInt        ("id_perfil"                        )   else null
             perfil.nome                 = if (!jsonObject.isNull("nome"                             )) jsonObject.getString     ("nome"                             )   else null
+            perfil.imagem               = if (!jsonObject.isNull("imagem"                           )) jsonObject.getString     ("imagem"                           )   else null
             perfil.dtNasc              = if (!jsonObject.isNull("data_nascimento"                  )) jsonObject.getString     ("data_nascimento"                  )   else null
             perfil.genero               = if (!jsonObject.isNull("genero"                           )) jsonObject.getString     ("genero"                           )   else null
             perfil.contacto             = if (!jsonObject.isNull("contacto"                         )) jsonObject.getInt        ("contacto"                         )   else null
