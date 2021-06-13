@@ -32,6 +32,12 @@
         <activity android:name=".ui.Atividades.CalendarioAtividadesActivity" />
         <activity android:name=".ui.SearchBarActivity" />
 
+        <activity android:name=".ui.Instrucoes.InstrucoesActivity"/>
+        <activity android:name=".ui.Instrucoes.StepsActivity"/>
+        <activity android:name=".ui.Instrucoes.StepsOptionsActivity"/>
+        <activity android:name=".ui.Instrucoes.VideoActivity"/>
+        <activity android:name=".ui.Instrucoes.VideoOptionsActivity"/>
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

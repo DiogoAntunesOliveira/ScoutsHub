@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.imageview.ShapeableImageView
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.ui.Instrucoes.InstrucoesActivity
 
 class AtividadesActivity : AppCompatActivity() {
 
@@ -30,7 +31,7 @@ class AtividadesActivity : AppCompatActivity() {
         //É dado assignment dos buttons
         val calendario = findViewById<ConstraintLayout>(R.id.constraintLayout)
         val availableActivities = findViewById<ConstraintLayout>(R.id.constraintLayout2)
-        val guiadeinstrucoes = findViewById<ConstraintLayout>(R.id.constraintLayout3)
+        val instructionsGuide = findViewById<ConstraintLayout>(R.id.constraintLayout3)
 
         calendario.setOnClickListener{
             val intent = Intent(this, CalendarioAtividadesActivity::class.java)
@@ -42,6 +43,10 @@ class AtividadesActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        instructionsGuide.setOnClickListener {
+            val intent = Intent(this, InstrucoesActivity::class.java)
+            startActivity(intent)
+        }
 
         closeAnimation.setOnClickListener{
             finish()
