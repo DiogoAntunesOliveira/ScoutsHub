@@ -73,18 +73,26 @@ class Atividade {
         fun fromJson(jsonObject: JSONObject) : Atividade {
             val  atividade = Atividade()
 
-            atividade.idAtividade       = if(!jsonObject.isNull("id_atividade"))    jsonObject.getInt("id_atividade")       else null
-            atividade.nome              = if(!jsonObject.isNull("nome"))            jsonObject.getString("nome")            else null
-            atividade.tipo              = if(!jsonObject.isNull("tipo"))            jsonObject.getString("tipo")            else null
-            atividade.descricao         = if(!jsonObject.isNull("descricao"))       jsonObject.getString("descricao")       else null
-            atividade.custo             = if(!jsonObject.isNull("custo"))           jsonObject.getInt("custo")              else null
-            atividade.local             = if(!jsonObject.isNull("local"))           jsonObject.getString("local")           else null
-            atividade.localInicio       = if(!jsonObject.isNull("local_inicio"))    jsonObject.getString("local_inicio")    else null
-            atividade.localFim          = if(!jsonObject.isNull("local_fim"))       jsonObject.getString("local_fim")       else null
-            atividade.coordenadas       = if(!jsonObject.isNull("coordenadas"))     jsonObject.getString("coordenadas")     else null
-            atividade.urlLocal          = if(!jsonObject.isNull("url_local"))       jsonObject.getString("url_local")       else null
-            atividade.dataInicio        = if(!jsonObject.isNull("data_inicio"))     jsonObject.getString("data_inicio")     else null
-            atividade.dataFim           = if(!jsonObject.isNull("data_fim"))        jsonObject.getString("data_fim")        else null
+            var perfis = jsonObject.getJSONArray("perfis")
+            for (i in 0 until perfis.length()){
+
+                // itera todos os objetos dentro do array
+                var jsonObjectPerfil = perfis.getJSONObject(i)
+
+                // construir json object atividade
+                atividade.idAtividade       = if(!jsonObjectPerfil.isNull("id_atividade"))    jsonObjectPerfil.getInt("id_atividade")       else null
+                atividade.nome              = if(!jsonObjectPerfil.isNull("nome"))            jsonObjectPerfil.getString("nome")            else null
+                atividade.tipo              = if(!jsonObjectPerfil.isNull("tipo"))            jsonObjectPerfil.getString("tipo")            else null
+                atividade.descricao         = if(!jsonObjectPerfil.isNull("descricao"))       jsonObjectPerfil.getString("descricao")       else null
+                atividade.custo             = if(!jsonObjectPerfil.isNull("custo"))           jsonObjectPerfil.getInt("custo")              else null
+                atividade.local             = if(!jsonObjectPerfil.isNull("local"))           jsonObjectPerfil.getString("local")           else null
+                atividade.localInicio       = if(!jsonObjectPerfil.isNull("local_inicio"))    jsonObjectPerfil.getString("local_inicio")    else null
+                atividade.localFim          = if(!jsonObjectPerfil.isNull("local_fim"))       jsonObjectPerfil.getString("local_fim")       else null
+                atividade.coordenadas       = if(!jsonObjectPerfil.isNull("coordenadas"))     jsonObjectPerfil.getString("coordenadas")     else null
+                atividade.urlLocal          = if(!jsonObjectPerfil.isNull("url_local"))       jsonObjectPerfil.getString("url_local")       else null
+                atividade.dataInicio        = if(!jsonObjectPerfil.isNull("data_inicio"))     jsonObjectPerfil.getString("data_inicio")     else null
+                atividade.dataFim           = if(!jsonObjectPerfil.isNull("data_fim"))        jsonObjectPerfil.getString("data_fim")        else null
+            }
 
             return atividade
         }
