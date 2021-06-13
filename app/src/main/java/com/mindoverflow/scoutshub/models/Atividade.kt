@@ -94,6 +94,8 @@ class Atividade {
                 atividade.dataFim           = if(!jsonObjectPerfil.isNull("data_fim"))        jsonObjectPerfil.getString("data_fim")        else null
             }
 
+            //teste
+
             return atividade
         }
     }
