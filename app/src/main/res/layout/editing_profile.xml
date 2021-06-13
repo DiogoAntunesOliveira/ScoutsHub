@@ -9,7 +9,7 @@
         android:id="@+id/textViewEditarPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="34dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="68dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Editar Perfil de Utilizador"
@@ -95,13 +95,13 @@
         android:layout_width="38dp"
         android:layout_height="38dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/ic_backward_arrow"
         app:layout_constraintEnd_toStartOf="@+id/textViewEditarPerfil"
         app:layout_constraintHorizontal_bias="0.133"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/ic_backward_arrow" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonEdit"
