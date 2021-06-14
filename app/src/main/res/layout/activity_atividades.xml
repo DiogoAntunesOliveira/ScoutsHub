@@ -55,7 +55,7 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="61dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,36 +63,37 @@
 
         <ImageView
             android:id="@+id/optionImage1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/ic_calendar" />
 
         <TextView
             android:id="@+id/titleOption1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Calendário"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/optionImage1"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/optionDescrition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Consulta as tuas atividades"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/optionImage1"
             app:layout_constraintTop_toBottomOf="@+id/titleOption1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -108,37 +109,53 @@
 
         <ImageView
             android:id="@+id/optionImage2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/ic_fire" />
 
         <TextView
             android:id="@+id/titleOption2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="36dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Atividades"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/optionImage2"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/optionDescrition2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Participa nas atividades\ndisponiveis"
+            android:textColor="@color/black"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/optionImage2"
             app:layout_constraintTop_toBottomOf="@+id/titleOption2" />
+
+        <TextView
+            android:layout_width="285dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginEnd="53dp"
+            android:background="#54707070"
+            android:gravity="center_horizontal"
+            android:text="Horizontal Line"
+            android:textSize="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="4dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -150,37 +167,52 @@
 
         <ImageView
             android:id="@+id/optionImage3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="61dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="44dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_launcher_foreground" />
+            app:srcCompat="@drawable/ic_docs" />
 
         <TextView
             android:id="@+id/titleOption3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="34dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Instruções"
+            android:textColor="@color/black"
             android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/optionImage3"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/optionDescrition3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="13dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Ajuda para a tua missão\nno acampamento "
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/optionImage3"
             app:layout_constraintTop_toBottomOf="@+id/titleOption3" />
+
+        <TextView
+            android:layout_width="285dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginEnd="53dp"
+            android:background="#54707070"
+            android:gravity="center_horizontal"
+            android:text="Horizontal Line"
+            android:textSize="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="4dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -190,8 +222,10 @@
         android:layout_height="733dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
     </FrameLayout>
 
