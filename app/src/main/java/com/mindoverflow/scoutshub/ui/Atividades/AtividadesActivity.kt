@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.imageview.ShapeableImageView
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.ui.Atividades.CalendarioAtividadesActivity
 import com.mindoverflow.scoutshub.ui.Instrucoes.InstrucoesActivity
 
 class AtividadesActivity : AppCompatActivity() {

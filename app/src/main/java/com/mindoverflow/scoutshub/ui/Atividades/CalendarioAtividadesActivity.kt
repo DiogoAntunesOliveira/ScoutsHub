@@ -1,4 +1,4 @@
-package com.mindoverflow.scoutshub.ui
+package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.content.Intent
 import android.graphics.Color
