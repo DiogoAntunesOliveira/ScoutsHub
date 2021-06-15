@@ -23,6 +23,7 @@
     <string name="image2">image2</string>
     <string name="image3">image3</string>
     <string name="image4">image4</string>
+    <string name="search_hint">hint</string>
 
     <string-array name="departamentos">
         <item>Departamento 1</item>
