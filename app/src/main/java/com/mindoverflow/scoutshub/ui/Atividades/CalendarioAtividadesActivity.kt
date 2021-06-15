@@ -147,7 +147,13 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
             compactCalendar!!.addEvent(Event(coraleatoria,Event.timeInMillis,Event.data))
         }
 
+       findViewById<ImageView>(R.id.leftArrowImage).setOnClickListener{
+           compactCalendar!!.scrollLeft()
+       }
 
+        findViewById<ImageView>(R.id.rightArrowImage).setOnClickListener{
+            compactCalendar!!.scrollRight()
+        }
 
         //Ao clicar-se na imageview5 irá terminar a activity
         findViewById<ImageView>(R.id.imageView5).setOnClickListener{
