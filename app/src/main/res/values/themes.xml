@@ -6,8 +6,8 @@
         <item name="colorPrimaryVariant">@color/brown_500</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/orange_500</item>
-        <item name="colorSecondaryVariant">@color/orange_700</item>
+        <item name="colorSecondary">@color/brown_500</item>
+        <item name="colorSecondaryVariant">@color/brown_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar transparent -->
         <item name="android:windowTranslucentStatus">true</item>

@@ -72,8 +72,8 @@
 
         <EditText
             android:id="@+id/editTextDescricao"
-            android:layout_width="329dp"
-            android:layout_height="114dp"
+            android:layout_width="327dp"
+            android:layout_height="106dp"
             android:layout_marginStart="41dp"
             android:layout_marginEnd="41dp"
             android:layout_marginBottom="32dp"
@@ -89,6 +89,7 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/buttonNextNewActivity"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.428"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -103,6 +104,41 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/buttonHora"
+            android:layout_width="106dp"
+            android:layout_height="55dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Escolher Hora"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
+            app:layout_constraintEnd_toEndOf="@+id/editTextNomeCompleto" />
+
+        <TextView
+            android:id="@+id/textViewHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="00:00"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
+            app:layout_constraintEnd_toStartOf="@+id/buttonHora" />
+
+        <TextView
+            android:id="@+id/textViewData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="28dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="00/00/0000"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
+            app:layout_constraintEnd_toStartOf="@+id/textViewHora" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

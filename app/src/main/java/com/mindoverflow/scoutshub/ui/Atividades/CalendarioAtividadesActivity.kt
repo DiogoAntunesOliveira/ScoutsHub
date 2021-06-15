@@ -1,4 +1,4 @@
-package com.mindoverflow.scoutshub.ui.Atividades
+package com.mindoverflow.scoutshub.ui
 
 import android.content.Intent
 import android.graphics.Color
@@ -12,16 +12,29 @@ import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.domain.Event
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Atividade
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONArray
+import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
+import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
-
 
 class CalendarioAtividadesActivity : AppCompatActivity() {
     var atividades: MutableList<Atividade> = arrayListOf()
     var compactCalendar: CompactCalendarView? = null
     private val dateFormatMonth = SimpleDateFormat("MMMM- yyyy", Locale.getDefault())
+
     lateinit var adapterlisteventos: ArrayAdapter<String>
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -58,6 +71,9 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
 
 
+
+
+
         compactCalendar =
             findViewById<View>(R.id.compactcalendar_view) as CompactCalendarView
 
@@ -71,6 +87,45 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         adapterlisteventos =
             ArrayAdapter<String>(this, R.layout.row_calendario, listevent)
+
+
+        GlobalScope.launch(Dispatchers.IO) {
+            val client = OkHttpClient()
+            val request = Request.Builder().url("http://mindoverflow.amipca.xyz:60000/activities/").build()
+            client.newCall(request).execute().use { response ->
+
+                val string : String = response.body!!.string()
+
+                val jsonObject = JSONObject(string)
+
+                val jsonArrayArticles = jsonObject.getJSONArray("activities")
+                for ( index in  0 until jsonArrayArticles.length()) {
+                    val jsonArticle : JSONObject = jsonArrayArticles.get(index) as JSONObject
+                    val atividade = Atividade.fromJson(jsonArticle)
+                    atividades.add(atividade)
+
+                    // var atividadedatainicio = formatter.format(atividade.dataInicio)
+                    val formatadoratividade = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK)
+                    val dataatividadeinicio = LocalDateTime.parse(atividade.dataInicio, formatadoratividade)
+                    val atividademilis = dataatividadeinicio.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+
+                    var coranterior = coraleatoria
+                    coraleatoria = coreslist.random()
+                    if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
+                    compactCalendar!!.addEvent(Event(coraleatoria,atividademilis,atividade.nome + " - " + atividade.descricao))
+                }
+
+            }
+
+
+            GlobalScope.launch (Dispatchers.Main){
+                adapterlisteventos.notifyDataSetChanged()
+            }
+
+            //println(str)
+        }
+
+
 
         //Declara uma MutableList de tipo Evento que contem um array com eventos
         var eventosapagar : MutableList<Event> = arrayListOf(
@@ -86,9 +141,9 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
         //Vê se as cor aleatoria nao se repete a anterior
         //e para cada item que esteja no array dos eventos adiciona um evento no calendario
         for(Event in eventosapagar){
-          var coranterior = coraleatoria
+            var coranterior = coraleatoria
             coraleatoria = coreslist.random()
-           if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
+            if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
             compactCalendar!!.addEvent(Event(coraleatoria,Event.timeInMillis,Event.data))
         }
 
@@ -145,7 +200,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                 listViewCalendarioEventos.adapter = adapterlisteventos
 
 
-                //Cria uma formataçao separadamente para data e hora
+                //Cria uma formataçao separadamente para hora e data
                 //obtem a data selecionada e converte a mesma de milisegundos para uma data e aplica o mesmo num textview
                 var formatter = SimpleDateFormat("dd/MM/yyyy");
                 val formatterhour = SimpleDateFormat("hh:mm")
