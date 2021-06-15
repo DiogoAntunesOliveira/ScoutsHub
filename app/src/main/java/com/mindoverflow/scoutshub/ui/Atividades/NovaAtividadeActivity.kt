@@ -1,4 +1,4 @@
-package com.mindoverflow.scoutshub.ui
+package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -11,13 +11,11 @@ import android.widget.TimePicker
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.mindoverflow.scoutshub.R
-import com.mindoverflow.scoutshub.ui.Atividades.ConfirmNewActivity
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.time.hours
 
 
 class NovaAtividadeActivity : AppCompatActivity() {
