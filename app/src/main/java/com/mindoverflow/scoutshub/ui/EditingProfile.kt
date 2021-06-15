@@ -17,10 +17,9 @@ class EditingProfile : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.editing_profile)
 
-        val jsonString = intent.getStringExtra("user_data")
+        val jsStr = intent.getStringExtra("user_data")
 
-        val jsonObject = JSONObject(jsonString)
-        val perfilFromJson = Perfil.fromJson(jsonObject)
+        val perfilFromJson = Perfil.fromJson(jsStr!!, null, null)
 
         val editTextNome = findViewById<EditText>(R.id.textViewEditarNome)
         val editTextEmail = findViewById<EditText>(R.id.textViewEditarEmail)
@@ -29,6 +28,7 @@ class EditingProfile : AppCompatActivity() {
         val editTextCodigoPostal = findViewById<EditText>(R.id.textViewEditarCodigoPostal)
         val editTextDataNascimento = findViewById<EditText>(R.id.textViewEditarDataNascimento)
         val editTextNumeroTelefone = findViewById<EditText>(R.id.textViewEditarNumeroTelefone)
+
 
         editTextNome.setText(perfilFromJson.nome)
         editTextEmail.setText("")

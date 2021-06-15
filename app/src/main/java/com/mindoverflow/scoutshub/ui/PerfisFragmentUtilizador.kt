@@ -108,11 +108,7 @@ class PerfisFragmentUtilizador : Fragment() {
             client.newCall(request).execute().use { response ->
                 val jsStr = (response.body!!.string())
 
-                val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
-
-                val jsonObject = JSONObject(jsonArray[0].toString())
-
-                val perfilFromJson = Perfil.fromJson(jsonObject)
+                val perfilFromJson = Perfil.fromJson(jsStr, id, "get_json_array_by_id")
 
 
                 GlobalScope.launch(Dispatchers.Main) {

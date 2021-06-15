@@ -165,7 +165,6 @@
             app:layout_constraintVertical_bias="1.0" />
 
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewProfile"
             android:layout_width="match_parent"
@@ -283,7 +282,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/textViewPerfilAdminTotalAtivParticip"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa"/>
 
         <ImageView
             android:id="@+id/imageViewSearch"

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_230sdp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/custom_card_view"
         android:elevation="@dimen/_10sdp"
@@ -25,12 +25,12 @@
             android:layout_width="match_parent"
             android:layout_height="75dp"
             android:elevation="@dimen/_10sdp"
+            android:iconifiedByDefault="false"
+            android:padding="15dp"
+            android:queryHint="Search here"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:padding="15dp"
-            android:queryHint="Search here"
-            android:iconifiedByDefault="false"
             app:queryBackground="@android:color/transparent">
 
         </SearchView>

@@ -125,11 +125,10 @@ class PerfisFragmentAdministrador : Fragment() {
             client.newCall(request).execute().use { response ->
                 val jsStr = (response.body!!.string())
 
-                val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
+                //val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
+                //val jsonObject = JSONObject(jsonArray[0].toString())
 
-                val jsonObject = JSONObject(jsonArray[0].toString())
-
-                val perfilFromJson = Perfil.fromJson(jsonObject)
+                val perfilFromJson = Perfil.fromJson(jsStr, id-1, "get_json_array_by_id")
 
 
                 GlobalScope.launch(Dispatchers.Main) {
@@ -143,6 +142,18 @@ class PerfisFragmentAdministrador : Fragment() {
                     totalAtivParticip.text = perfilFromJson.totalAtivParticip.toString()
                 }
             }
+        }
+        val searchImage: ImageView = view.findViewById(R.id.imageViewSearch)
+        val searchText: TextView = view.findViewById(R.id.textViewSearch)
+
+        searchImage.setOnClickListener{
+            val intent = Intent(activity, SearchBarActivity::class.java)
+            startActivity(intent)
+        }
+
+        searchText.setOnClickListener{
+            val intent = Intent(activity, SearchBarActivity::class.java)
+            startActivity(intent)
         }
     }
 

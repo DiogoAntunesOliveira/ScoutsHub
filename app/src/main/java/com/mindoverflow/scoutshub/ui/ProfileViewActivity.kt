@@ -25,7 +25,7 @@ class ProfileViewActivity : AppCompatActivity() {
         // Get the information of the user that has been searched
         val message = intent.getStringExtra("User")
 
-        // I won´t be using an if here, it´s just for testing
+        // Testing
         if (message!!.toLowerCase() == "jorge" || message!!.toLowerCase() == "miguel" || message!!.toLowerCase() == "joana" || message!!.toLowerCase() == "maria" || message!!.toLowerCase() == "zé" || message!!.toLowerCase() == "tatiana") {
 
             super.onCreate(savedInstanceState)
@@ -34,6 +34,7 @@ class ProfileViewActivity : AppCompatActivity() {
 
             supportActionBar!!.hide()
 
+            /*
             val image0 = R.drawable.bryce_canyon
             val image1 = R.drawable.cathedral_rock
             val image2 = R.drawable.death_valley
@@ -41,6 +42,7 @@ class ProfileViewActivity : AppCompatActivity() {
             val image4 = R.drawable.grand_canyon
 
             val images = arrayListOf(image0, image1, image2, image3, image4)
+            */
 
             val nomeUtilizador = findViewById<TextView>(R.id.textViewPerfilEscuteiroNome)
             val dtNasc = findViewById<TextView>(R.id.textViewPerfilEscuteiroDataNasc)
@@ -52,6 +54,7 @@ class ProfileViewActivity : AppCompatActivity() {
             val totalAtivParticip =
                 findViewById<TextView>(R.id.textViewPerfilEscuteiroTotalAtivParticip)
 
+            //To do - Get the information of the inserted user in the search view
 
             //Dummy data
             nomeUtilizador.text = "jorge"
@@ -63,14 +66,11 @@ class ProfileViewActivity : AppCompatActivity() {
             nin.text = "3423432"
             totalAtivParticip.text = "24"
 
-            //To do - Get the information of the inserted user in the search view
-
 
             //Adding some dummy data
             perfil = Perfil(
                 2,
                 nomeUtilizador.text.toString(),
-                //"dfgdfgdfghr",
                 dtNasc.text.toString(),
                 genero.text.toString(),
                 contacto.text.toString().toInt(),
@@ -81,7 +81,7 @@ class ProfileViewActivity : AppCompatActivity() {
                 5
             )
 
-            /*
+
             nomeUtilizador.text = perfil.nome
             dtNasc.text = perfil.dtNasc
             genero.text = perfil.genero
@@ -89,7 +89,7 @@ class ProfileViewActivity : AppCompatActivity() {
             morada.text = perfil.morada
             codigoPostal.text = perfil.codigoPostal
             nin.text = perfil.nin.toString()
-            totalAtivParticip.text = perfil.totalAtivParticip.toString()*/
+            totalAtivParticip.text = perfil.totalAtivParticip.toString()
 
 
             //getting recyclerview from xml
@@ -99,38 +99,11 @@ class ProfileViewActivity : AppCompatActivity() {
             recyclerView.layoutManager =
                 LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-
             //crating an arraylist to store users using the data class user
-            val users = ArrayList<Atividade>()
+            var users = ArrayList<Atividade>()
 
-            //adding some dummy data to the list
-            users.add(
-                Atividade(
-                    1, "acampamento", "canoagem",
-                    "divercao", 10, "Braga", "Braga",
-                    "Miami", "1717171717131517",
-                    "www.coinbase.com", "03/09/2021", "03/10/2095"
-                )
-            )
-
-            users.add(
-                Atividade(
-                    2, "dormir", "canoagem",
-                    "divercao", 10, "Braga", "Braga",
-                    "Miami", "1717171717131517",
-                    "www.coinbase.com", "03/09/2021", "03/10/2095"
-                )
-            )
-
-            users.add(
-                Atividade(
-                    3, "saltar", "canoagem",
-                    "divercao", 10, "Braga", "Braga",
-                    "Miami", "1717171717131517",
-                    "www.coinbase.com", "03/09/2021", "03/10/2095"
-                )
-            )
-
+            //Adding some dummy activities
+            users = AddingActivities(users)
 
             //creating our adapter
             val adapter = CustomAdapter(users)
@@ -158,15 +131,46 @@ class ProfileViewActivity : AppCompatActivity() {
             finish()
         }
     }
+    fun AddingActivities(users : ArrayList<Atividade>): ArrayList<Atividade>{
+
+        //adding some dummy data to the list
+        users.add(
+            Atividade(
+                1, "acampamento", "canoagem",
+                "divercao", 10, "Braga", "Braga",
+                "Miami", "1717171717131517",
+                "www.coinbase.com", "03/09/2021", "03/10/2095"
+            )
+        )
+
+        users.add(
+            Atividade(
+                2, "dormir", "canoagem",
+                "divercao", 10, "Braga", "Braga",
+                "Miami", "1717171717131517",
+                "www.coinbase.com", "03/09/2021", "03/10/2095"
+            )
+        )
+
+        users.add(
+            Atividade(
+                3, "saltar", "canoagem",
+                "divercao", 10, "Braga", "Braga",
+                "Miami", "1717171717131517",
+                "www.coinbase.com", "03/09/2021", "03/10/2095"
+            )
+        )
+        return users
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1001) {
             if (resultCode == RESULT_OK){
-                val jsonString = data?.getStringExtra("perfil_editado")
+                val jsStr = data?.getStringExtra("perfil_editado")
 
-                val jsonObject = JSONObject(jsonString)
-                val perfilFromJson = Perfil.fromJson(jsonObject)
+                //val jsonObject = JSONObject(jsStr!!)
+                val perfilFromJson = Perfil.fromJson(jsStr!!, null, null)
 
                 val nomeUtilizador = findViewById<TextView>(R.id.textViewPerfilEscuteiroNome)
                 val dtNasc = findViewById<TextView>(R.id.textViewPerfilEscuteiroDataNasc)
@@ -176,6 +180,7 @@ class ProfileViewActivity : AppCompatActivity() {
                 val codigoPostal = findViewById<TextView>(R.id.textViewPerfilEscuteiroCodigoPostal)
                 val nin = findViewById<TextView>(R.id.textViewPerfilEscuteiroNin)
                 val totalAtivParticip = findViewById<TextView>(R.id.textViewPerfilEscuteiroTotalAtivParticip)
+
 
                 nomeUtilizador.text = perfilFromJson.nome
                 dtNasc.text = perfilFromJson.dtNasc
