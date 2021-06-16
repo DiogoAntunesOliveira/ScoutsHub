@@ -87,11 +87,7 @@ class NovaAtividadeActivity : AppCompatActivity() {
 
                 val notprocesseddata = (findViewById<TextView>(R.id.textViewData).text.toString() + findViewById<TextView>(R.id.textViewHora).text.toString())
                 val dataHoraParser = SimpleDateFormat("dd/MM/yyyyHH:mm").parse(notprocesseddata)
-                val dataHoraFormatter = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX").format(dataHoraParser)
-                } else {
-                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").format(dataHoraParser)
-                }
+                val dataHoraFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(dataHoraParser)
 
                 dataHoraAtividade = dataHoraFormatter
 

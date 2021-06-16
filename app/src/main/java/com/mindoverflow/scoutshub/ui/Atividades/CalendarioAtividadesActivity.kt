@@ -113,7 +113,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                     if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
                     compactCalendar!!.addEvent(Event(coraleatoria,atividademilis,atividade.nome + " - " + atividade.descricao))
                 }
-
+                response.body!!.close()
             }
 
 
@@ -128,12 +128,12 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         //Declara uma MutableList de tipo Evento que contem um array com eventos
         var eventosapagar : MutableList<Event> = arrayListOf(
-            Event(coraleatoria, 1607040400000L, "Teachers' Professional Day"),
+    /*        Event(coraleatoria, 1607040400000L, "Teachers' Professional Day"),
             Event(coraleatoria, 1624273932000, "Tessdate"),
             Event(coraleatoria, 1624274932000, "Teste"),
             Event(coraleatoria, 1623082189198, "Dia 7"),
             Event(coraleatoria, 1626562800000, "Inicio Sao Joao"),
-            Event(coraleatoria, 1626822000000, "Fim Sao Joao")
+            Event(coraleatoria, 1626822000000, "Fim Sao Joao") */
         )
 
 
