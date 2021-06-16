@@ -65,12 +65,12 @@ class EstatisticasFragment : Fragment() {
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
         ) {
             Toast.makeText(context,
-                "Permissões Negadas , GPS desativado ou permissões insuficientes",
+                "Permissões negadas ou insuficientes",
                 Toast.LENGTH_LONG)
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION), 1)
-            val intent = Intent(activity,  com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity::class.java)
+            val intent = Intent(activity,  AtividadesActivity::class.java)
             activity?.startActivity(intent)
         } else {
 
@@ -89,9 +89,9 @@ class EstatisticasFragment : Fragment() {
             Thread.sleep(1000)
             val client = OkHttpClient()
             val request = Request.Builder()
-                .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae")
+                .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
                 .build()
-            println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae")
+            println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
          //   println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
 
             client.newCall(request).execute().use { response ->
@@ -102,15 +102,14 @@ class EstatisticasFragment : Fragment() {
                 val jsonObjectTotal = JSONObject(jsStr)
 
 
-                val jsonTemperatura: JSONObject =
-                    jsonObjectTotal.getJSONObject("main") as JSONObject
+                val jsonTemperatura: JSONObject = jsonObjectTotal.getJSONObject("main") as JSONObject
                 val temp: String? =
                     if (!jsonTemperatura.isNull("temp")) jsonTemperatura.getString("temp") else null
 
 
                 GlobalScope.launch(Dispatchers.Main) {
                     if (temp != null) {
-                        val tempfloat = (temp.toFloat()) - 273.15F
+                        val tempfloat = temp.toFloat()
                         rootView.findViewById<TextView>(R.id.textView3).text =
                             String.format("%.2f", tempfloat) + "ºC"
                     } else {
@@ -196,9 +195,9 @@ class EstatisticasFragment : Fragment() {
 
             }
         } else {
-            Toast.makeText(requireContext(),
-                "Please Turn on Your device Location",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Por favor ative o GPS do seu Dispostivo", Toast.LENGTH_LONG).show()
+            val intent = Intent(activity,  AtividadesActivity::class.java)
+            activity?.startActivity(intent)
         }
     }
 
