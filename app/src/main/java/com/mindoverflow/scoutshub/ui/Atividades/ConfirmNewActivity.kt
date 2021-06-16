@@ -1,19 +1,34 @@
 package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.navigation.fragment.findNavController
 import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.ui.MateriaisFragment
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.TESTE_DIC_KEY
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.dataAtividade
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.descricao
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.nomeCompleto
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener{
@@ -53,7 +68,15 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
         nomeCompleto = nomeCompletoPreviousActivity.toString()
         descricao = descricaoPreviousActivity.toString()
 
-        findViewById<TextView>(R.id.dataAtividade).text = dataAtividade
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val parserAtividade = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX").parse(dataAtividade)
+            val formatadorAtividade = SimpleDateFormat("dd/MM/yyyy HH:mm").format(parserAtividade)
+            findViewById<TextView>(R.id.dataAtividade).text = formatadorAtividade
+        } else {
+            findViewById<TextView>(R.id.dataAtividade).text = dataAtividade
+        }
+
         findViewById<TextView>(R.id.nomeCompleto).text = nomeCompleto
 
 
@@ -83,15 +106,51 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
 
         }
 
+
+
         buttonAddNewActivity.setOnClickListener{
             println(selectedPreviousRowsID)
             println(dataAtividade)
             println(nomeCompleto)
             println(descricao)
+
+
+            GlobalScope.launch(Dispatchers.IO) {
+                val novaAtividade = Atividade(
+                    null,
+                    nomeCompleto,
+                    null,
+                    descricao,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    dataAtividade,
+                    dataAtividade
+                )
+
+                val httpclient = OkHttpClient()
+                val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(),
+                    novaAtividade.toJson().toString()
+                )
+                val request = Request.Builder()
+                    .url("http://mindoverflow.amipca.xyz:60000/activities/")
+                    .post(requestBody)
+                    .build()
+                httpclient.newCall(request).execute().use { response ->
+                    Toast.makeText(baseContext, response.message, Toast.LENGTH_LONG).show()
+
+                }
+            }
+
             val intent = Intent(this,MainActivity::class.java)
             this.startActivity(intent)
             finish()
         }
+
+
 
     }
 
