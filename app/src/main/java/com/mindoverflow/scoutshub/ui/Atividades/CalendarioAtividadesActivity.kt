@@ -104,7 +104,6 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                     val atividade = Atividade.fromJson(jsonArticle)
                     atividades.add(atividade)
 
-                    // var atividadedatainicio = formatter.format(atividade.dataInicio)
                     val formatadoratividade = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK)
                     val dataatividadeinicio = LocalDateTime.parse(atividade.dataInicio, formatadoratividade)
                     val atividademilis = dataatividadeinicio.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
@@ -231,7 +230,6 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                 findViewById<TextView>(R.id.mesdocalendario).text = dateFormatMonth.format(firstDayOfNewMonth)
             }
         })
-
 
 
 
