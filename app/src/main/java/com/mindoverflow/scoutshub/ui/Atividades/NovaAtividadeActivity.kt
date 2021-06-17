@@ -67,7 +67,7 @@ class NovaAtividadeActivity : AppCompatActivity() {
             var hour = now.get(Calendar.HOUR)
             var minute = now.get(Calendar.MINUTE)
 
-            // Whether show time in 24 hour format or not.
+            // Define se prefere tempo em 24 horas ou em 12
             val is24Hour = true;
 
             val timePickerDialog = TimePickerDialog(this,
