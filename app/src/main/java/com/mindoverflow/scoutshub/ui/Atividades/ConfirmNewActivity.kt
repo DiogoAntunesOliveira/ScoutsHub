@@ -121,7 +121,7 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
                 val httpclient = OkHttpClient()
 
                 val getrequest =
-                    Request.Builder().url("http://mindoverflow.amipca.xyz:60000/activities/")
+                    Request.Builder().url("http://35.178.176.224:60000/activities/")
                         .build()
                 httpclient.newCall(getrequest).execute().use { response ->
 
@@ -164,7 +164,7 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
                 )
                 Log.d("novaatividade", novaAtividade.toJson().toString())
                 val postrequest = Request.Builder()
-                    .url("http://mindoverflow.amipca.xyz:60000/activities/")
+                    .url("http://35.178.176.224:60000/activities/")
                     .post(requestBody)
                     .build()
                 httpclient.newCall(postrequest).execute().use { response ->

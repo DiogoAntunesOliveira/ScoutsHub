@@ -91,7 +91,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             val client = OkHttpClient()
-            val request = Request.Builder().url("http://mindoverflow.amipca.xyz:60000/activities/").build()
+            val request = Request.Builder().url("http://35.178.176.224:60000/activities/").build()
             client.newCall(request).execute().use { response ->
 
                 val string : String = response.body!!.string()
@@ -127,24 +127,24 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
 
         //Declara uma MutableList de tipo Evento que contem um array com eventos
-        var eventosapagar : MutableList<Event> = arrayListOf(
-    /*        Event(coraleatoria, 1607040400000L, "Teachers' Professional Day"),
-            Event(coraleatoria, 1624273932000, "Tessdate"),
-            Event(coraleatoria, 1624274932000, "Teste"),
-            Event(coraleatoria, 1623082189198, "Dia 7"),
-            Event(coraleatoria, 1626562800000, "Inicio Sao Joao"),
-            Event(coraleatoria, 1626822000000, "Fim Sao Joao") */
-        )
+     /*   var eventosapagar : MutableList<Event> = arrayListOf(
+               Event(coraleatoria, 1607040400000L, "Teachers' Professional Day"),
+               Event(coraleatoria, 1624273932000, "Tessdate"),
+               Event(coraleatoria, 1624274932000, "Teste"),
+               Event(coraleatoria, 1623082189198, "Dia 7"),
+               Event(coraleatoria, 1626562800000, "Inicio Sao Joao"),
+               Event(coraleatoria, 1626822000000, "Fim Sao Joao")
+           )
 
 
-        //Vê se as cor aleatoria nao se repete a anterior
-        //e para cada item que esteja no array dos eventos adiciona um evento no calendario
-        for(Event in eventosapagar){
-            var coranterior = coraleatoria
-            coraleatoria = coreslist.random()
-            if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
-            compactCalendar!!.addEvent(Event(coraleatoria,Event.timeInMillis,Event.data))
-        }
+           //Vê se as cor aleatoria nao se repete a anterior
+           //e para cada item que esteja no array dos eventos adiciona um evento no calendario
+           for(Event in eventosapagar){
+               var coranterior = coraleatoria
+               coraleatoria = coreslist.random()
+               if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
+               compactCalendar!!.addEvent(Event(coraleatoria,Event.timeInMillis,Event.data))
+           }*/
 
        findViewById<ImageView>(R.id.leftArrowImage).setOnClickListener{
            compactCalendar!!.scrollLeft()

@@ -67,11 +67,14 @@ class EstatisticasFragment : Fragment() {
             Toast.makeText(context,
                 "Permissões negadas ou insuficientes",
                 Toast.LENGTH_LONG)
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION), 1)
-            val intent = Intent(activity,  AtividadesActivity::class.java)
-            activity?.startActivity(intent)
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION), 1
+            )
+            rootView.findViewById<TextView>(R.id.textView3).text = "Por favor dê permissões de localização"
+            rootView.findViewById<TextView>(R.id.cidade).text = ""
+            rootView.findViewById<TextView>(R.id.textView5).text = "Para isso , renicie a aplicação por favor"
+
+
         } else {
 
 
@@ -82,7 +85,7 @@ class EstatisticasFragment : Fragment() {
                     lng = location?.longitude
                 }*/
 
-        }
+
 
 
         GlobalScope.launch(Dispatchers.IO) {
@@ -164,7 +167,7 @@ class EstatisticasFragment : Fragment() {
 
         //This method is recommended to be called for updating the series data dynamically(Usar na API?)
         //aaChartView.aa_onlyRefreshTheChartDataWithChartModelSeries(chartModelSeriesArray)
-
+        }
         return rootView
     }
 
@@ -245,15 +248,26 @@ class EstatisticasFragment : Fragment() {
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
-            var lastLocation: Location = locationResult.lastLocation
-            lat = locationResult.lastLocation.latitude
-            lng = locationResult.lastLocation.longitude
-            getActivity()?.findViewById<TextView>(R.id.textView5)?.text = "You Last Location is : Long: "+ lastLocation.longitude + " , Lat: " + lastLocation.latitude
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requireActivity().findViewById<TextView>(R.id.textView3).text =
+                    "Por favor dê permissões de localização"
+                requireActivity().findViewById<TextView>(R.id.cidade).text = ""
+                requireActivity().findViewById<TextView>(R.id.textView5).text =
+                    "Para isso , renicie a aplicação por favor"
+            } else {
+                var lastLocation: Location = locationResult.lastLocation
+                lat = locationResult.lastLocation.latitude
+                lng = locationResult.lastLocation.longitude
+                getActivity()?.findViewById<TextView>(R.id.textView5)?.text =
+                    (lastLocation.longitude + lastLocation.latitude).toString()
+            }
         }
-
-
-
-
     }
-
 }
