@@ -13,6 +13,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -55,4 +56,9 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.airbnb.android:lottie:3.7.0'
     implementation("androidx.constraintlayout:constraintlayout:2.1.0-beta02")
+    implementation 'com.github.AAChartModel:AAChartCore-Kotlin:-SNAPSHOT'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.github.sundeepk:compact-calendar-view:3.0.0'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.github.prolificinteractive:material-calendarview:1.4.2'
 }

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraitLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RocketContentActivity">
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiro"
+            android:layout_width="358dp"
+            android:layout_height="53dp"
+            android:layout_marginTop="100dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/perfil"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imageViewPesquisa"
+            android:layout_width="344dp"
+            android:layout_height="226dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiro"
+            app:srcCompat="@drawable/ic_launcher_foreground"
+            tools:ignore="VectorDrawableCompat" />
+        <!-- app:shapeAppearanceOverlay="@style/roundedImageView" -->
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroNome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Profile Name"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroDataNasc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView7"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroGenero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroContacto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="160dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView10"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroMorada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="200dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView11"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroCodigoPostal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="240dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView12"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroNin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="280dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiroTotalAtivParticip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="320dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="TextView"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/textView14"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <Button
+            android:id="@+id/buttonEditProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1196dp"
+            android:text="Edit Profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.528"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+        <Button
+            android:id="@+id/buttonLogOut"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginStart="156dp"
+            android:layout_marginEnd="156dp"
+            android:layout_marginBottom="100dp"
+            android:text="Log Out"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/buttonEditProfile"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            tools:itemCount="1"
+            tools:layout_editor_absoluteX="3dp"
+            tools:listitem="@layout/item_past_activities" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="52dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Atividades Recentes"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_20sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/poppins_medium"
+            android:includeFontPadding="false"
+            android:text="data nasimento:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="120dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="genero:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="160dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="telemovel:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="200dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Rua:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="240dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Codigo Postal:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="280dp"
+            android:fontFamily="sans-serif-medium"
+            android:text="NIN:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="320dp"
+            android:layout_marginEnd="28dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Atividades Parcticipadas:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@+id/textViewPerfilEscuteiroTotalAtivParticip"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+
+        <SearchView
+            android:id="@+id/search"
+            android:layout_width="357dp"
+            android:layout_height="47dp"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="29dp"
+            android:layout_marginEnd="27dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/textViewPerfilEscuteiro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

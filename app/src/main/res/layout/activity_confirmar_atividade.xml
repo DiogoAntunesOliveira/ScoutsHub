@@ -7,74 +7,69 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/tituloAddActivity2"
-        android:layout_width="327dp"
-        android:layout_height="44dp"
-        android:layout_marginBottom="48dp"
-        android:text="Adicionar Actividade"
-        android:textAlignment="center"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toTopOf="@+id/nomeCompleto"
+        android:id="@+id/dataAtividade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="00/00/0000"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nomeCompleto" />
 
     <TextView
         android:id="@+id/nomeCompleto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/poppins_medium"
         android:text="NOME"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/dataAtividade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonAddNewActivity"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/rounded_corner"
-        android:text="ADD"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tituloAddActivity2" />
 
     <TextView
-        android:id="@+id/dataAtividade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="44dp"
-        android:text="00/00/0000"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toTopOf="@+id/googleLink"
+        android:id="@+id/tituloAddActivity2"
+        android:layout_width="393dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Adicionar Actividade"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/googleLink"
         android:layout_width="326dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/rounded_corner"
         android:ems="10"
+        android:fontFamily="@font/poppins_medium"
         android:hint="Google Maps Link"
         android:inputType="text"
         android:paddingLeft="10dp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/departamento"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataAtividade"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Spinner
         android:id="@+id/departamento"
         android:layout_width="326dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/rounded_corner"
         android:clickable="false"
         android:ems="10"
@@ -83,28 +78,48 @@
         android:textIsSelectable="false"
         app:layout_constraintBottom_toTopOf="@+id/equipamento"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="249dp"
-        android:layout_height="169dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddNewActivity"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@android:drawable/ic_menu_mapmode" />
 
     <Button
         android:id="@+id/equipamento"
         android:layout_width="327dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_corner"
+        android:fontFamily="@font/poppins_medium"
         android:text="Equipamento"
+        android:textAllCaps="false"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dataAtividade"
+        app:layout_constraintVertical_bias="0.786" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="249dp"
+        android:layout_height="169dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddNewActivity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_map_24" />
+
+    <Button
+        android:id="@+id/buttonAddNewActivity"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/rounded_corner"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Add"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

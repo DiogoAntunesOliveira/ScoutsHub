@@ -58,4 +58,17 @@
 
     </style>
 
+
+    <style name="CardThemeActivities" parent="Theme.AplicacaoProjeto">
+        <!-- Primary brand color. -->
+        <item name="android:editTextColor">#EE8300</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+    </style>
+
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
+    </style>
+
 </resources>
