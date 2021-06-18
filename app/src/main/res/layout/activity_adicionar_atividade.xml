@@ -35,8 +35,8 @@
 
         <com.prolificinteractive.materialcalendarview.MaterialCalendarView
             android:id="@+id/calendarView"
-            android:layout_width="323dp"
-            android:layout_height="349dp"
+            android:layout_width="351dp"
+            android:layout_height="364dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:soundEffectsEnabled="true"
@@ -109,7 +109,7 @@
             android:id="@+id/buttonHora"
             android:layout_width="106dp"
             android:layout_height="55dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="8dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Escolher Hora"
             android:textSize="12sp"
