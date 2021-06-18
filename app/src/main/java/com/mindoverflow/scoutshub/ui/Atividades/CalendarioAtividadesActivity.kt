@@ -96,7 +96,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             val client = OkHttpClient()
-            val request = Request.Builder().url("http://35.178.176.224:60000/activities/").build()
+            val request = Request.Builder().url("http://mindoverflow.amipca.xyz:60000/activities/").build()
             client.newCall(request).execute().use { response ->
 
                 val string : String = response.body!!.string()
@@ -134,7 +134,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
 
         //Declara uma MutableList de tipo Evento que contem um array com eventos
-        var eventosapagar : MutableList<Event> = arrayListOf(
+ /*       var eventosapagar : MutableList<Event> = arrayListOf(
             Event(coraleatoria, 1607040400000L, "Teachers' Professional Day * Welcome to Teachers Day"),
             Event(coraleatoria, 1624273932000, "Tessdate * Description Test"),
             Event(coraleatoria, 1624274932000, "Teste * MegaTest"),
@@ -151,7 +151,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
             coraleatoria = coreslist.random()
             if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
             compactCalendar!!.addEvent(Event(coraleatoria,Event.timeInMillis,Event.data))
-        }
+        }*/
 
        findViewById<ImageView>(R.id.leftArrowImage).setOnClickListener{
            compactCalendar!!.scrollLeft()
