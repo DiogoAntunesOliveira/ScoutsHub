@@ -74,8 +74,18 @@ class Atividade {
     }
 
     companion object{
-        fun fromJson(jsonObject: JSONObject) : Atividade {
+        fun fromJson(jsStr: String?, arrayPosition: Int?) : Atividade {
             val atividade = Atividade()
+
+            val jsonObject : JSONObject
+
+            //If there is the need to get a Json array from a json object
+            if(arrayPosition != null) {
+                val jsonArray = JSONObject(jsStr!!).getJSONArray("activities")
+                jsonObject = JSONObject(jsonArray[arrayPosition!!].toString())
+            } else {
+                jsonObject = JSONObject(jsStr!!)
+            }
 
             atividade.idAtividade       = if(!jsonObject.isNull("id_atividade"))    jsonObject.getInt("id_atividade")       else null
             atividade.nome              = if(!jsonObject.isNull("nome"))            jsonObject.getString("nome")            else null

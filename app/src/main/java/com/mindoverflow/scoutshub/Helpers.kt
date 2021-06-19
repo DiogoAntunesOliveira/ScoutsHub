@@ -1,13 +1,18 @@
 package bit.linux.tinyspacex
 
+import android.annotation.SuppressLint
 import android.graphics.BitmapFactory
-import android.provider.ContactsContract.CommonDataKinds.Website.URL
+import android.os.Build
 import android.widget.ImageView
-import com.mindoverflow.scoutshub.R
+import androidx.annotation.RequiresApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 object Helpers {
 
@@ -37,5 +42,40 @@ object Helpers {
     fun URL(): String {
 
         return "http://mindoverflow.amipca.xyz:60000"
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun DateFormaterApi(date : String) : String {
+        val inputFormatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.ENGLISH)
+        val outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH)
+        val date = LocalDate.parse(date, inputFormatter)
+        val formattedDate = outputFormatter.format(date)
+
+        return formattedDate
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun DateFormaterPtToIng(date: String): String? {
+
+        val inputFormatter =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH)
+        val outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH)
+        val date = LocalDate.parse(date, inputFormatter)
+        val formattedDate = outputFormatter.format(date)
+
+        return formattedDate
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun DateFormaterIngToPt(date: String): String? {
+
+        val inputFormatter =
+            DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH)
+        val outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy", Locale.ENGLISH)
+        val date = LocalDate.parse(date, inputFormatter)
+        val formattedDate = outputFormatter.format(date)
+
+        return formattedDate
     }
 }

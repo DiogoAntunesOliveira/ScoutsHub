@@ -12,48 +12,69 @@
         android:layout_height="match_parent"
         tools:context=".RocketContentActivity">
 
-        <TextView
-            android:id="@+id/textViewPerfilUtilizador"
-            android:layout_width="358dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="28dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="@string/perfil"
-            android:textAlignment="center"
-            android:textSize="34sp"
-            app:layout_constraintEnd_toEndOf="parent"
+        <ImageView
+            android:id="@+id/imageViewVoltarAtras"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="36dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/black"/>
+            android:background="@drawable/ic_backward_arrow" />
+
+        <ImageView
+            android:id="@+id/hamburguerButton"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/ic_settings"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewPerfilEscuteiro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/Perfil"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="34sp"
+            app:layout_constraintEnd_toStartOf="@+id/hamburguerButton"
+            app:layout_constraintStart_toEndOf="@+id/imageViewVoltarAtras"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageView"
             android:layout_width="344dp"
             android:layout_height="226dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilUtilizador"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiro"
             app:srcCompat="@drawable/ic_launcher_foreground"
             tools:ignore="VectorDrawableCompat"
-            app:shapeAppearanceOverlay="@style/roundedImageView" />
+            app:shapeAppearanceOverlay="@style/roundedImageView"/>
 
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorNome"
+            android:id="@+id/textViewPerfilEscuteiroNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Profile Name"
-            android:textSize="@dimen/_20sdp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             android:textColor="@color/black"/>
 
+        <!-- android:textSize="@dimen/_20sdp" -->
+
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorDataNasc"
+            android:id="@+id/textViewPerfilEscuteiroDataNasc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -65,7 +86,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorGenero"
+            android:id="@+id/textViewPerfilEscuteiroGenero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -78,7 +99,7 @@
 
 
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorContacto"
+            android:id="@+id/textViewPerfilEscuteiroContacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -90,7 +111,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorMorada"
+            android:id="@+id/textViewPerfilEscuteiroMorada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -102,7 +123,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorCodigoPostal"
+            android:id="@+id/textViewPerfilEscuteiroCodigoPostal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -114,7 +135,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorNin"
+            android:id="@+id/textViewPerfilEscuteiroNin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -126,7 +147,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
-            android:id="@+id/textViewPerfilUtilizadorTotalAtivParticip"
+            android:id="@+id/textViewPerfilEscuteiroTotalAtivParticip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -136,32 +157,6 @@
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView14"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-        <Button
-            android:id="@+id/buttonEditPerfilUtilizador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Edit Profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.528"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewProfile" />
-
-        <Button
-            android:id="@+id/buttonLogOutPerfilUtilizador"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="156dp"
-            android:layout_marginEnd="156dp"
-            android:layout_marginBottom="100dp"
-            android:text="Log Out"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonEditPerfilUtilizador"
-            app:layout_constraintVertical_bias="1.0" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -175,25 +170,28 @@
             android:id="@+id/recyclerViewProfile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_10sdp"
             android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             tools:itemCount="1"
-            tools:layout_editor_absoluteX="3dp"
             tools:listitem="@layout/item_past_activities" />
+
+        <!-- android:layout_margin="@dimen/_10sdp" -->
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Atividades Recentes"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroTotalAtivParticip" />
+
+        <!-- android:textSize="@dimen/_20sdp" -->
 
         <TextView
             android:id="@+id/textView7"
@@ -285,7 +283,7 @@
             android:text="Atividades Parcticipadas:"
             android:textColor="@color/black"
             android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/textViewPerfilUtilizadorTotalAtivParticip"
+            app:layout_constraintEnd_toStartOf="@+id/textViewPerfilEscuteiroTotalAtivParticip"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 

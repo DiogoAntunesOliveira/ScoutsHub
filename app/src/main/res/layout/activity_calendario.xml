@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/compactcalendar_view"
         android:layout_width="353dp"
