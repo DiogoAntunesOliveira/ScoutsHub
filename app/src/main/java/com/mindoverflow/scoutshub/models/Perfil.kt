@@ -39,7 +39,7 @@ class Perfil {
         this.nome                       = nome
         this.dtNasc                     = dtNasc
         this.imagem                     = imagem
-        this.dtNasc                    = dtNasc
+        this.dtNasc                     = dtNasc
         this.genero                     = genero
         this.contacto                   = contacto
         this.morada                     = morada
@@ -55,9 +55,8 @@ class Perfil {
 
         jsonObject.put("id_perfil"                          , idPerfil          )
         jsonObject.put("nome"                               , nome              )
-        jsonObject.put("imagem"                             , imagem              )
-        jsonObject.put("dt_nasc"                             , dtNasc           )
-        jsonObject.put("data_nascimento"                    , dtNasc            )
+        jsonObject.put("imagem"                             , imagem            )
+        jsonObject.put("dt_nasc"                            , dtNasc            )
         jsonObject.put("genero"                             , genero            )
         jsonObject.put("contacto"                           , contacto          )
         jsonObject.put("morada"                             , morada            )
@@ -88,15 +87,14 @@ class Perfil {
 
             perfil.idPerfil             = if (!jsonObject.isNull("id_perfil"                        )) jsonObject.getInt        ("id_perfil"                        )   else null
             perfil.nome                 = if (!jsonObject.isNull("nome"                             )) jsonObject.getString     ("nome"                             )   else null
-            perfil.dtNasc               = if (!jsonObject.isNull("data_nascimento"                  )) jsonObject.getString     ("data_nascimento"                  )   else null
             perfil.imagem               = if (!jsonObject.isNull("imagem"                           )) jsonObject.getString     ("imagem"                           )   else null
-            perfil.dtNasc              = if (!jsonObject.isNull("dt_nasc"                           )) jsonObject.getString     ("dt_nasc"                  )           else null
+            perfil.dtNasc               = if (!jsonObject.isNull("dt_nasc"                          )) jsonObject.getString     ("dt_nasc"                          )   else null
             perfil.genero               = if (!jsonObject.isNull("genero"                           )) jsonObject.getString     ("genero"                           )   else null
             perfil.contacto             = if (!jsonObject.isNull("contacto"                         )) jsonObject.getInt        ("contacto"                         )   else null
             perfil.morada               = if (!jsonObject.isNull("morada"                           )) jsonObject.getString     ("morada"                           )   else null
             perfil.codigoPostal         = if (!jsonObject.isNull("codigo_postal"                    )) jsonObject.getString     ("codigo_postal"                    )   else null
-            perfil.nin                  = if (!jsonObject.isNull("nin"                              )) jsonObject.getInt        ("nin"      )                           else null
-            perfil.totalAtivParticip    = if (!jsonObject.isNull("total_atividades_part"            )) jsonObject.getInt        ("total_atividades_part"    )            else null
+            perfil.nin                  = if (!jsonObject.isNull("nin"                              )) jsonObject.getInt        ("nin"                              )   else null
+            perfil.totalAtivParticip    = if (!jsonObject.isNull("total_atividades_part"            )) jsonObject.getInt        ("total_atividades_part"            )   else null
             perfil.idEquipa             = if (!jsonObject.isNull("id_equipa"                        )) jsonObject.getInt        ("id_equipa"                        )   else null
             perfil.idUtilizador         = if (!jsonObject.isNull("id_utilizador"                    )) jsonObject.getInt        ("id_utilizador"                    )   else null
 

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import bit.linux.tinyspacex.Helpers
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Perfil
+import com.mindoverflow.scoutshub.models.Utilizador
 
 
 class ProfileAdmEditActivity : AppCompatActivity() {
@@ -102,7 +103,7 @@ class ProfileAdmEditActivity : AppCompatActivity() {
         //val dateNascimentoFormated = DateFormaterTeste(dataNascimento)
 
 
-        return Perfil(idPerfil, nome, imagem, dataNascimento, genero, numeroTelefone.toInt(), morada, codigoPostal, nin.toInt(), totalAtivParticip!!.toInt(), idEquipa!!.toInt())
+        return Perfil(idPerfil, nome, imagem, dataNascimento, genero, numeroTelefone.toInt(), morada, codigoPostal, nin.toInt(), totalAtivParticip!!.toInt(), idEquipa!!.toInt(), user.idUtilizador!!.toInt())
     }
 
 }

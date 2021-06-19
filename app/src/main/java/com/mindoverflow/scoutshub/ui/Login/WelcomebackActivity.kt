@@ -3,29 +3,38 @@ package com.mindoverflow.scoutshub.ui.Login
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import bit.linux.tinyspacex.Helpers.DateFormaterPtToIng
 import bit.linux.tinyspacex.Helpers.URL
 import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.RequestBody
 import org.json.JSONObject
 
 
 class WelcomebackActivity : AppCompatActivity() {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcomeback)
+
+        val sharedPreferences = getSharedPreferences("Scouts", MODE_PRIVATE)
 
         supportActionBar!!.hide()
 
@@ -60,29 +69,67 @@ class WelcomebackActivity : AppCompatActivity() {
 
                     println("EST TEST TEST3")
 
-
                     // acedes textview que esta na main por ex
-                    GlobalScope.launch(Dispatchers.Main) {
 
-                        // se o return nao for null
-                        if (userToLogin != null) {
+                    // se o return nao for null
+                    if (userToLogin != null) {
 
-                            println("test succefull")
+                        val perfil = Perfil()
+
+                        println("test succefull")
+
+                        perfil.nome = sharedPreferences.getString("nome", null)
+                        perfil.dtNasc = sharedPreferences.getString("dtNasc", null)
+                        perfil.codigoPostal = sharedPreferences.getString("codPostal", null)
+                        perfil.contacto = sharedPreferences.getInt("Telemovel", 123456789)
+                        perfil.morada = sharedPreferences.getString("Morada", null)
+                        perfil.nin = sharedPreferences.getInt("nin", 123456789)
+                        perfil.genero = sharedPreferences.getString("genero", null)
+                        perfil.totalAtivParticip = 0
+                        perfil.idEquipa = 5
+                        perfil.imagem = "https://cdn.discordapp.com/attachments/839158641474928710/855830146682060850/5f3b486198cb4e1db5729207a666c750.png"
+
+
+                        val perfilJson = perfil.toJson().toString()
+
+                        val client = OkHttpClient()
+                        val url = URL()
+
+                        println("##### id utlizador #######")
+                        println(userToLogin.id_utilizador)
+                        println(perfilJson)
+
+                        val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), perfilJson)
+
+                        println("###########3 test ###########")
+
+                        val request1 = Request.Builder()
+                            .url("$url/perfil/user/${userToLogin.id_utilizador}")
+                            .post(requestBody1)
+                            .build()
+
+                        println("##########33 test 2 ##########")
+
+                        client.newCall(request1).execute().use { response ->
+                            println(response.body!!.string())
+                        }
+
+                        GlobalScope.launch(Dispatchers.Main) {
 
                             val returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
                             //returnIntent.putExtra("userToLogin", userToLogin.toJson().toString())
                             //setResult(Activity.RESULT_OK, returnIntent)
-                            //finish()
 
                             println(userToLogin.toJson().toString())
 
                             startActivity(returnIntent)
-
-                        // se o return for null
-                        } else {
-
-                            Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
                         }
+
+
+                    // se o return for null
+                    } else {
+
+                        Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -113,9 +160,7 @@ class WelcomebackActivity : AppCompatActivity() {
             println("test user1")
 
             val jsStr = (response.body!!.string())
-            println(jsStr)
             val jsonArray = JSONObject(jsStr).getJSONArray("users")
-            println(jsonArray)
 
             // for para ver todos os user inseridos
             for (index in 0 until jsonArray.length()) {

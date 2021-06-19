@@ -54,10 +54,10 @@ class Signup1Activity : AppCompatActivity() {
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
             // por dados em sharedpreferences
-            editor.putString("nome", nome.toString())
-            editor.putString("mail", mail.toString())
-            editor.putString("pass", pass.toString())
-            editor.putString("pass1", pass1.toString())
+            editor.putString("nome", nome.text.toString())
+            editor.putString("mail", mail.text.toString())
+            editor.putString("pass", pass.text.toString())
+            editor.putString("pass1", pass1.text.toString())
             editor.putString("genero", genero)
 
             // apilcar em sharedpreferences
@@ -71,7 +71,6 @@ class Signup1Activity : AppCompatActivity() {
             }else {
 
                 Toast.makeText(this, "Por favor preencha todos os campos", Toast.LENGTH_SHORT).show()
-
             }
         }
     }
