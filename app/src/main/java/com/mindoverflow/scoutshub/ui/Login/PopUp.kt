@@ -1,14 +1,13 @@
-package com.example.xmlperferfil1
+package com.mindoverflow.scoutshub.ui.Login
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.xmlperferfil1.httpHelper.GetURL.Companion.URL
-import com.example.xmlperferfil1.models.Perfil
-import com.example.xmlperferfil1.models.Utilizador
-import com.google.gson.Gson
-import kotlinx.android.synthetic.main.activity_pop_up.*
+import android.widget.Button
+import bit.linux.tinyspacex.Helpers.URL
+import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.models.Perfil
+import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -16,7 +15,6 @@ import okhttp3.RequestBody
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.jetbrains.anko.doAsync
 
 class PopUp : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +25,8 @@ class PopUp : AppCompatActivity() {
         supportActionBar!!.hide()
 
         val sharedPreferences = getSharedPreferences("Scouts", MODE_PRIVATE)
+
+        val bt_end = findViewById<Button>(R.id.bt_end)
 
         bt_end.setOnClickListener {
 
@@ -42,8 +42,8 @@ class PopUp : AppCompatActivity() {
             perfil.genero = sharedPreferences.getString("genero", null)
             utilizador.email_utilizador = sharedPreferences.getString("mail", null)
             utilizador.palavra_pass = sharedPreferences.getString("pass1", null)
-            utilizador.id_tipo = 1
-            perfil.totalAtivParticipadas = 0
+            utilizador.id_tipo = 999
+            perfil.totalAtivParticip = 0
             perfil.idEquipa = 1
             perfil.idUtilizador = 1
 
@@ -52,14 +52,8 @@ class PopUp : AppCompatActivity() {
                 val url = URL()
                 val client = OkHttpClient()
 
-                println(URL())
-
                 val perfilJson = perfil.toJson().toString()
                 val utilizadorJson = utilizador.toJson().toString()
-
-                println(perfilJson)
-                println(utilizadorJson)
-
 
                 val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), perfilJson)
 
@@ -85,9 +79,8 @@ class PopUp : AppCompatActivity() {
 
                 GlobalScope.launch(Dispatchers.Main){
 
-                    val intent = Intent(this@PopUp, MainActivity::class.java)
+                    val intent = Intent(this@PopUp, FrontPage::class.java)
                     startActivity(intent)
-                    finish()
                 }
             }
         }
