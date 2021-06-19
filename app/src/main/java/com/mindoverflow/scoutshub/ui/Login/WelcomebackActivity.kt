@@ -1,20 +1,19 @@
 package com.mindoverflow.scoutshub.ui.Login
 
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import bit.linux.tinyspacex.Helpers.DateFormaterPtToIng
+import androidx.appcompat.app.AppCompatActivity
 import bit.linux.tinyspacex.Helpers.URL
 import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +27,7 @@ import org.json.JSONObject
 
 
 class WelcomebackActivity : AppCompatActivity() {
+
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,18 +56,18 @@ class WelcomebackActivity : AppCompatActivity() {
             // se estiver preenchido
             if (mail.text.toString().isNotEmpty() && pass.text.toString().isNotEmpty()) {
 
-                println("TEST TEST TEST")
 
                 // para correr noutra thread da main para nao crashar
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    println("EST TEST TEST2")
-
                     println(mail.text.toString().trim())
 
-                    val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())
+                    val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())!!
 
-                    println("EST TEST TEST3")
+                    SavedUserData.id_utilizador = userToLogin.id_utilizador
+                    SavedUserData.email_utilizador = userToLogin.email_utilizador
+                    SavedUserData.palavra_pass = userToLogin.palavra_pass
+                    SavedUserData.id_tipo = userToLogin.id_tipo
 
                     // acedes textview que esta na main por ex
 
@@ -75,8 +75,6 @@ class WelcomebackActivity : AppCompatActivity() {
                     if (userToLogin != null) {
 
                         val perfil = Perfil()
-
-                        println("test succefull")
 
                         perfil.nome = sharedPreferences.getString("nome", null)
                         perfil.dtNasc = sharedPreferences.getString("dtNasc", null)
@@ -95,20 +93,14 @@ class WelcomebackActivity : AppCompatActivity() {
                         val client = OkHttpClient()
                         val url = URL()
 
-                        println("##### id utlizador #######")
-                        println(userToLogin.id_utilizador)
-                        println(perfilJson)
-
                         val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), perfilJson)
 
-                        println("###########3 test ###########")
 
                         val request1 = Request.Builder()
                             .url("$url/perfil/user/${userToLogin.id_utilizador}")
                             .post(requestBody1)
                             .build()
 
-                        println("##########33 test 2 ##########")
 
                         client.newCall(request1).execute().use { response ->
                             println(response.body!!.string())
@@ -116,11 +108,20 @@ class WelcomebackActivity : AppCompatActivity() {
 
                         GlobalScope.launch(Dispatchers.Main) {
 
-                            val returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
-                            //returnIntent.putExtra("userToLogin", userToLogin.toJson().toString())
-                            //setResult(Activity.RESULT_OK, returnIntent)
+                            var returnIntent : Intent? = null
 
-                            println(userToLogin.toJson().toString())
+                            if(userToLogin.id_tipo == 1){
+                                returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
+                                returnIntent.putExtra("user_loged_in", userToLogin.toJson().toString())
+                            }
+                            else if(userToLogin.id_tipo == 2){
+                                returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
+                                returnIntent.putExtra("user_loged_in", userToLogin.toJson().toString())
+                            }
+                            else {
+                                returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
+                                returnIntent.putExtra("user_loged_in", userToLogin.toJson().toString())
+                            }
 
                             startActivity(returnIntent)
                         }
@@ -128,18 +129,19 @@ class WelcomebackActivity : AppCompatActivity() {
 
                     // se o return for null
                     } else {
-
-                        Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
+                        //Este toast faz craxar a aplicacao
+                        //Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
                     }
                 }
 
             // se os campos nao tiver preenchidos
             } else {
-
                 Toast.makeText(this@WelcomebackActivity, "Campos em Branco. Por favor preencha todos os campos", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+
 
     private fun UserNameVerification(mail : String, pass : String) : Utilizador? {
 
@@ -182,3 +184,4 @@ class WelcomebackActivity : AppCompatActivity() {
         return userToLogin
     }
 }
+
