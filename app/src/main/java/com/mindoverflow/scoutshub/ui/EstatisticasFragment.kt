@@ -28,6 +28,7 @@ import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
 import com.mindoverflow.scoutshub.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -52,7 +53,6 @@ class EstatisticasFragment : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_estatisticas, container, false)
 
-        val textviewcidade = rootView.findViewById<TextView>(R.id.cidade)
         val textviewcoordenadas = rootView.findViewById<TextView>(R.id.textViewCoordenadas)
 
 
@@ -73,86 +73,20 @@ class EstatisticasFragment : Fragment() {
             rootView.findViewById<TextView>(R.id.textView3).text = "Por favor dê permissões de localização"
             rootView.findViewById<TextView>(R.id.cidade).text = ""
             rootView.findViewById<TextView>(R.id.textViewCoordenadas).text = "Para isso , renicie a aplicação por favor"
-
-
         } else {
+           getLastLocation()
 
 
-            getLastLocation()
-                        /* LocationServices.getFusedLocationProviderClient(requireActivity()).lastLocation
+            /* LocationServices.getFusedLocationProviderClient(requireActivity()).lastLocation
                 .addOnSuccessListener { location: Location? ->
                     lat = location?.latitude
                     lng = location?.longitude
                 }*/
 
+        GlobalScope.launch(Dispatchers.IO){
 
 
 
-        GlobalScope.launch(Dispatchers.IO) {
-            Thread.sleep(1000)
-            val client = OkHttpClient()
-            val request = Request.Builder()
-                .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
-                .build()
-            println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
-         //   println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
-
-            client.newCall(request).execute().use { response ->
-                val jsStr: String = response.body!!.string()
-                println(jsStr)
-
-
-                val jsonObjectTotal = JSONObject(jsStr)
-
-
-                val jsonTemperatura: JSONObject = jsonObjectTotal.getJSONObject("main") as JSONObject
-                val temp: String? =
-                    if (!jsonTemperatura.isNull("temp")) jsonTemperatura.getString("temp") else null
-
-                lateinit var iconTempo : String
-                val jsonTempo: JSONArray = jsonObjectTotal.getJSONArray("weather") as JSONArray
-                for ( index in  0 until jsonTempo.length()) {
-                    val jsonweather : JSONObject = jsonTempo.get(index) as JSONObject
-                    iconTempo = if (!jsonweather.isNull("icon")) jsonweather.getString("icon") else "API Nao Disponivel"
-                }
-
-
-                GlobalScope.launch(Dispatchers.Main) {
-                    val textviewtempo = rootView.findViewById<TextView>(R.id.tempoEstatisticas)
-                    val imageIconTempo = rootView.findViewById<ImageView>(R.id.imageIconTempo)
-
-
-                    when (iconTempo) {
-                        "01d", "01n" ->{ textviewtempo.text = "Ceu Limpo"
-                                         imageIconTempo.setBackgroundResource(R.drawable.weather_sun)}
-                        "02d" ,"02n" -> {textviewtempo.text = "Ceu pouco nublado"
-                                        imageIconTempo.setBackgroundResource(R.drawable.weather_low_clouds)}
-                        "03d" , "03n" , "04d" , "04n" -> {textviewtempo.text = "Ceu nublado"
-                            imageIconTempo.setBackgroundResource(R.drawable.weather_clouds)}
-                        "09d" , "09n" -> {textviewtempo.text = "Chuva"
-                            imageIconTempo.setBackgroundResource(R.drawable.weather_rain)}
-                        "10d" , "10n" -> {textviewtempo.text = "Aguaceiros"
-                            imageIconTempo.setBackgroundResource(R.drawable.weather_aguaceiros)}
-                        "11d" , "11n" -> {textviewtempo.text = "Tempestade"
-                            imageIconTempo.setBackgroundResource(R.drawable.weather_storm)}
-                        "13d" , "13n" -> {textviewtempo.text = "Neve"
-                            imageIconTempo.setBackgroundResource(R.drawable.weather_snow)}
-                        "50d" , "50n" -> {textviewtempo.text = "Nevoeiro"
-                            imageIconTempo.setBackgroundResource(R.drawable.weather_fog)}
-                        else -> {
-                            rootView.findViewById<TextView>(R.id.tempoEstatisticas).text = iconTempo
-                        }
-                    }
-
-                    if (temp != null) {
-                        val tempfloat = temp.toFloat()
-                        rootView.findViewById<TextView>(R.id.textView3).text =
-                            String.format("%.2f", tempfloat) + "ºC"
-                    } else {
-                        rootView.findViewById<TextView>(R.id.textView3).text = "--- ºC"
-                    }
-                }
-            }
         }
 
         //Documentation https://github.com/AAChartModel/AAChartCore-Kotlin
@@ -246,23 +180,109 @@ class EstatisticasFragment : Fragment() {
     }
 
 
-    private fun getCityName(lat: Double, lng: Double): String {
+    fun getCityName(lat: Double, lng: Double): String {
         var city = ""
         var country = ""
 
 
         var geocoder = Geocoder(requireContext(), Locale.getDefault())
-        var addresses = geocoder.getFromLocation(lat, lng, 1)
+        var addresses = geocoder.getFromLocation(lat, lng, 2)
+        println(addresses)
 
-        city = addresses.get(0).locality.toString()
-        country = addresses.get(0).countryName.toString()
+        println("Rolling down in the deep  - " + addresses.size)
+        if(addresses.get(0).locality == null){
+            if(addresses.get(1).locality == null){
+                city = addresses.get(0).countryName
+            }
+            else{
+                city = addresses.get(1).locality
+                country = addresses.get(1).countryName
+            }
+        }
+        else{
+            city = addresses.get(0).locality
+            country = addresses.get(0).countryName
+        }
 
-        cidade = city
-        println(city + country)
+        globalScopeweather()
+        println("Return :" + city + country)
+
 
         return city
     }
 
+
+    fun globalScopeweather() {
+
+        GlobalScope.launch(Dispatchers.IO){
+            delay(100)
+            val textviewcidade = activity?.findViewById<TextView>(R.id.cidade)
+            val client = OkHttpClient()
+            val request = Request.Builder()
+                .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade?.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
+                .build()
+            println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade?.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
+            //   println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
+
+            client.newCall(request).execute().use { response ->
+                val jsStr: String = response.body!!.string()
+                println(jsStr)
+
+
+                val jsonObjectTotal = JSONObject(jsStr)
+
+
+                val jsonTemperatura: JSONObject = jsonObjectTotal.getJSONObject("main") as JSONObject
+                val temp: String? =
+                    if (!jsonTemperatura.isNull("temp")) jsonTemperatura.getString("temp") else null
+
+                lateinit var iconTempo : String
+                val jsonTempo: JSONArray = jsonObjectTotal.getJSONArray("weather") as JSONArray
+                for ( index in  0 until jsonTempo.length()) {
+                    val jsonweather : JSONObject = jsonTempo.get(index) as JSONObject
+                    iconTempo = if (!jsonweather.isNull("icon")) jsonweather.getString("icon") else "API Nao Disponivel"
+                }
+
+
+                GlobalScope.launch(Dispatchers.Main) {
+                    val textviewtempo = activity?.findViewById<TextView>(R.id.tempoEstatisticas)
+                    val imageIconTempo = activity?.findViewById<ImageView>(R.id.imageIconTempo)
+
+
+                    when (iconTempo) {
+                        "01d", "01n" ->{ textviewtempo?.text = "Ceu Limpo"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_sun)}
+                        "02d" ,"02n" -> {textviewtempo?.text = "Ceu pouco nublado"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_low_clouds)}
+                        "03d" , "03n" , "04d" , "04n" -> {textviewtempo?.text = "Ceu nublado"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_clouds)}
+                        "09d" , "09n" -> {textviewtempo?.text = "Chuva"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_rain)}
+                        "10d" , "10n" -> {textviewtempo?.text = "Aguaceiros"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_aguaceiros)}
+                        "11d" , "11n" -> {textviewtempo?.text = "Tempestade"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_storm)}
+                        "13d" , "13n" -> {textviewtempo?.text = "Neve"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_snow)}
+                        "50d" , "50n" -> {textviewtempo?.text = "Nevoeiro"
+                            imageIconTempo?.setBackgroundResource(R.drawable.weather_fog)}
+                        else -> {
+                            activity?.findViewById<TextView>(R.id.tempoEstatisticas)?.text = iconTempo
+                        }
+                    }
+
+                    if (temp != null) {
+                        val tempfloat = temp.toFloat()
+                        activity?.findViewById<TextView>(R.id.textView3)?.text =
+                            String.format("%.2f", tempfloat) + "ºC"
+                    } else {
+                        activity?.findViewById<TextView>(R.id.textView3)?.text = "--- ºC"
+                    }
+                }
+            }
+        }
+
+    }
 
     @SuppressLint("MissingPermission")
     fun NewLocationData() {
