@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#80000000"
     android:fitsSystemWindows="true"
-    tools:context=".AtividadesActivity">
+    tools:context=".ui.Atividades.AtividadesActivity">
 
     <View
         android:id="@+id/view"

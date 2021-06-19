@@ -13,14 +13,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mindoverflow.scoutshub.R
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
 
 class NovaAtividadeActivity : AppCompatActivity() {
 
-    var dataAtividade : String = ""
+    var dataHoraAtividade : String = ""
+   var dataAtividade : String = ""
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,14 +32,10 @@ class NovaAtividadeActivity : AppCompatActivity() {
 
         Calendar.getInstance(Locale.FRANCE).getFirstDayOfWeek()
 
-        //Declara um formatador de data , obtem a data atual no formato ISO e formata para a formatação definida no formatador
-        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-        val date = formatter.parse(LocalDateTime.now().format(DateTimeFormatter.ISO_DATE))
-        dataAtividade = DateTimeFormatter.ofPattern("dd/MM/yyyy").format(date)
 
 
-        val editTextNomeCompleto = findViewById<EditText>(R.id.editTextNomeCompleto)
-        val editTextDescricao = findViewById<EditText>(R.id.editTextDescricao)
+        val editTextNomeActividade = findViewById<EditText>(R.id.editTextNomeCompleto)
+        val editTextDescricaoAtividade = findViewById<EditText>(R.id.editTextDescricao)
 
         val calendarView = findViewById<MaterialCalendarView>(R.id.calendarView)
 
@@ -56,18 +53,21 @@ class NovaAtividadeActivity : AppCompatActivity() {
 
             // Cria uma instancia OnTimeSetListener , a instancia ira desaparecer apos clicar-se no okay ao selecionar a hora
             val onTimeSetListener = TimePickerDialog.OnTimeSetListener() { timePicker: TimePicker, hour: Int, minute: Int ->
-
-                var hourfinal = "$hour:$minute"
+                var hourfixed = hour.toString()
+                var minutefixed = minute.toString()
+                if (hour < 10 ){hourfixed = "0$hour"
+                }
+                if (minutefixed == "0") {minutefixed= minutefixed + "0"}
+                var hourfinal = hourfixed+":"+minutefixed
                 val timePickerValueTextView = findViewById<TextView>(R.id.textViewHora);
                 timePickerValueTextView.setText(hourfinal);
             }
 
             val now = Calendar.getInstance();
             var hour = now.get(Calendar.HOUR)
-            if (hour <10){hour = Integer.parseInt("0$hour")}
             var minute = now.get(Calendar.MINUTE)
 
-            // Whether show time in 24 hour format or not.
+            // Define se prefere tempo em 24 horas ou em 12
             val is24Hour = true;
 
             val timePickerDialog = TimePickerDialog(this,
@@ -82,20 +82,29 @@ class NovaAtividadeActivity : AppCompatActivity() {
         //Ao clicar-se no botão Next é verificado se os dois editTexts são diferentes de null
         findViewById<Button>(R.id.buttonNextNewActivity).setOnClickListener{
 
-            if(editTextNomeCompleto.text != null && editTextDescricao.text != null){
+            if(editTextNomeActividade.text != null && editTextDescricaoAtividade.text != null || editTextNomeActividade.text.toString() != "" && editTextDescricaoAtividade.text.toString() != ""  ){
+
+
+                val notprocesseddata = (findViewById<TextView>(R.id.textViewData).text.toString() + findViewById<TextView>(R.id.textViewHora).text.toString())
+                val dataHoraParser = SimpleDateFormat("dd/MM/yyyyHH:mm").parse(notprocesseddata)
+                val dataHoraFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(dataHoraParser)
+
+                dataHoraAtividade = dataHoraFormatter
+
+
 
                 //Se não forem null é criado um Intent com o contexto como esta Activity e a proxima activity como classe
                 val intent = Intent(this, ConfirmNewActivity::class.java)
                 //De seguida é colocado as strings de informação (data , nome e descricao) dentro da string com os seus devidos ids/nomes
-                intent.putExtra("dataAtividade", dataAtividade)
-                intent.putExtra("nomeCompleto", editTextNomeCompleto.text.toString())
-                intent.putExtra("descricao", editTextDescricao.text.toString())
+                intent.putExtra("dataAtividade", dataHoraAtividade)
+                intent.putExtra("nomeCompleto", editTextNomeActividade.text.toString())
+                intent.putExtra("descricao", editTextDescricaoAtividade.text.toString())
                 //Inicia a proxima actividade
                 this.startActivity(intent)
 
             }
 
-        }
+       }
     }
 
 }

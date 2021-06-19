@@ -6,11 +6,10 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
-
     <com.github.sundeepk.compactcalendarview.CompactCalendarView
         android:id="@+id/compactcalendar_view"
-        android:layout_width="312dp"
-        android:layout_height="336dp"
+        android:layout_width="353dp"
+        android:layout_height="360dp"
         android:layout_marginTop="56dp"
         android:paddingLeft="10dp"
         android:paddingTop="50dp"
@@ -18,8 +17,8 @@
         android:soundEffectsEnabled="true"
         app:compactCalendarBackgroundColor="@color/white"
         app:compactCalendarCurrentDayBackgroundColor="@color/white"
-        app:compactCalendarCurrentDayTextColor="#DDB99C"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="#DDB99C"
+        app:compactCalendarCurrentDayTextColor="@color/brown_500"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/brown_500"
         app:compactCalendarCurrentSelectedDayTextColor="#FFFFFF"
         app:compactCalendarMultiEventIndicatorColor="@color/brown_500"
         app:compactCalendarOtherMonthDaysTextColor="#FFFFFF"
@@ -28,7 +27,6 @@
         app:compactCalendarTextColor="@color/black"
         app:compactCalendarTextSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -36,20 +34,19 @@
         android:id="@+id/mesdocalendario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif"
         android:text="XXXX-XXXX"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/compactcalendar_view"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/leftArrowImage"
-        android:layout_width="46dp"
-        android:layout_height="34dp"
+        android:layout_width="41dp"
+        android:layout_height="39dp"
         android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/ic_baseline_arrow_left_24"
@@ -64,8 +61,9 @@
 
     <ImageView
         android:id="@+id/rightArrowImage"
-        android:layout_width="46dp"
-        android:layout_height="34dp"
+        android:layout_width="41dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="50dp"
         android:background="@drawable/ic_baseline_arrow_right_24"
         android:foreground="@drawable/ic_baseline_arrow_right_24"
@@ -78,31 +76,13 @@
         app:layout_constraintVertical_bias="1.0"
         app:tint="@color/black" />
 
-    <TextView
-        android:id="@+id/dataselecionada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="DATA SELECIONADA"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/listViewCalendario"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/compactcalendar_view"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ListView
         android:id="@+id/listViewCalendario"
-        android:layout_width="371dp"
-        android:layout_height="166dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="10dp"
+        android:layout_width="413dp"
+        android:layout_height="274dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataselecionada" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView"
@@ -134,11 +114,34 @@
         android:id="@+id/imageadicionar"
         android:layout_width="59dp"
         android:layout_height="69dp"
-        android:layout_marginStart="13dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.785"
-        app:layout_constraintStart_toEndOf="@+id/compactcalendar_view"
+        app:layout_constraintStart_toEndOf="@+id/rightArrowImage"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="75dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Hora"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/listViewCalendario"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="75dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Evento"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/listViewCalendario"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,18 +5,24 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.domain.Event
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Atividade
+import com.mindoverflow.scoutshub.ui.MateriaisFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.internal.format
 import org.json.JSONArray
 import org.json.JSONObject
 import java.io.BufferedReader
@@ -32,10 +38,10 @@ import java.util.*
 
 class CalendarioAtividadesActivity : AppCompatActivity() {
     var atividades: MutableList<Atividade> = arrayListOf()
+    lateinit var adapterlisteventos : CalendarioAtividadesAdapter
+    var eventos: MutableList<Event> = arrayListOf()
     var compactCalendar: CompactCalendarView? = null
     private val dateFormatMonth = SimpleDateFormat("MMMM- yyyy", Locale.getDefault())
-
-    lateinit var adapterlisteventos: ArrayAdapter<String>
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,9 +91,8 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         val listViewCalendarioEventos = findViewById<ListView>(R.id.listViewCalendario)
 
-        adapterlisteventos =
-            ArrayAdapter<String>(this, R.layout.row_calendario, listevent)
-
+        adapterlisteventos = CalendarioAtividadesAdapter()
+        listViewCalendarioEventos.adapter = adapterlisteventos
 
         GlobalScope.launch(Dispatchers.IO) {
             val client = OkHttpClient()
@@ -104,7 +109,6 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                     val atividade = Atividade.fromJson(jsonArticle)
                     atividades.add(atividade)
 
-                    // var atividadedatainicio = formatter.format(atividade.dataInicio)
                     val formatadoratividade = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK)
                     val dataatividadeinicio = LocalDateTime.parse(atividade.dataInicio, formatadoratividade)
                     val atividademilis = dataatividadeinicio.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
@@ -112,9 +116,9 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                     var coranterior = coraleatoria
                     coraleatoria = coreslist.random()
                     if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
-                    compactCalendar!!.addEvent(Event(coraleatoria,atividademilis,atividade.nome + " - " + atividade.descricao))
+                    compactCalendar!!.addEvent(Event(coraleatoria,atividademilis,atividade.nome + " *" + atividade.descricao))
                 }
-
+                response.body!!.close()
             }
 
 
@@ -122,19 +126,21 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                 adapterlisteventos.notifyDataSetChanged()
             }
 
+
+
+
             //println(str)
         }
 
 
-
         //Declara uma MutableList de tipo Evento que contem um array com eventos
-        var eventosapagar : MutableList<Event> = arrayListOf(
-            Event(coraleatoria, 1607040400000L, "Teachers' Professional Day"),
-            Event(coraleatoria, 1624273932000, "Tessdate"),
-            Event(coraleatoria, 1624274932000, "Teste"),
-            Event(coraleatoria, 1623082189198, "Dia 7"),
-            Event(coraleatoria, 1626562800000, "Inicio Sao Joao"),
-            Event(coraleatoria, 1626822000000, "Fim Sao Joao")
+ /*       var eventosapagar : MutableList<Event> = arrayListOf(
+            Event(coraleatoria, 1607040400000L, "Teachers' Professional Day * Welcome to Teachers Day"),
+            Event(coraleatoria, 1624273932000, "Tessdate * Description Test"),
+            Event(coraleatoria, 1624274932000, "Teste * MegaTest"),
+            Event(coraleatoria, 1623082189198, "Dia 7 * Ja passou"),
+            Event(coraleatoria, 1626562800000, "Inicio Sao Joao * Um mes a frente"),
+            Event(coraleatoria, 1626822000000, "Fim Sao Joao * Um mes a frente")
         )
 
 
@@ -145,7 +151,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
             coraleatoria = coreslist.random()
             if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
             compactCalendar!!.addEvent(Event(coraleatoria,Event.timeInMillis,Event.data))
-        }
+        }*/
 
        findViewById<ImageView>(R.id.leftArrowImage).setOnClickListener{
            compactCalendar!!.scrollLeft()
@@ -161,7 +167,6 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
         }
 
 
-        val dataselecionada = findViewById<TextView>(R.id.dataselecionada)
 
         //Obtem a data atual no formato ISO
         val firstDate = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE)
@@ -194,7 +199,6 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.mesdocalendario).text = "$mesinicial- $anoinicial"
 
 
-        dataselecionada.text = dataatual
 
 
 
@@ -202,23 +206,22 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
             //Após ser clicado numa data do calendário , limpa a ListView e de seguida lista os diferentes eventos presentes nesse dia
             override fun onDayClick(dateClicked: Date) {
                 listViewCalendarioEventos.setAdapter(null)
-                listevent.clear()
+                eventos.clear()
                 listViewCalendarioEventos.adapter = adapterlisteventos
 
 
                 //Cria uma formataçao separadamente para hora e data
                 //obtem a data selecionada e converte a mesma de milisegundos para uma data e aplica o mesmo num textview
                 var formatter = SimpleDateFormat("dd/MM/yyyy");
-                val formatterhour = SimpleDateFormat("hh:mm")
                 var dataAtualClickedString = formatter.format(Date(dateClicked.time))
-                dataselecionada.text = dataAtualClickedString
 
 
 
                 //Obtem os eventos do dia e por cada evento no dia selecionado , adiciona a hora e a informação do Evento na ListView
                 for (Event in compactCalendar!!.getEvents(dateClicked.time)) {
-                    listevent.add(formatterhour.format(Date(Event.timeInMillis)) + "        " + Event.data as String)
-                    println(listevent)
+                    eventos.add(Event(Event.color,Event.timeInMillis,Event.data))
+                    println(eventos)
+                    println(eventos.size)
                 }
                 //Notifica ao Adapter da ListView que Data foi modificada ,para atualizar a ListView
                 adapterlisteventos.notifyDataSetChanged()
@@ -233,9 +236,45 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
         })
 
 
+    }
+
+    inner class CalendarioAtividadesAdapter : BaseAdapter() {
+        override fun getCount(): Int {
+            return eventos.size
+        }
+
+        override fun getItem(position: Int): Any {
+            return eventos[position]
+
+        }
+
+        override fun getItemId(position: Int): Long {
+            return 0
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+
+            val rowView = layoutInflater.inflate(R.layout.row_calendario, parent, false)
+            val formatterhour = SimpleDateFormat("hh:mm")
+
+            val dateEventlist = rowView.findViewById<TextView>(R.id.dateEventList)
+            val titleEventList = rowView.findViewById<TextView>(R.id.titleEventList)
+            val descEventList = rowView.findViewById<TextView>(R.id.descEventList)
+            val colorTintEventList = rowView.findViewById<ImageView>(R.id.colorTintEventList)
+
+            val datamaster = eventos[position].data.toString()
+            val datadescricaotitulo : List<String> = datamaster.split("*")
 
 
+            dateEventlist.text = formatterhour.format(Date(eventos[position].timeInMillis))
+            titleEventList.text = datadescricaotitulo[0]
+            descEventList.text = datadescricaotitulo[1]
+            colorTintEventList.setColorFilter(eventos[position].color)
+
+            return rowView
+        }
 
     }
+
 }
 

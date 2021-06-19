@@ -60,18 +60,18 @@ class PerfisFragmentAdministrador : Fragment() {
         val users = ArrayList<Atividade>()
 
         //adding some dummy data to the list
-        users.add(Atividade(1, "acampamento", "canoagem",
-            "divercao", 10, "Braga", "Braga",
+        users.add(Atividade(1, "acampamento", "canoagem","https://img.ibxk.com.br/2020/09/07/07121720532021.jpg",
+            "divercao", "10", "Braga", "Braga",
             "Miami", "1717171717131517",
             "www.coinbase.com", "03/09/2021", "03/10/2095" ))
 
-        users.add(Atividade(2, "dormir", "canoagem",
-            "divercao", 10, "Braga", "Braga",
+        users.add(Atividade(2, "dormir", "canoagem","https://img.wallpapersafari.com/desktop/1280/1024/53/59/W6u2aO.jpg",
+            "divercao", "10", "Braga", "Braga",
             "Miami", "1717171717131517",
             "www.coinbase.com", "03/09/2021", "03/10/2095" ))
 
-        users.add(Atividade(3, "saltar", "canoagem",
-            "divercao", 10, "Braga", "Braga",
+        users.add(Atividade(3, "saltar", "canoagem", "https://img.wallpapersafari.com/desktop/1280/1024/17/52/9Sl4iQ.jpg",
+            "divercao", "10", "Braga", "Braga",
             "Miami", "1717171717131517",
             "www.coinbase.com", "03/09/2021", "03/10/2095" ))
 

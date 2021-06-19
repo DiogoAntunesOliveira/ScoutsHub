@@ -57,8 +57,8 @@ class MateriaisFragment : Fragment() {
 
         materiaisselecionados = rootView.findViewById(R.id.numeroselecionado)
 
-        val equipa = Material(null, "Tendas", 14)
-        materiais.add(equipa)
+        val material = Material(null, "Tendas", 14)
+        materiais.add(material)
 
         materiais.add(Material(1, "Bussolas", 34))
         materiais.add(Material(2, "Mochilas", 24))

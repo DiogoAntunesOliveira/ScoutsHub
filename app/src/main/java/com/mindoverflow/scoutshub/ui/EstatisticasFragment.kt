@@ -6,22 +6,23 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Color
 import android.location.*
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.location.LocationManagerCompat.isLocationEnabled
 import androidx.fragment.app.Fragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
+import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import com.google.android.gms.location.*
 import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
 import com.mindoverflow.scoutshub.R
@@ -30,10 +31,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.internal.wait
-import okio.IOException
+import org.json.JSONArray
 import org.json.JSONObject
-import org.w3c.dom.Text
 import java.util.*
 
 
@@ -54,7 +53,8 @@ class EstatisticasFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_estatisticas, container, false)
 
         val textviewcidade = rootView.findViewById<TextView>(R.id.cidade)
-        val textviewcoordenadas = rootView.findViewById<TextView>(R.id.textView5)
+        val textviewcoordenadas = rootView.findViewById<TextView>(R.id.textViewCoordenadas)
+
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -65,13 +65,16 @@ class EstatisticasFragment : Fragment() {
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED
         ) {
             Toast.makeText(context,
-                "Permissões Negadas , GPS desativado ou permissões insuficientes",
+                "Permissões negadas ou insuficientes",
                 Toast.LENGTH_LONG)
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION), 1)
-            val intent = Intent(activity,  com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity::class.java)
-            activity?.startActivity(intent)
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION), 1
+            )
+            rootView.findViewById<TextView>(R.id.textView3).text = "Por favor dê permissões de localização"
+            rootView.findViewById<TextView>(R.id.cidade).text = ""
+            rootView.findViewById<TextView>(R.id.textViewCoordenadas).text = "Para isso , renicie a aplicação por favor"
+
+
         } else {
 
 
@@ -82,16 +85,16 @@ class EstatisticasFragment : Fragment() {
                     lng = location?.longitude
                 }*/
 
-        }
+
 
 
         GlobalScope.launch(Dispatchers.IO) {
             Thread.sleep(1000)
             val client = OkHttpClient()
             val request = Request.Builder()
-                .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae")
+                .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
                 .build()
-            println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae")
+            println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
          //   println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
 
             client.newCall(request).execute().use { response ->
@@ -102,15 +105,47 @@ class EstatisticasFragment : Fragment() {
                 val jsonObjectTotal = JSONObject(jsStr)
 
 
-                val jsonTemperatura: JSONObject =
-                    jsonObjectTotal.getJSONObject("main") as JSONObject
+                val jsonTemperatura: JSONObject = jsonObjectTotal.getJSONObject("main") as JSONObject
                 val temp: String? =
                     if (!jsonTemperatura.isNull("temp")) jsonTemperatura.getString("temp") else null
 
+                lateinit var iconTempo : String
+                val jsonTempo: JSONArray = jsonObjectTotal.getJSONArray("weather") as JSONArray
+                for ( index in  0 until jsonTempo.length()) {
+                    val jsonweather : JSONObject = jsonTempo.get(index) as JSONObject
+                    iconTempo = if (!jsonweather.isNull("icon")) jsonweather.getString("icon") else "API Nao Disponivel"
+                }
+
 
                 GlobalScope.launch(Dispatchers.Main) {
+                    val textviewtempo = rootView.findViewById<TextView>(R.id.tempoEstatisticas)
+                    val imageIconTempo = rootView.findViewById<ImageView>(R.id.imageIconTempo)
+
+
+                    when (iconTempo) {
+                        "01d", "01n" ->{ textviewtempo.text = "Ceu Limpo"
+                                         imageIconTempo.setBackgroundResource(R.drawable.weather_sun)}
+                        "02d" ,"02n" -> {textviewtempo.text = "Ceu pouco nublado"
+                                        imageIconTempo.setBackgroundResource(R.drawable.weather_low_clouds)}
+                        "03d" , "03n" , "04d" , "04n" -> {textviewtempo.text = "Ceu nublado"
+                            imageIconTempo.setBackgroundResource(R.drawable.weather_clouds)}
+                        "09d" , "09n" -> {textviewtempo.text = "Chuva"
+                            imageIconTempo.setBackgroundResource(R.drawable.weather_rain)}
+                        "10d" , "10n" -> {textviewtempo.text = "Aguaceiros"
+                            imageIconTempo.setBackgroundResource(R.drawable.weather_aguaceiros)}
+                        "11d" , "11n" -> {textviewtempo.text = "Tempestade"
+                            imageIconTempo.setBackgroundResource(R.drawable.weather_storm)}
+                        "13d" , "13n" -> {textviewtempo.text = "Neve"
+                            imageIconTempo.setBackgroundResource(R.drawable.weather_snow)}
+                        "50d" , "50n" -> {textviewtempo.text = "Nevoeiro"
+                            imageIconTempo.setBackgroundResource(R.drawable.weather_fog)}
+                        else -> {
+                            rootView.findViewById<TextView>(R.id.tempoEstatisticas).text = iconTempo
+                        }
+                    }
+
                     if (temp != null) {
-                        val tempfloat = (temp.toFloat()) - 273.15F
+                        val tempfloat = temp.toFloat()
                         rootView.findViewById<TextView>(R.id.textView3).text =
                             String.format("%.2f", tempfloat) + "ºC"
                     } else {
@@ -123,15 +158,22 @@ class EstatisticasFragment : Fragment() {
         //Documentation https://github.com/AAChartModel/AAChartCore-Kotlin
         val aaChartView = rootView.findViewById<AAChartView>(R.id.aa_chart_view)
 
+
         val aaChartModel: AAChartModel = AAChartModel()
             .chartType(AAChartType.Area)
-            .title("Participated Activities")
+//            .title("Participated Activities")
             .dataLabelsEnabled(false)
             .yAxisLabelsEnabled(false)
+            .xAxisLabelsEnabled(true)
+            .markerRadius(4F)
+            .axesTextColor("#cc3904")
+            .xAxisGridLineWidth(0.0F)
+            .yAxisGridLineWidth(0.0F)
             .yAxisTitle("")
             .series(arrayOf(
                 AASeriesElement()
                     .name("Tokyo")
+                    .color("#EE8300")
                     .data(arrayOf(7.0,
                         6.9,
                         9.5,
@@ -146,6 +188,7 @@ class EstatisticasFragment : Fragment() {
                         9.6)),
                 AASeriesElement()
                     .name("NewYork")
+                    .color("#d6b59a")
                     .data(arrayOf(0.2,
                         0.8,
                         5.7,
@@ -165,7 +208,7 @@ class EstatisticasFragment : Fragment() {
 
         //This method is recommended to be called for updating the series data dynamically(Usar na API?)
         //aaChartView.aa_onlyRefreshTheChartDataWithChartModelSeries(chartModelSeriesArray)
-
+        }
         return rootView
     }
 
@@ -189,16 +232,16 @@ class EstatisticasFragment : Fragment() {
                     } else {
                         lat.plus(location.latitude)
                         lng.plus(location.longitude)
-                        getActivity()?.findViewById<TextView>(R.id.textView5)?.text = location.longitude.toString() + " " + location.latitude.toString()
+                        getActivity()?.findViewById<TextView>(R.id.textViewCoordenadas)?.text = location.longitude.toString() + " " + location.latitude.toString()
                         getActivity()?.findViewById<TextView>(R.id.cidade)?.text = getCityName(location.latitude, location.longitude)
                     }
             }
 
             }
         } else {
-            Toast.makeText(requireContext(),
-                "Please Turn on Your device Location",
-                Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), "Por favor ative o GPS do seu Dispostivo", Toast.LENGTH_LONG).show()
+            val intent = Intent(activity,  AtividadesActivity::class.java)
+            activity?.startActivity(intent)
         }
     }
 
@@ -246,15 +289,26 @@ class EstatisticasFragment : Fragment() {
 
     private val locationCallback = object : LocationCallback() {
         override fun onLocationResult(locationResult: LocationResult) {
-            var lastLocation: Location = locationResult.lastLocation
-            lat = locationResult.lastLocation.latitude
-            lng = locationResult.lastLocation.longitude
-            getActivity()?.findViewById<TextView>(R.id.textView5)?.text = "You Last Location is : Long: "+ lastLocation.longitude + " , Lat: " + lastLocation.latitude
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                requireActivity().findViewById<TextView>(R.id.textView3).text =
+                    "Por favor dê permissões de localização"
+                requireActivity().findViewById<TextView>(R.id.cidade).text = ""
+                requireActivity().findViewById<TextView>(R.id.textViewCoordenadas).text =
+                    "Para isso , renicie a aplicação por favor"
+            } else {
+                var lastLocation: Location = locationResult.lastLocation
+                lat = locationResult.lastLocation.latitude
+                lng = locationResult.lastLocation.longitude
+                getActivity()?.findViewById<TextView>(R.id.textViewCoordenadas)?.text =
+                    (lastLocation.longitude + lastLocation.latitude).toString()
+            }
         }
-
-
-
-
     }
-
 }
