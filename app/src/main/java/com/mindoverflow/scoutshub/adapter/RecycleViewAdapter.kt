@@ -1,4 +1,4 @@
-package com.mindoverflow.scoutshub.ui
+package com.mindoverflow.scoutshub.adapter
 
 import android.view.LayoutInflater
 import android.view.View
