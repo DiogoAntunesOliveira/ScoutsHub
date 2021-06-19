@@ -27,7 +27,7 @@ class CustomAdapter(val userList: ArrayList<Atividade>) : RecyclerView.Adapter<C
         return userList.size
     }
 
-    //the class is hodling the list view
+    //the class is holding the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(atividade: Atividade) {

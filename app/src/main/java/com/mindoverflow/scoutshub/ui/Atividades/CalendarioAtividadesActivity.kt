@@ -102,11 +102,10 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                 val string : String = response.body!!.string()
 
                 val jsonObject = JSONObject(string)
-
                 val jsonArrayArticles = jsonObject.getJSONArray("activities")
+
                 for ( index in  0 until jsonArrayArticles.length()) {
-                    val jsonArticle : JSONObject = jsonArrayArticles.get(index) as JSONObject
-                    val atividade = Atividade.fromJson(jsonArticle)
+                    val atividade = Atividade.fromJson(string, index)
                     atividades.add(atividade)
 
                     val formatadoratividade = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK)
