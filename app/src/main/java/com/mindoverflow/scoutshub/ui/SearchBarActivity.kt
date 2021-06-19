@@ -4,9 +4,11 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.inputmethod.EditorInfo
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mindoverflow.scoutshub.GetURL.Companion.URL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.adapter.RecycleViewAdapter
 import com.mindoverflow.scoutshub.models.Perfil
@@ -31,8 +33,7 @@ class SearchBarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_search_bar)
 
         GlobalScope.launch(Dispatchers.IO) {
-            val usersFromJson: ArrayList<Perfil> = UsersFromJson()
-            println(UsersFromJson())
+            val usersFromJson: ArrayList<Perfil> = GetUsers()
             GlobalScope.launch(Dispatchers.Main) {
                 fillUsersList(usersFromJson)
                 println(fillUsersList(usersFromJson))
@@ -44,14 +45,22 @@ class SearchBarActivity : AppCompatActivity() {
         supportActionBar!!.hide()
     }
 
-    private fun UsersFromJson() : ArrayList<Perfil> {
+    override fun onRestart() {
+        super.onRestart()
+
+        finish()
+    }
+
+    private fun GetUsers() : ArrayList<Perfil> {
 
         val users = ArrayList<Perfil>()
 
         val client = OkHttpClient()
 
+        val ip = URL()
+
         val request =
-            Request.Builder().url("http://mindoverflow.amipca.xyz:60000/perfil/")
+            Request.Builder().url("$ip/perfil/")
                 .get()
                 .build()
 
@@ -61,7 +70,7 @@ class SearchBarActivity : AppCompatActivity() {
             val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
 
             for (index in 0 until jsonArray.length()) {
-                val user = Perfil.fromJson(jsStr, index, "get_json_array_by_id")
+                val user = Perfil.fromJson(jsStr, index)
                 users.add(user)
             }
         }
@@ -75,13 +84,12 @@ class SearchBarActivity : AppCompatActivity() {
 
         val image0 = R.drawable.bryce_canyon
         val image1 = R.drawable.cathedral_rock
-        val image2 = R.drawable.death_valley
 
         // Deu um erro de index 2 : size 3 porque me faltava uma imagem
-        val images = arrayListOf(image0, image1, image2)
+        val images = arrayListOf(image0, image1)
 
         for (user in usersFromJson) {
-            (recyclerList as ArrayList<RecyclerItem>).add(RecyclerItem(images[user.idPerfil!! - 1], user.nome!!))
+            (recyclerList as ArrayList<RecyclerItem>).add(RecyclerItem(image1, user.nome!!))
         }
     }
 
@@ -109,17 +117,24 @@ class SearchBarActivity : AppCompatActivity() {
             override fun onQueryTextSubmit(query: String?): Boolean {
 
                 if(query != null && query.isNotBlank()) {
-                    //To do a verification of the existence of the inserted name
 
+                    GlobalScope.launch(Dispatchers.IO) {
+                        //The function UserNameVerification is making a verification of the validity of the insert user (query) on the search view
+                        val userToView = UserNameVerification(query)
 
-                    //The query is submitted
-                    val intent = Intent (this@SearchBarActivity, ProfileViewActivity::class.java)
-                    intent.putExtra("User" , query)
-
-                    startActivity(intent)
-
+                        GlobalScope.launch(Dispatchers.Main) {
+                            //if the user inserted into the search view exists then pass its id as an intent to the "ProfileViewActivity"
+                            if(userToView != null){
+                                //The id user inserted in the search view
+                                val intent = Intent (this@SearchBarActivity, ProfileViewActivity::class.java)
+                                intent.putExtra("User" , userToView.toJson().toString())
+                                startActivity(intent)
+                            } else {
+                                Toast.makeText(this@SearchBarActivity, "O utilizador inserido é invalido", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                    }
                 }
-
                 //The query isn´t submitted
                 return false
             }
@@ -134,6 +149,37 @@ class SearchBarActivity : AppCompatActivity() {
         })
         return true
     }
+
+    private fun UserNameVerification(user : String) : Perfil? {
+        //val users = ArrayList<Perfil>()
+
+        var userToReturn : Perfil? = null
+
+        val client = OkHttpClient()
+
+        val ip = URL()
+
+        val request =
+            Request.Builder().url("$ip/perfil/")
+                .get()
+                .build()
+
+        client.newCall(request).execute().use { response ->
+
+            val jsStr = (response.body!!.string())
+            val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
+
+            for (index in 0 until jsonArray.length()) {
+                val userCompare = Perfil.fromJson(jsStr, index)
+
+                if(user.equals(userCompare.nome!!, ignoreCase = true)){
+                    userToReturn = userCompare
+                }
+            }
+        }
+        return userToReturn
+    }
+
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 

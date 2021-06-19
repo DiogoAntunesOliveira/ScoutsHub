@@ -17,152 +17,128 @@
             android:id="@+id/textViewPerfilAdmin"
             android:layout_width="358dp"
             android:layout_height="53dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="28dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="@string/perfil"
+            android:text="@string/Perfil"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewSearch" />
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/imageViewPesquisa"
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageViewPesquisa1"
             android:layout_width="344dp"
             android:layout_height="226dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="fitXY"
+            android:layout_marginTop="8dp"
+            android:scaleType="centerCrop"
+            app:civ_border_color="#00FFFFFF"
+            app:civ_border_width="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAdmin"
-            app:srcCompat="@drawable/ic_launcher_foreground"
-            tools:ignore="VectorDrawableCompat" />
-        <!-- app:shapeAppearanceOverlay="@style/roundedImageView" -->
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAdmin" />
 
         <TextView
             android:id="@+id/textViewPerfilAdminNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="120dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Profile Name"
+            android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa"
-            android:textColor="@color/black"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textViewPerfilAdminDataNasc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="90dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView7"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textViewPerfilAdminGenero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="130dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView9"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
 
         <TextView
             android:id="@+id/textViewPerfilAdminContacto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="170dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView10"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textViewPerfilAdminMorada"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="210dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView11"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textViewPerfilAdminCodigoPostal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="240dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="250dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView12"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textViewPerfilAdminNin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="290dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView13"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textViewPerfilAdminTotalAtivParticip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="320dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="330dp"
             android:fontFamily="@font/poppins_medium"
             android:text="TextView"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@+id/textView14"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
-
-        <Button
-            android:id="@+id/buttonEditPerfilAdmin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="Edit Profile"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.467"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewProfile" />
-
-        <Button
-            android:id="@+id/buttonLogOutPerfilAdmin"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:layout_marginStart="156dp"
-            android:layout_marginEnd="156dp"
-            android:layout_marginBottom="100dp"
-            android:text="Log Out"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/buttonEditPerfilAdmin"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -171,9 +147,10 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
             android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView6"
             tools:itemCount="1"
-            tools:layout_editor_absoluteX="3dp"
             tools:listitem="@layout/item_past_activities" />
 
         <TextView
@@ -182,11 +159,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="52dp"
+            android:layout_marginBottom="13dp"
             android:fontFamily="@font/poppins_semibold"
             android:includeFontPadding="false"
             android:text="Atividades Recentes"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewProfile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -195,86 +174,86 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="90dp"
             android:fontFamily="@font/poppins_medium"
             android:includeFontPadding="false"
             android:text="data nasimento:"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textView9"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="130dp"
             android:fontFamily="@font/poppins_medium"
             android:text="genero:"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textView10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="160dp"
+            android:layout_marginTop="170dp"
             android:fontFamily="@font/poppins_medium"
             android:text="telemovel:"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textView11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="200dp"
+            android:layout_marginTop="210dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Rua:"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="250dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Codigo Postal:"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="280dp"
+            android:layout_marginTop="290dp"
             android:fontFamily="sans-serif-medium"
             android:text="NIN:"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <TextView
             android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="320dp"
+            android:layout_marginTop="330dp"
             android:layout_marginEnd="28dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Atividades Parcticipadas:"
@@ -282,7 +261,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/textViewPerfilAdminTotalAtivParticip"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa"/>
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <ImageView
             android:id="@+id/imageViewSearch"
@@ -290,20 +269,28 @@
             android:layout_height="38dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="36dp"
+            android:background="@drawable/baseline_search_24"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/baseline_search_24" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewSearch"
-            android:layout_width="338dp"
+            android:layout_width="352dp"
             android:layout_height="38dp"
             android:layout_marginTop="36dp"
-            android:layout_marginEnd="16dp"
             android:text="Procurar um utilizador"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageViewSearch"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/buttonEditAdm1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="34dp"
+            android:layout_marginTop="72dp"
+            android:text="Button"
+            app:layout_constraintStart_toEndOf="@+id/textViewPerfilAdminDataNasc"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

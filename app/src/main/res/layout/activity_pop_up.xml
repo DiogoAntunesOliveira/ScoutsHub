@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#80000000"
-    tools:context=".PopUp">
+    android:background="#80000000">
+
+    <!-- PopUp -->
 
     <View
         android:id="@+id/view5"
         android:layout_width="252dp"
         android:layout_height="285dp"
-        android:background="@drawable/viewround"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- android:background="@drawable/viewround" -->
 
     <ImageView
         android:id="@+id/imageView3"

@@ -125,7 +125,7 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
                         .build()
                 httpclient.newCall(getrequest).execute().use { response ->
 
-                    val string: String = response.body!!.string()
+                    val string = response.body!!.string()
 
                     val jsonObject = JSONObject(string)
 
@@ -133,8 +133,13 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
 
                     println(jsonArrayArticles.length())
                     for (index in 0 until jsonArrayArticles.length()) {
+                        /*
                         val todasatividades : JSONObject = jsonArrayArticles.get(index) as JSONObject
-                        val atividadeinteira = Atividade.fromJson(todasatividades)
+                        val atividadeinteira = Atividade.fromJson(todasatividades)*/
+
+                        //Se der erro foi por culpa do Jorge, alterou as cenas aqui em cima
+                        val atividadeinteira = Atividade.fromJson(string, index)
+
                         if (atividadeinteira.idAtividade != null) {idjson = atividadeinteira.idAtividade.toString()
                         }else {
                             idjson += 1}
