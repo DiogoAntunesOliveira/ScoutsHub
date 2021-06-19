@@ -30,41 +30,18 @@ class PopUp : AppCompatActivity() {
 
         bt_end.setOnClickListener {
 
-            val perfil = Perfil()
             val utilizador = Utilizador()
 
-            perfil.nome = sharedPreferences.getString("nome", null)
-            perfil.dtNasc = sharedPreferences.getString("dtNasc", null)
-            perfil.codigoPostal = sharedPreferences.getString("codPostal", null)
-            perfil.contacto = sharedPreferences.getString("Telemovel", null)?.toInt()
-            perfil.morada = sharedPreferences.getString("Morada", null)
-            perfil.nin = sharedPreferences.getString("nin", null)?.toInt()
-            perfil.genero = sharedPreferences.getString("genero", null)
             utilizador.email_utilizador = sharedPreferences.getString("mail", null)
             utilizador.palavra_pass = sharedPreferences.getString("pass1", null)
-            utilizador.id_tipo = 999
-            perfil.totalAtivParticip = 0
-            perfil.idEquipa = 1
-            perfil.idUtilizador = 1
-
+            utilizador.id_tipo = 1
 
             GlobalScope.launch(Dispatchers.IO) {
                 val url = URL()
+
                 val client = OkHttpClient()
 
-                val perfilJson = perfil.toJson().toString()
                 val utilizadorJson = utilizador.toJson().toString()
-
-                val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), perfilJson)
-
-                val request1 = Request.Builder()
-                    .url("$url/perfil")
-                    .post(requestBody1)
-                    .build()
-
-                client.newCall(request1).execute().use { response ->
-                    println(response.body!!.string())
-                }
 
                 val requestBody2 = RequestBody.create("application/json".toMediaTypeOrNull(), utilizadorJson)
 

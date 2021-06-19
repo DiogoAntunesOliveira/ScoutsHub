@@ -121,7 +121,7 @@ class PerfilEditActivity : AppCompatActivity() {
         val editTextNin = findViewById<EditText>(R.id.textViewEditarNin)
         //val editTextEmail = findViewById<EditText>(R.id.textViewEditarEmail)
 
-
+        /*
         val idPerfil = user.idPerfil
         val nome = editTextNome.text.toString()
         val imagem = user.imagem
@@ -132,11 +132,11 @@ class PerfilEditActivity : AppCompatActivity() {
         val codigoPostal = editTextCodigoPostal.text.toString()
         val nin = editTextNin.text.toString()
         val totalAtivParticip = user.totalAtivParticip
-        val idEquipa = user.idEquipa
+        val idEquipa = user.idEquipa */
 
         //val dateNascimentoFormated = DateFormaterTeste(dataNascimento)
 
 
-        return Perfil(idPerfil, nome, imagem, dataNascimento, genero, numeroTelefone.toInt(), morada, codigoPostal, nin.toInt(), totalAtivParticip!!.toInt(), idEquipa!!.toInt())
+        return Perfil(user.idPerfil, editTextNome.text.toString(), user.imagem, editTextDataNascimento.text.toString(), user.genero, editTextNumeroTelefone.text.toString().toInt(), editTextMorada.text.toString(), editTextCodigoPostal.text.toString(), editTextNin.text.toString().toInt(), user.totalAtivParticip.toString().toInt(), user.idEquipa.toString().toInt(), user.idUtilizador.toString().toInt())
     }
 }

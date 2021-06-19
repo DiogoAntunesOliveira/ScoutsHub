@@ -2,18 +2,22 @@ package com.mindoverflow.scoutshub.ui.Login
 
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import bit.linux.tinyspacex.Helpers.DateFormaterPtToIng
 import com.mindoverflow.scoutshub.R
 
 class Signup2Activity : AppCompatActivity() {
 
     lateinit var sharedPreferences: SharedPreferences
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup2)
@@ -33,7 +37,7 @@ class Signup2Activity : AppCompatActivity() {
 
         bt_next2.setOnClickListener {
 
-            var nin = findViewById<EditText>(R.id.NIN)
+            val nin = findViewById<EditText>(R.id.NIN)
             val codPostal = findViewById<EditText>(R.id.PostalAddress)
             val morada = findViewById<EditText>(R.id.Address)
             val dtNasc = findViewById<EditText>(R.id.BirthDate)
@@ -43,11 +47,11 @@ class Signup2Activity : AppCompatActivity() {
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
             // por dados em sharedpreferences
-            editor.putString("nin", nin.toString())
-            editor.putString("codPostal", codPostal.toString())
-            editor.putString("Morada", morada.toString())
-            editor.putString("dtNasc", dtNasc.toString())
-            editor.putString("Telemovel", telemovel.toString())
+            editor.putInt("nin", nin.text.toString().toInt())
+            editor.putString("codPostal", codPostal.text.toString())
+            editor.putString("Morada", morada.text.toString())
+            editor.putString("dtNasc", DateFormaterPtToIng(dtNasc.text.toString()))
+            editor.putInt("Telemovel", telemovel.text.toString().toInt())
 
             // apilcar em sharedpreferences
             editor.apply()
