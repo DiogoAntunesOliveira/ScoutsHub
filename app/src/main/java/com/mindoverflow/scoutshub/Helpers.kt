@@ -39,6 +39,11 @@ object Helpers {
         }
     }
 
+    fun URL(): String {
+
+        return "http://mindoverflow.amipca.xyz:60000"
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun DateFormaterApi(date : String) : String {
         val inputFormatter =

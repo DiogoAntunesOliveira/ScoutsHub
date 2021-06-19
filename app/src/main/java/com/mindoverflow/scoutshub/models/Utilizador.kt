@@ -8,8 +8,6 @@ class Utilizador {
     var email_utilizador : String? = null
     var palavra_pass : String? = null
     var id_tipo : Int? = null
-    var id_perfil : Int? = null
-    var id_instruçao : Int? = null
 
     constructor()
 
@@ -18,16 +16,12 @@ class Utilizador {
         id_utilizador: Int?,
         email_utilizador: String?,
         palavra_pass: String?,
-        id_tipo: Int?,
-        id_perfil: Int?,
-        id_instruçao: Int?
+        id_tipo: Int?
     ) {
         this.id_utilizador = id_utilizador
         this.email_utilizador = email_utilizador
         this.palavra_pass = palavra_pass
         this.id_tipo = id_tipo
-        this.id_perfil = id_perfil
-        this.id_instruçao = id_instruçao
     }
 
 
@@ -38,22 +32,30 @@ class Utilizador {
         jsonObject.put("email_utilizador", email_utilizador)
         jsonObject.put("palavra_pass", palavra_pass)
         jsonObject.put("id_tipo", id_tipo)
-        jsonObject.put("id_perfil", id_perfil)
-        jsonObject.put("id_instruçao", id_instruçao)
 
         return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonObject: JSONObject) : Utilizador {
+        fun fromJson(jsStr: String?, arrayPosition: Int?) : Utilizador {
+
             val utilizador = Utilizador()
+
+            val jsonObject : JSONObject
+
+            //If there is the need to get a Json array from a json object
+            if(arrayPosition != null) {
+                val jsonArray = JSONObject(jsStr!!).getJSONArray("users")
+                jsonObject = JSONObject(jsonArray[arrayPosition!!].toString())
+            } else {
+                jsonObject = JSONObject(jsStr!!)
+            }
+
             utilizador.id_utilizador = jsonObject.getInt("id_utilizador")
             utilizador.email_utilizador = jsonObject.getString("email_utilizador")
             utilizador.palavra_pass = jsonObject.getString("palavra_pass")
             utilizador.id_tipo = jsonObject.getInt("id_tipo")
-            utilizador.id_perfil = jsonObject.getInt("id_perfil")
-            utilizador.id_instruçao = jsonObject.getInt("id_instruçao")
 
             return utilizador
         }

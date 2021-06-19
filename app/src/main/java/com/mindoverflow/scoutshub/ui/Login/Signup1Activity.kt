@@ -1,12 +1,11 @@
-package com.example.xmlperferfil1
+package com.mindoverflow.scoutshub.ui.Login
 
 import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.widget.Toast
-import kotlinx.android.synthetic.main.activity_signup1.*
+import android.widget.*
+import com.mindoverflow.scoutshub.R
 
 class Signup1Activity : AppCompatActivity() {
 
@@ -20,9 +19,13 @@ class Signup1Activity : AppCompatActivity() {
 
         sharedPreferences = getSharedPreferences("Scouts", MODE_PRIVATE)
 
+        val bt_back = findViewById<ImageView>(R.id.bt_back)
+        val bt_next = findViewById<Button>(R.id.bt_next)
+
+
         bt_back.setOnClickListener {
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, FrontPage::class.java)
             startActivity(intent)
             finish()
         }
@@ -30,12 +33,13 @@ class Signup1Activity : AppCompatActivity() {
         bt_next.setOnClickListener {
 
             // input de dados
-            val nome = FullName.text.toString().trim()
-            val mail = EmailAddress.text.toString().trim()
-            val pass = Password.text.toString().trim()
-            val pass1 = Password1.text.toString().trim()
+            val nome = findViewById<EditText>(R.id.FullName)
+            val mail = findViewById<EditText>(R.id.EmailAddress)
+            val pass = findViewById<EditText>(R.id.Password)
+            val pass1 = findViewById<EditText>(R.id.Password1)
+            val Masculino = findViewById<RadioButton>(R.id.Masculino)
+            val Femenino = findViewById<RadioButton>(R.id.Femenino)
             var genero = String()
-
 
             if (Masculino.isChecked){
 
@@ -50,16 +54,16 @@ class Signup1Activity : AppCompatActivity() {
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
             // por dados em sharedpreferences
-            editor.putString("nome", nome)
-            editor.putString("mail", mail)
-            editor.putString("pass", pass)
-            editor.putString("pass1", pass1)
+            editor.putString("nome", nome.toString())
+            editor.putString("mail", mail.toString())
+            editor.putString("pass", pass.toString())
+            editor.putString("pass1", pass1.toString())
             editor.putString("genero", genero)
 
             // apilcar em sharedpreferences
             editor.apply()
 
-            if (nome.isNotEmpty() && mail.isNotEmpty() && (pass.isNotEmpty() == pass1.isNotEmpty())){
+            if (nome.text.toString().isNotEmpty() && mail.text.toString().isNotEmpty() && (pass.text.toString().isNotEmpty() == pass1.text.toString().isNotEmpty())){
 
                 val intent = Intent(this, Signup2Activity::class.java)
                 startActivity(intent)
@@ -69,7 +73,6 @@ class Signup1Activity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor preencha todos os campos", Toast.LENGTH_SHORT).show()
 
             }
-
         }
     }
 }

@@ -15,8 +15,7 @@ class Perfil {
     var nin                     : Int?                 = null
     var totalAtivParticip       : Int?                 = null
     var idEquipa                : Int?                 = null
-
-
+    var idUtilizador            : Int?                 = null
 
     constructor(){
 
@@ -33,10 +32,12 @@ class Perfil {
         codigoPostal                    : String?,
         nin                             : Int?,
         totalAtividadesParticipadas     : Int?,
-        idEquipa                        : Int?
+        idEquipa                        : Int?,
+        idUtilizador                    : Int?
     ) {
         this.idPerfil                   = idPerfil
         this.nome                       = nome
+        this.dtNasc                     = dtNasc
         this.imagem                     = imagem
         this.dtNasc                    = dtNasc
         this.genero                     = genero
@@ -46,6 +47,7 @@ class Perfil {
         this.nin                        = nin
         this.totalAtivParticip          = totalAtividadesParticipadas
         this.idEquipa                   = idEquipa
+        this.idUtilizador               = idUtilizador
     }
 
     fun toJson() : JSONObject {
@@ -55,6 +57,7 @@ class Perfil {
         jsonObject.put("nome"                               , nome              )
         jsonObject.put("imagem"                             , imagem              )
         jsonObject.put("dt_nasc"                             , dtNasc           )
+        jsonObject.put("data_nascimento"                    , dtNasc            )
         jsonObject.put("genero"                             , genero            )
         jsonObject.put("contacto"                           , contacto          )
         jsonObject.put("morada"                             , morada            )
@@ -62,6 +65,8 @@ class Perfil {
         jsonObject.put("nin"                                , nin               )
         jsonObject.put("total_atividades_part"              , totalAtivParticip )
         jsonObject.put("id_equipa"                          , idEquipa          )
+        jsonObject.put("id_utilizador"                      , idUtilizador      )
+
 
         return jsonObject
     }
@@ -83,6 +88,7 @@ class Perfil {
 
             perfil.idPerfil             = if (!jsonObject.isNull("id_perfil"                        )) jsonObject.getInt        ("id_perfil"                        )   else null
             perfil.nome                 = if (!jsonObject.isNull("nome"                             )) jsonObject.getString     ("nome"                             )   else null
+            perfil.dtNasc               = if (!jsonObject.isNull("data_nascimento"                  )) jsonObject.getString     ("data_nascimento"                  )   else null
             perfil.imagem               = if (!jsonObject.isNull("imagem"                           )) jsonObject.getString     ("imagem"                           )   else null
             perfil.dtNasc              = if (!jsonObject.isNull("dt_nasc"                           )) jsonObject.getString     ("dt_nasc"                  )           else null
             perfil.genero               = if (!jsonObject.isNull("genero"                           )) jsonObject.getString     ("genero"                           )   else null
@@ -92,6 +98,7 @@ class Perfil {
             perfil.nin                  = if (!jsonObject.isNull("nin"                              )) jsonObject.getInt        ("nin"      )                           else null
             perfil.totalAtivParticip    = if (!jsonObject.isNull("total_atividades_part"            )) jsonObject.getInt        ("total_atividades_part"    )            else null
             perfil.idEquipa             = if (!jsonObject.isNull("id_equipa"                        )) jsonObject.getInt        ("id_equipa"                        )   else null
+            perfil.idUtilizador         = if (!jsonObject.isNull("id_utilizador"                    )) jsonObject.getInt        ("id_utilizador"                    )   else null
 
             return perfil
         }
