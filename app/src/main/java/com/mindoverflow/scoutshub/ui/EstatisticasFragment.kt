@@ -82,7 +82,7 @@ class EstatisticasFragment : Fragment() {
                     lat = location?.latitude
                     lng = location?.longitude
                 }*/
-            
+
 
         //Documentation https://github.com/AAChartModel/AAChartCore-Kotlin
         val aaChartView = rootView.findViewById<AAChartView>(R.id.aa_chart_view)
