@@ -1,7 +1,6 @@
 package com.mindoverflow.scoutshub.ui
 
 import android.content.Intent
-import android.media.Image
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,9 +20,11 @@ import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.getImageUrl
 import com.mindoverflow.scoutshub.GetURL.Companion.URL
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.models.Perfil
+import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -32,7 +33,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import org.json.JSONObject
-import kotlin.collections.ArrayList
 
 
 class PerfisFragmentAdministrador : Fragment() {
@@ -50,10 +50,12 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_perfil_administrador, container, false)
 
+        val userId = SavedUserData.id_utilizador.toString()
+        println(userId)
 
         GlobalScope.launch(Dispatchers.IO) {
             //Get the user by Id, using a get request
-            user = GetUser()
+            user = GetUser(userId)
 
             GlobalScope.launch(Dispatchers.Main) {
                 InsertDataIntoUser(user, rootView)
@@ -159,8 +161,6 @@ class PerfisFragmentAdministrador : Fragment() {
         val nin = activity?.findViewById<TextView>(R.id.textViewPerfilAdminNin)
         val totalAtivParticip = activity?.findViewById<TextView>(R.id.textViewPerfilAdminTotalAtivParticip)
 
-        println(user.dtNasc.toString())
-
 
         nomeUtilizador!!.text = user.nome
         dtNasc!!.text = user.dtNasc
@@ -170,7 +170,6 @@ class PerfisFragmentAdministrador : Fragment() {
         codigoPostal!!.text = user.codigoPostal
         nin!!.text = user.nin.toString()
         totalAtivParticip!!.text = user.totalAtivParticip.toString()
-
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -290,22 +289,23 @@ class PerfisFragmentAdministrador : Fragment() {
         getImageUrl(user.imagem!!, image)
     }
 
-    private fun GetUser() : Perfil{
-        val id = 8
+    private fun GetUser(userId : String) : Perfil{
 
         val client = OkHttpClient()
         val url = URL()
 
-        val request = Request.Builder().url("$url/perfil/$id")
+        val request = Request.Builder().url("$url/perfil/user/$userId")
             .get()
             .build()
 
         client.newCall(request).execute().use { response ->
             val jsStr = (response.body!!.string())
+            println(jsStr)
 
             return Perfil.fromJson(jsStr, 0)
         }
     }
+
 
     /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
