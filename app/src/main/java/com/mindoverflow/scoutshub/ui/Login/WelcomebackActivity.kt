@@ -1,15 +1,18 @@
-package com.example.xmlperferfil1
+package com.mindoverflow.scoutshub.ui.Login
+
 
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
-import com.example.xmlperferfil1.httpHelper.GetURL.Companion.URL
-import com.example.xmlperferfil1.models.Utilizador
-import kotlinx.android.synthetic.main.activity_signup1.*
-import kotlinx.android.synthetic.main.activity_signup1.bt_back
-import kotlinx.android.synthetic.main.activity_welcomeback.*
+import bit.linux.tinyspacex.Helpers.URL
+import com.mindoverflow.scoutshub.MainActivity
+import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,25 +29,37 @@ class WelcomebackActivity : AppCompatActivity() {
 
         supportActionBar!!.hide()
 
+        val bt_back = findViewById<ImageView>(R.id.bt_back)
+        val login_bt = findViewById<Button>(R.id.login_bt)
+
         bt_back.setOnClickListener {
 
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, FrontPage::class.java)
             startActivity(intent)
             finish()
         }
 
         login_bt.setOnClickListener {
 
-            var mail = loginmail.text.toString().trim()
-            var pass = loginpassword.text.toString().trim()
+            val mail = findViewById<EditText>(R.id.loginmail)
+            val pass = findViewById<EditText>(R.id.loginpassword)
 
             // se estiver preenchido
-            if (mail.isNotEmpty() && pass.isNotEmpty()) {
+            if (mail.text.toString().isNotEmpty() && pass.text.toString().isNotEmpty()) {
+
+                println("TEST TEST TEST")
 
                 // para correr noutra thread da main para nao crashar
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    val userToLogin = UserNameVerification(mail, pass)
+                    println("EST TEST TEST2")
+
+                    println(mail.text.toString().trim())
+
+                    val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())
+
+                    println("EST TEST TEST3")
+
 
                     // acedes textview que esta na main por ex
                     GlobalScope.launch(Dispatchers.Main) {
@@ -52,10 +67,16 @@ class WelcomebackActivity : AppCompatActivity() {
                         // se o return nao for null
                         if (userToLogin != null) {
 
-                            val returnIntent = Intent()
-                            returnIntent.putExtra("userToLogin", userToLogin.toJson().toString())
-                            setResult(Activity.RESULT_OK, returnIntent)
-                            finish()
+                            println("test succefull")
+
+                            val returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
+                            //returnIntent.putExtra("userToLogin", userToLogin.toJson().toString())
+                            //setResult(Activity.RESULT_OK, returnIntent)
+                            //finish()
+
+                            println(userToLogin.toJson().toString())
+
+                            startActivity(returnIntent)
 
                         // se o return for null
                         } else {
@@ -64,6 +85,7 @@ class WelcomebackActivity : AppCompatActivity() {
                         }
                     }
                 }
+
             // se os campos nao tiver preenchidos
             } else {
 
@@ -88,19 +110,30 @@ class WelcomebackActivity : AppCompatActivity() {
 
         client.newCall(request).execute().use { response ->
 
+            println("test user1")
+
             val jsStr = (response.body!!.string())
-            val jsonArray = JSONObject(jsStr).getJSONArray("user")
+            println(jsStr)
+            val jsonArray = JSONObject(jsStr).getJSONArray("users")
+            println(jsonArray)
 
             // for para ver todos os user inseridos
             for (index in 0 until jsonArray.length()) {
-                val userCompare = Utilizador.fromJson(jsStr, index, "get_json_array_by_id")
 
-                if(mail == userCompare.email_utilizador!! && pass == userCompare.palavra_pass!!){
+                val userCompare = Utilizador.fromJson(jsStr, index)
+
+                println(userCompare)
+
+                if(mail == userCompare.email_utilizador!! && pass == userCompare.palavra_pass!! && userCompare.id_tipo != 999){
 
                     userToLogin = userCompare
                 }
             }
+
+            println(response.body!!.toString())
         }
+
+        println(userToLogin)
         return userToLogin
     }
 }

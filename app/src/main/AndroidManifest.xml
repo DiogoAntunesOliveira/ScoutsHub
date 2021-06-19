@@ -2,18 +2,21 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mindoverflow.scoutshub">
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AplicacaoProjeto">
-        <activity android:name=".ui.Atividades.SampleMapsActivity"></activity>
+        android:theme="@style/Theme.AplicacaoProjeto"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".pedidos_acesso"></activity>
+        <activity android:name=".ui.Atividades.SampleMapsActivity" />
         <activity android:name=".ui.Atividades.AvailableActivitiesActivity" />
         <activity
             android:name=".ui.Atividades.AtividadesActivity"
@@ -29,17 +32,21 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
         <activity android:name=".ui.Atividades.NovaAtividadeActivity" />
         <activity android:name=".ui.Atividades.ConfirmNewActivity" />
         <activity android:name=".ui.Atividades.CalendarioAtividadesActivity" />
         <activity android:name=".ui.SearchBarActivity" />
-
-        <activity android:name=".ui.Instrucoes.InstrucoesActivity"/>
-        <activity android:name=".ui.Instrucoes.StepsActivity"/>
-        <activity android:name=".ui.Instrucoes.StepsOptionsActivity"/>
-        <activity android:name=".ui.Instrucoes.VideoActivity"/>
-        <activity android:name=".ui.Instrucoes.VideoOptionsActivity"/>
+        <activity android:name=".ui.Login.FrontPage" />
+        <activity android:name=".ui.Login.Signup1Activity" />
+        <activity android:name=".ui.Login.Signup2Activity" />
+        <activity android:name=".ui.Login.PopUp" />
+        <activity android:name=".ui.Login.WelcomebackActivity" />
+        <activity android:name=".ui.Instrucoes.InstrucoesActivity" />
+        <activity android:name=".ui.Instrucoes.StepsActivity" />
+        <activity android:name=".ui.Instrucoes.StepsOptionsActivity" />
+        <activity android:name=".ui.Instrucoes.VideoActivity" />
+        <activity android:name=".ui.Instrucoes.VideoOptionsActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

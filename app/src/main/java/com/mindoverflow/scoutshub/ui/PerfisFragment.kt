@@ -20,12 +20,12 @@ class PerfisFragment : Fragment() {
     //var perfis : MutableList<Perfil> = arrayListOf()
     //lateinit var adapter : PerfilAdapter
 
-    override fun onCreateView(
+    /*override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View? {*/
 
-        val rootView = inflater.inflate(R.layout.fragment_perfil_utilizador, container, false)
+        /*val rootView = inflater.inflate(R.layout.fragment_perfil_utilizador, container, false)
 
         val image0 = R.drawable.bryce_canyon
         val image1 = R.drawable.cathedral_rock
@@ -44,7 +44,7 @@ class PerfisFragment : Fragment() {
         val nin = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroNin)
         val totalAtivParticip = rootView.findViewById<TextView>(R.id.textViewPerfilEscuteiroTotalAtivParticip)
 
-        val perfil = Perfil(null, "Jorge", "30/5/2000", "M", 919923205, "Praceta Madalena Fonseca 120 Rés do chão", "9560-010", 123456789, 6, 5)
+        //val perfil = Perfil(null, "Jorge", "30/5/2000", "M", 919923205, "Praceta Madalena Fonseca 120 Rés do chão", "9560-010", 123456789, 6, 5)
 
         nomeUtilizador.text = perfil.nome
         dtNasc.text = perfil.dtNasc
@@ -90,7 +90,7 @@ class PerfisFragment : Fragment() {
         recyclerView.adapter = adapter
 
         return rootView
-    }
+    }*/
 
     /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

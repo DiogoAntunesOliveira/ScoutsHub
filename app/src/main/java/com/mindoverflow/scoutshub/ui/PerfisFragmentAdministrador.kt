@@ -16,7 +16,7 @@ import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.models.Perfil
 
 
-class PerfisFragmentAdministrador : Fragment() {
+class PerfisFragmentAdministrador : Fragment() {/*
 
     //var perfis : MutableList<Perfil> = arrayListOf()
     //lateinit var adapter : PerfilAdapter
@@ -100,7 +100,7 @@ class PerfisFragmentAdministrador : Fragment() {
         }
 
         return rootView
-    }
+    }*/
 
     /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,4 +1,4 @@
-package com.example.xmlperferfil1
+package com.mindoverflow.scoutshub.ui.Login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,8 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import com.mindoverflow.scoutshub.R
 
-class MainActivity : AppCompatActivity() {
-
+class FrontPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_frontpage)
@@ -20,15 +19,15 @@ class MainActivity : AppCompatActivity() {
         bt_signin.setOnClickListener {
 
             val intent = Intent(this, WelcomebackActivity::class.java)
-            startActivity(intent)
             finish()
+            startActivity(intent)
         }
 
         bt_signup.setOnClickListener {
 
             val intent = Intent(this, Signup1Activity::class.java)
-            startActivity(intent)
             finish()
+            startActivity(intent)
         }
     }
 }

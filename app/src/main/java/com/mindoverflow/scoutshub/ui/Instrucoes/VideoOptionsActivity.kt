@@ -19,6 +19,7 @@ class VideoOptionsActivity: AppCompatActivity() {
         val tent = findViewById<ImageButton>(R.id.option2)
         val map = findViewById<ImageButton>(R.id.option3)
 
+        /*
         fire.setOnClickListener {
 
             // enviar para a outra activity o "link" do video que queremos visualizar (fogueira)
@@ -41,6 +42,6 @@ class VideoOptionsActivity: AppCompatActivity() {
             val intent = Intent(this, VideoActivity::class.java)
             intent.putExtra("data", "android.resource://" + packageName.toString() + "/" + R.raw.map_video)
             startActivity(intent)
-        }
+        }*/
     }
 }
