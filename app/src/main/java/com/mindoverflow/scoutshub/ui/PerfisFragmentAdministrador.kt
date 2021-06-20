@@ -19,6 +19,7 @@ import bit.linux.tinyspacex.Helpers.DateFormaterApi
 import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.getImageUrl
 import com.mindoverflow.scoutshub.GetURL.Companion.URL
+import com.mindoverflow.scoutshub.ImagePickModeActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
@@ -91,7 +92,7 @@ class PerfisFragmentAdministrador : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val uploadImage = view.findViewById<ImageView>(R.id.imageViewPesquisa1)
         val searchImage: ImageView = view.findViewById(R.id.imageViewSearch)
         val searchText: TextView = view.findViewById(R.id.textViewSearch)
         val editPerfil : ImageView = view.findViewById(R.id.buttonEditAdm1)
@@ -111,6 +112,10 @@ class PerfisFragmentAdministrador : Fragment() {
             intent.putExtra("user_data", user.toJson().toString())
 
             startActivityForResult(intent, 1001)
+        }
+        uploadImage.setOnClickListener{
+            val intent = Intent(activity, ImagePickModeActivity::class.java)
+            startActivity(intent)
         }
     }
 

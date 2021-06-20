@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mindoverflow.scoutshub">
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AplicacaoProjeto"
         android:usesCleartextTraffic="true">
-        <activity android:name=".pedidos_acesso"></activity>
+        <activity android:name=".ImagePickModeActivity"></activity>
+        <activity android:name=".ui.IamgePickActivity" />
+        <activity android:name=".ImagePickActivity" />
+        <activity android:name=".pedidos_acesso" />
         <activity android:name=".ui.Atividades.SampleMapsActivity" />
         <activity android:name=".ui.Atividades.AvailableActivitiesActivity" />
         <activity
