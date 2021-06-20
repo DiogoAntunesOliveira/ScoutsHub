@@ -46,7 +46,6 @@
         <activity android:name=".ui.Instrucoes.StepsOptionsActivity" />
         <activity android:name=".ui.Instrucoes.VideoActivity" />
         <activity android:name=".ui.Instrucoes.VideoOptionsActivity" />
-        <activity android:name=".PerfilActivity" />
         <activity android:name=".ui.ProfileViewActivity" />
         <activity android:name=".ui.ProfileAdmEditActivity" />
         <activity android:name=".ui.PerfilEditActivity" />
