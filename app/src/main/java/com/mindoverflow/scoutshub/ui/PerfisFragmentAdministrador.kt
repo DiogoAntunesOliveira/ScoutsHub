@@ -94,7 +94,7 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val searchImage: ImageView = view.findViewById(R.id.imageViewSearch)
         val searchText: TextView = view.findViewById(R.id.textViewSearch)
-        val editPerfil : Button = view.findViewById(R.id.buttonEditAdm1)
+        val editPerfil : ImageView = view.findViewById(R.id.buttonEditAdm1)
 
         searchImage.setOnClickListener{
             val intent = Intent(activity, SearchBarActivity::class.java)
