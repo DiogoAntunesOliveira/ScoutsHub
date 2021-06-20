@@ -46,17 +46,19 @@ class Signup2Activity : AppCompatActivity() {
             // editor
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
-            // por dados em sharedpreferences
-            editor.putInt("nin", nin.text.toString().toInt())
-            editor.putString("codPostal", codPostal.text.toString())
-            editor.putString("Morada", morada.text.toString())
-            editor.putString("dtNasc", DateFormaterPtToIng(dtNasc.text.toString()))
-            editor.putInt("Telemovel", telemovel.text.toString().toInt())
 
-            // apilcar em sharedpreferences
-            editor.apply()
 
             if (morada.text.toString().isNotEmpty() && codPostal.text.toString().isNotEmpty() && dtNasc.text.toString().isNotEmpty()) {
+
+                // por dados em sharedpreferences
+                editor.putInt("nin", nin.text.toString().toInt())
+                editor.putString("codPostal", codPostal.text.toString())
+                editor.putString("Morada", morada.text.toString())
+                editor.putString("dtNasc", DateFormaterPtToIng(dtNasc.text.toString()))
+                editor.putInt("Telemovel", telemovel.text.toString().toInt())
+
+                // apilcar em sharedpreferences
+                editor.apply()
 
                 val intent = Intent(this, PopUp::class.java)
                 startActivity(intent)

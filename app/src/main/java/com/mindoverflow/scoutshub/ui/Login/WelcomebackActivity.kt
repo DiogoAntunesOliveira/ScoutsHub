@@ -62,15 +62,15 @@ class WelcomebackActivity : AppCompatActivity() {
 
                     val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())
 
-                    SavedUserData.id_utilizador = userToLogin!!.id_utilizador
-                    SavedUserData.email_utilizador = userToLogin!!.email_utilizador
-                    SavedUserData.palavra_pass = userToLogin!!.palavra_pass
-                    SavedUserData.id_tipo = userToLogin!!.id_tipo
-
                     // acedes textview que esta na main por ex
 
                     // se o return nao for null
                     if (userToLogin != null) {
+
+                        SavedUserData.id_utilizador = userToLogin.id_utilizador
+                        SavedUserData.email_utilizador = userToLogin.email_utilizador
+                        SavedUserData.palavra_pass = userToLogin.palavra_pass
+                        SavedUserData.id_tipo = userToLogin.id_tipo
 
                         val perfil = Perfil()
 
@@ -84,7 +84,18 @@ class WelcomebackActivity : AppCompatActivity() {
                         perfil.totalAtivParticip = 0
                         perfil.idEquipa = 5
                         perfil.imagem = "https://cdn.discordapp.com/attachments/839158641474928710/855830146682060850/5f3b486198cb4e1db5729207a666c750.png"
-
+                        println("information")
+                        println(perfil.idUtilizador)
+                        println(perfil.dtNasc)
+                        println(perfil.codigoPostal)
+                        println(perfil.contacto)
+                        println(perfil.morada)
+                        println(perfil.nin)
+                        println(perfil.genero)
+                        println(perfil.totalAtivParticip)
+                        println(perfil.idEquipa)
+                        println(perfil.imagem)
+                        println(perfil.idEquipa)
 
                         val perfilJson = perfil.toJson().toString()
 
@@ -93,6 +104,10 @@ class WelcomebackActivity : AppCompatActivity() {
 
                         val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), perfilJson)
 
+                        println("user to login")
+                        println(userToLogin.id_utilizador)
+                        println("perfilJson")
+                        println(perfilJson)
 
                         val request1 = Request.Builder()
                             .url("$url/perfil/user/${userToLogin.id_utilizador}")
@@ -106,20 +121,8 @@ class WelcomebackActivity : AppCompatActivity() {
 
                         GlobalScope.launch(Dispatchers.Main) {
 
-                            var returnIntent : Intent? = null
-
-                            if(userToLogin.id_tipo == 1){
-                                returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
-                                returnIntent.putExtra("user_loged_in", userToLogin.toJson().toString())
-                            }
-                            else if(userToLogin.id_tipo == 2){
-                                returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
-                                returnIntent.putExtra("user_loged_in", userToLogin.toJson().toString())
-                            }
-                            else {
-                                returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
-                                returnIntent.putExtra("user_loged_in", userToLogin.toJson().toString())
-                            }
+                            val returnIntent = Intent(this@WelcomebackActivity, MainActivity::class.java)
+                            returnIntent.putExtra("user_loged_in", userToLogin.toJson().toString())
 
                             startActivity(returnIntent)
                         }
@@ -127,8 +130,9 @@ class WelcomebackActivity : AppCompatActivity() {
 
                     // se o return for null
                     } else {
-                        //Este toast faz craxar a aplicacao
-                        //Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
+                        GlobalScope.launch(Dispatchers.Main) {
+                            Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
 
@@ -157,8 +161,6 @@ class WelcomebackActivity : AppCompatActivity() {
 
         client.newCall(request).execute().use { response ->
 
-            println("test user1")
-
             val jsStr = (response.body!!.string())
             val jsonArray = JSONObject(jsStr).getJSONArray("users")
 
@@ -167,6 +169,7 @@ class WelcomebackActivity : AppCompatActivity() {
 
                 val userCompare = Utilizador.fromJson(jsStr, index)
 
+                println("user to compare")
                 println(userCompare)
 
                 if(mail == userCompare.email_utilizador!! && pass == userCompare.palavra_pass!! && userCompare.id_tipo != 999){
@@ -175,9 +178,10 @@ class WelcomebackActivity : AppCompatActivity() {
                 }
             }
 
+            println("response body")
             println(response.body!!.toString())
         }
-
+        println("userToLogin")
         println(userToLogin)
         return userToLogin
     }
