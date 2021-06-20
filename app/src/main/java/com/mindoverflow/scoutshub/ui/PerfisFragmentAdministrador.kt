@@ -51,7 +51,6 @@ class PerfisFragmentAdministrador : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_perfil_administrador, container, false)
 
         val userId = SavedUserData.id_utilizador.toString()
-        println(userId)
 
         GlobalScope.launch(Dispatchers.IO) {
             //Get the user by Id, using a get request
@@ -75,7 +74,7 @@ class PerfisFragmentAdministrador : Fragment() {
         //Adding activities to the recycler view
         GlobalScope.launch(Dispatchers.IO) {
             val arrayTodasAtividades =  GettingAllActivities()
-            atividades = AddingActivities(arrayTodasAtividades)
+            atividades = AddingActivities(arrayTodasAtividades, userId)
 
             GlobalScope.launch(Dispatchers.Main){
                 //creating our adapter
@@ -137,9 +136,9 @@ class PerfisFragmentAdministrador : Fragment() {
                     if (userUpdated != null) {
                         GlobalScope.launch(Dispatchers.Main) {
                             //registers the update made to the user on the app
-                            val user_ = Perfil.fromJson(userUpdated, null)
-                            user_.dtNasc = DateFormaterIngToPt(user_.dtNasc.toString())
-                            user = user_
+                            val userFromJson = Perfil.fromJson(userUpdated, null)
+                            userFromJson.dtNasc = DateFormaterIngToPt(userFromJson.dtNasc.toString())
+                            user = userFromJson
                             insertingDataIntoUserAfterPut(user)
                         }
                     }
@@ -191,7 +190,7 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val request =
             Request.Builder()
-                .url("$url/perfil/${newData.idPerfil}")
+                .url("$url/perfil/user/${newData.idUtilizador}")
                 .put(requestBody)
                 .build()
 
@@ -208,9 +207,8 @@ class PerfisFragmentAdministrador : Fragment() {
     }
 
     //Ads the activities correspondent to the user
-    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>): ArrayList<Atividade> {
+    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>, userId : String): ArrayList<Atividade> {
 
-        val idUtilizador = 8
         val atividades = java.util.ArrayList<Atividade>()
 
         val url = URL()
@@ -218,7 +216,7 @@ class PerfisFragmentAdministrador : Fragment() {
         val client = OkHttpClient()
 
         for (index in 0 until arrayTodasAtividades.size){
-            val request = Request.Builder().url("$url/participant/${arrayTodasAtividades[index].idAtividade}/utilizador/$idUtilizador")
+            val request = Request.Builder().url("$url/participant/${arrayTodasAtividades[index].idAtividade}/utilizador/$userId")
                 .get()
                 .build()
 

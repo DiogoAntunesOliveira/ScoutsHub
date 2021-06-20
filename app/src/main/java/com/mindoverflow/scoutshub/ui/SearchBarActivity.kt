@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mindoverflow.scoutshub.GetURL.Companion.URL
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.adapter.RecycleViewAdapter
 import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.RecyclerItem
@@ -54,13 +55,14 @@ class SearchBarActivity : AppCompatActivity() {
     private fun GetUsers() : ArrayList<Perfil> {
 
         val users = ArrayList<Perfil>()
+        val userDontShow = SavedUserData.id_utilizador
 
         val client = OkHttpClient()
 
-        val ip = URL()
+        val url = URL()
 
         val request =
-            Request.Builder().url("$ip/perfil/")
+            Request.Builder().url("$url/perfil/")
                 .get()
                 .build()
 
@@ -71,6 +73,7 @@ class SearchBarActivity : AppCompatActivity() {
 
             for (index in 0 until jsonArray.length()) {
                 val user = Perfil.fromJson(jsStr, index)
+                if (user.idUtilizador != userDontShow)
                 users.add(user)
             }
         }
