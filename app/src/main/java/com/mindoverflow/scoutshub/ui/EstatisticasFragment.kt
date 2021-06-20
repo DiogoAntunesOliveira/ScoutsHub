@@ -156,10 +156,9 @@ class EstatisticasFragment : Fragment() {
                                 val atividadefor = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.UK)
                                 val atividadeday: Date = atividadefor.parse(atividadevalida.dataInicio)
 
-                                val diff: Long = datenow.time - atividadeday.time
+                                val diff: Long = atividadeday.time - datenow.time
 
                                 val dayCount = diff.toFloat() / (24 * 60 * 60 * 1000)
-
 
                                 if(dayCount <30)
                                 {
