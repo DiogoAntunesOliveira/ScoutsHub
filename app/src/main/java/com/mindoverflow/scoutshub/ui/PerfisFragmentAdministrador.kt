@@ -19,6 +19,7 @@ import bit.linux.tinyspacex.Helpers.DateFormaterApi
 import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.getImageUrl
 import com.mindoverflow.scoutshub.GetURL.Companion.URL
+import com.mindoverflow.scoutshub.ImagePickModeActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
@@ -51,7 +52,6 @@ class PerfisFragmentAdministrador : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_perfil_administrador, container, false)
 
         val userId = SavedUserData.id_utilizador.toString()
-        println(userId)
 
         GlobalScope.launch(Dispatchers.IO) {
             //Get the user by Id, using a get request
@@ -75,7 +75,7 @@ class PerfisFragmentAdministrador : Fragment() {
         //Adding activities to the recycler view
         GlobalScope.launch(Dispatchers.IO) {
             val arrayTodasAtividades =  GettingAllActivities()
-            atividades = AddingActivities(arrayTodasAtividades)
+            atividades = AddingActivities(arrayTodasAtividades, userId)
 
             GlobalScope.launch(Dispatchers.Main){
                 //creating our adapter
@@ -92,10 +92,10 @@ class PerfisFragmentAdministrador : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        val uploadImage = view.findViewById<ImageView>(R.id.imageViewPesquisa1)
         val searchImage: ImageView = view.findViewById(R.id.imageViewSearch)
         val searchText: TextView = view.findViewById(R.id.textViewSearch)
-        val editPerfil : Button = view.findViewById(R.id.buttonEditAdm1)
+        val editPerfil : ImageView = view.findViewById(R.id.buttonEditAdm1)
 
         searchImage.setOnClickListener{
             val intent = Intent(activity, SearchBarActivity::class.java)
@@ -112,6 +112,10 @@ class PerfisFragmentAdministrador : Fragment() {
             intent.putExtra("user_data", user.toJson().toString())
 
             startActivityForResult(intent, 1001)
+        }
+        uploadImage.setOnClickListener{
+            val intent = Intent(activity, ImagePickModeActivity::class.java)
+            startActivity(intent)
         }
     }
 
@@ -137,9 +141,9 @@ class PerfisFragmentAdministrador : Fragment() {
                     if (userUpdated != null) {
                         GlobalScope.launch(Dispatchers.Main) {
                             //registers the update made to the user on the app
-                            val user_ = Perfil.fromJson(userUpdated, null)
-                            user_.dtNasc = DateFormaterIngToPt(user_.dtNasc.toString())
-                            user = user_
+                            val userFromJson = Perfil.fromJson(userUpdated, null)
+                            userFromJson.dtNasc = DateFormaterIngToPt(userFromJson.dtNasc.toString())
+                            user = userFromJson
                             insertingDataIntoUserAfterPut(user)
                         }
                     }
@@ -191,7 +195,7 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val request =
             Request.Builder()
-                .url("$url/perfil/${newData.idPerfil}")
+                .url("$url/perfil/user/${newData.idUtilizador}")
                 .put(requestBody)
                 .build()
 
@@ -208,9 +212,8 @@ class PerfisFragmentAdministrador : Fragment() {
     }
 
     //Ads the activities correspondent to the user
-    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>): ArrayList<Atividade> {
+    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>, userId : String): ArrayList<Atividade> {
 
-        val idUtilizador = 8
         val atividades = java.util.ArrayList<Atividade>()
 
         val url = URL()
@@ -218,7 +221,7 @@ class PerfisFragmentAdministrador : Fragment() {
         val client = OkHttpClient()
 
         for (index in 0 until arrayTodasAtividades.size){
-            val request = Request.Builder().url("$url/participant/${arrayTodasAtividades[index].idAtividade}/utilizador/$idUtilizador")
+            val request = Request.Builder().url("$url/participant/${arrayTodasAtividades[index].idAtividade}/utilizador/$userId")
                 .get()
                 .build()
 

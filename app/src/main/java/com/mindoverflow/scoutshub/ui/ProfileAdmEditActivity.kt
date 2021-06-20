@@ -22,8 +22,12 @@ class ProfileAdmEditActivity : AppCompatActivity() {
         setContentView(R.layout.editing_profile_adm_activity)
 
         val jsonString = intent.getStringExtra("user_data")
+        println("teste1")
+        println(jsonString)
 
         val user = Perfil.fromJson(jsonString, null)
+        println("teste2")
+        println(user.nome)
 
         //here i get the user email
         //Email()
@@ -39,6 +43,8 @@ class ProfileAdmEditActivity : AppCompatActivity() {
             val returnIntent = Intent()
 
             val userEdited = SaveChanges(user)
+            println("teste3")
+            println(userEdited.toJson().toString())
 
             //Return to Profile view activity the edited user
             returnIntent.putExtra("perfil_editado", userEdited.toJson().toString())

@@ -60,19 +60,17 @@ class WelcomebackActivity : AppCompatActivity() {
                 // para correr noutra thread da main para nao crashar
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    println(mail.text.toString().trim())
-
-                    val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())!!
-
-                    SavedUserData.id_utilizador = userToLogin.id_utilizador
-                    SavedUserData.email_utilizador = userToLogin.email_utilizador
-                    SavedUserData.palavra_pass = userToLogin.palavra_pass
-                    SavedUserData.id_tipo = userToLogin.id_tipo
+                    val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())
 
                     // acedes textview que esta na main por ex
 
                     // se o return nao for null
                     if (userToLogin != null) {
+
+                        SavedUserData.id_utilizador = userToLogin!!.id_utilizador
+                        SavedUserData.email_utilizador = userToLogin!!.email_utilizador
+                        SavedUserData.palavra_pass = userToLogin!!.palavra_pass
+                        SavedUserData.id_tipo = userToLogin!!.id_tipo
 
                         val perfil = Perfil()
 
@@ -130,7 +128,9 @@ class WelcomebackActivity : AppCompatActivity() {
                     // se o return for null
                     } else {
                         //Este toast faz craxar a aplicacao
-                        //Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
+                        GlobalScope.launch(Dispatchers.Main) {
+                            Toast.makeText(this@WelcomebackActivity, "Dados Incorretos. Tente novamente", Toast.LENGTH_SHORT).show()
+                        }
                     }
                 }
 
