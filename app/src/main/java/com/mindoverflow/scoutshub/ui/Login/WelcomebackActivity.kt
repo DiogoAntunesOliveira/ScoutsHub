@@ -60,14 +60,12 @@ class WelcomebackActivity : AppCompatActivity() {
                 // para correr noutra thread da main para nao crashar
                 GlobalScope.launch(Dispatchers.IO) {
 
-                    println(mail.text.toString().trim())
+                    val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())
 
-                    val userToLogin = UserNameVerification(mail.text.toString().trim(), pass.text.toString().trim())!!
-
-                    SavedUserData.id_utilizador = userToLogin.id_utilizador
-                    SavedUserData.email_utilizador = userToLogin.email_utilizador
-                    SavedUserData.palavra_pass = userToLogin.palavra_pass
-                    SavedUserData.id_tipo = userToLogin.id_tipo
+                    SavedUserData.id_utilizador = userToLogin!!.id_utilizador
+                    SavedUserData.email_utilizador = userToLogin!!.email_utilizador
+                    SavedUserData.palavra_pass = userToLogin!!.palavra_pass
+                    SavedUserData.id_tipo = userToLogin!!.id_tipo
 
                     // acedes textview que esta na main por ex
 

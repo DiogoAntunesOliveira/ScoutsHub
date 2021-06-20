@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.mindoverflow.scoutshub.GetURL.Companion.URL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
 import com.mindoverflow.scoutshub.models.Atividade
@@ -17,9 +18,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import org.json.JSONArray
 import org.json.JSONObject
-
 
 
 class PerfisFragmentUtilizador : Fragment() {
@@ -43,9 +42,15 @@ class PerfisFragmentUtilizador : Fragment() {
 
         val images = arrayListOf(image0, image1, image2, image3, image4)
 
+        GlobalScope.launch(Dispatchers.IO) {
 
-        //val perfil = Perfil(null, "Jorge", "30/5/2000", "M", 919923205, "Praceta Madalena Fonseca 120 Rés do chão", "9560-010", 123456789, 6, 5)
+            //In the future pass the id as a parameter
+            val userFromJson = GetUser()
 
+            GlobalScope.launch(Dispatchers.Main) {
+                InsertDataIntoUser(userFromJson, rootView)
+            }
+        }
 
         //getting recyclerview from xml
         val recyclerView = rootView!!.findViewById(R.id.recyclerViewProfile) as RecyclerView
@@ -56,36 +61,76 @@ class PerfisFragmentUtilizador : Fragment() {
 
 
         //crating an arraylist to store users using the data class user
-        val users = ArrayList<Atividade>()
+        var atividades: ArrayList<Atividade>
 
-        //adding some dummy data to the list
-        users.add(Atividade(1, "acampamento", "canoagem",
-                "divercao", 10, "Braga", "Braga",
-                "Miami", "1717171717131517",
-                "www.coinbase.com", "03/09/2021", "03/10/2095" ))
+        //Adding activities to the recycler view
+        GlobalScope.launch(Dispatchers.IO) {
+            val arrayTodasAtividades =  GettingAllActivities()
+            atividades = AddingActivities(arrayTodasAtividades)
 
-        users.add(Atividade(2, "dormir", "canoagem",
-                "divercao", 10, "Braga", "Braga",
-                "Miami", "1717171717131517",
-                "www.coinbase.com", "03/09/2021", "03/10/2095" ))
-
-        users.add(Atividade(3, "saltar", "canoagem",
-                "divercao", 10, "Braga", "Braga",
-                "Miami", "1717171717131517",
-                "www.coinbase.com", "03/09/2021", "03/10/2095" ))
-
-
-        //creating our adapter
-        val adapter = CustomAdapter(users)
-
-        //now adding the adapter to recyclerview
-        recyclerView.adapter = adapter
+            GlobalScope.launch(Dispatchers.Main){
+                //creating our adapter
+                val adapter = CustomAdapter(atividades)
+                //now adding the adapter to recyclerview
+                recyclerView.adapter = adapter
+            }
+        }
 
         return rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+
+    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>): ArrayList<Atividade> {
+
+        val idUtilizador = 1
+        val atividades = java.util.ArrayList<Atividade>()
+
+        val url = URL()
+
+        val client = OkHttpClient()
+
+        for (index in 0 until arrayTodasAtividades.size){
+            val request = Request.Builder().url("$url/participant/${arrayTodasAtividades[index].idAtividade}/utilizador/$idUtilizador")
+                .get()
+                .build()
+
+            client.newCall(request).execute().use { response ->
+                if(response.body!!.string() != "\"participante\": []"){
+                    atividades.add(
+                        arrayTodasAtividades[index]
+                    )
+                }
+            }
+        }
+        return atividades
+    }
+
+    private fun GettingAllActivities() : ArrayList<Atividade>{
+
+        val client = OkHttpClient()
+
+        val atividades = ArrayList<Atividade>()
+
+        val url = URL()
+
+        val request = Request.Builder().url("$url/activities")
+            .get()
+            .build()
+
+        client.newCall(request).execute().use { response ->
+            val jsStr = (response.body!!.string())
+
+            val jsonArray = JSONObject(jsStr).getJSONArray("activities")
+
+            for (index in 0 until jsonArray.length()) {
+                val atividade = Atividade.fromJson(jsStr, index)
+                atividades.add(atividade)
+            }
+        }
+        return atividades
+    }
+
+    private fun InsertDataIntoUser(userFromJson: Perfil, view: View){
 
         val nomeUtilizador = view.findViewById<TextView>(R.id.textViewPerfilUtilizadorNome)
         val dtNasc = view.findViewById<TextView>(R.id.textViewPerfilUtilizadorDataNasc)
@@ -96,36 +141,29 @@ class PerfisFragmentUtilizador : Fragment() {
         val nin = view.findViewById<TextView>(R.id.textViewPerfilUtilizadorNin)
         val totalAtivParticip = view.findViewById<TextView>(R.id.textViewPerfilUtilizadorTotalAtivParticip)
 
+        nomeUtilizador.text = userFromJson.nome
+        dtNasc.text = userFromJson.dtNasc
+        genero.text = userFromJson.genero
+        contacto.text = userFromJson.contacto.toString()
+        morada.text = userFromJson.morada
+        codigoPostal.text = userFromJson.codigoPostal
+        nin.text = userFromJson.nin.toString()
+        totalAtivParticip.text = userFromJson.totalAtivParticip.toString()
+    }
 
-        GlobalScope.launch(Dispatchers.IO) {
+    private fun GetUser() : Perfil{
+        val id = 1
 
-            val id = 1
+        val url = URL()
 
-            val client = OkHttpClient()
+        val client = OkHttpClient()
 
-            val request = Request.Builder().url("http://mindoverflow.amipca.xyz:60000/perfil/$id").get().build()
+        val request = Request.Builder().url("$url/perfil/$id").get().build()
 
-            client.newCall(request).execute().use { response ->
-                val jsStr = (response.body!!.string())
+        client.newCall(request).execute().use { response ->
+            val jsStr = (response.body!!.string())
 
-                val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
-
-                val jsonObject = JSONObject(jsonArray[0].toString())
-
-                val perfilFromJson = Perfil.fromJson(jsonObject)
-
-
-                GlobalScope.launch(Dispatchers.Main) {
-                    nomeUtilizador.text = perfilFromJson.nome
-                    dtNasc.text = perfilFromJson.dtNasc
-                    genero.text = perfilFromJson.genero
-                    contacto.text = perfilFromJson.contacto.toString()
-                    morada.text = perfilFromJson.morada
-                    codigoPostal.text = perfilFromJson.codigoPostal
-                    nin.text = perfilFromJson.nin.toString()
-                    totalAtivParticip.text = perfilFromJson.totalAtivParticip.toString()
-                }
-            }
+            return Perfil.fromJson(jsStr, id)
         }
     }
 
