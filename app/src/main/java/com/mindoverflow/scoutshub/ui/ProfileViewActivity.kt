@@ -256,7 +256,7 @@ class ProfileViewActivity : AppCompatActivity() {
 
         val request =
             Request.Builder()
-                .url("$url/perfil/user/${user.idPerfil}")
+                .url("$url/perfil/user/${user.idUtilizador}")
                 .put(requestBody)
                 .build()
 
