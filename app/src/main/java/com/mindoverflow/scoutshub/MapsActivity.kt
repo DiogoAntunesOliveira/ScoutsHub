@@ -46,12 +46,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
         val options = GoogleMapOptions()
-        val newLatitude = intent.getDoubleExtra("LOCATION_LATITUDE", 0.0)
-        val newLongitude = intent.getDoubleExtra("LOCATION_LONGITUDE", 0.0)
+        val newLatitude = intent.getStringExtra("LOCATION_LATITUDE")
+        val newLongitude = intent.getStringExtra("LOCATION_LONGITUDE")
 
         // Add a marker
-        val activitiesLocation = ActivitiesLocation(newLatitude, newLongitude)
-        mMap.addMarker(MarkerOptions().position(activitiesLocation).title("Marker in Sydney"))
+        val activitiesLocation = ActivitiesLocation(newLatitude!!.toDouble(), newLongitude!!.toDouble())
+        mMap.addMarker(MarkerOptions().position(activitiesLocation).title("Marcador"))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(activitiesLocation))
         mMap.cameraPosition
         mMap.uiSettings.isZoomControlsEnabled = true

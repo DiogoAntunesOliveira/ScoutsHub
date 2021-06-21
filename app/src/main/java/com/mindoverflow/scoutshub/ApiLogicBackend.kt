@@ -9,6 +9,8 @@ import com.google.android.gms.maps.model.LatLng
 object ApiLogicBackend {
 
     fun ActivitiesLocation( latitude : Double , longitude : Double): LatLng {
+        println(latitude)
+        println(longitude)
         return  LatLng(latitude, longitude)
     }
 }

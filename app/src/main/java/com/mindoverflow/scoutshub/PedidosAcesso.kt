@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import bit.linux.tinyspacex.Helpers
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.Utilizador
 import okhttp3.OkHttpClient
@@ -32,7 +33,7 @@ class PedidosAcesso : AppCompatActivity() {
         val client = OkHttpClient()
 
         // buscar o URL
-        val url = Helpers.URL()
+        val url = getURL()
 
         val request =
             Request.Builder().url("$url/user/")

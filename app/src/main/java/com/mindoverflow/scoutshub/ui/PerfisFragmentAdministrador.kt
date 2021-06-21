@@ -17,7 +17,7 @@ import bit.linux.tinyspacex.Helpers
 import bit.linux.tinyspacex.Helpers.DateFormaterApi
 import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.getImageUrl
-import com.mindoverflow.scoutshub.GetURL.Companion.URL
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
@@ -195,7 +195,7 @@ class PerfisFragmentAdministrador : Fragment() {
         //GlobalScope.launch(Dispatchers.IO) {
         val client = OkHttpClient()
 
-        val url = URL()
+        val url = getURL()
         //val dateFormated = DateFormaterIng(newData.dtNasc!!)
 
         val requestBody = RequestBody.create(
@@ -226,7 +226,7 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val atividades = java.util.ArrayList<Atividade>()
 
-        val url = URL()
+        val url = getURL()
 
         val client = OkHttpClient()
 
@@ -253,7 +253,7 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val atividades = ArrayList<Atividade>()
 
-        val url = URL()
+        val url = getURL()
 
         val request = Request.Builder().url("$url/activities")
             .get()
@@ -305,7 +305,7 @@ class PerfisFragmentAdministrador : Fragment() {
     private fun GetUser(userId : Int) : Perfil{
 
         val client = OkHttpClient()
-        val url = URL()
+        val url = getURL()
 
         val request = Request.Builder().url("$url/perfil/user/$userId")
             .get()

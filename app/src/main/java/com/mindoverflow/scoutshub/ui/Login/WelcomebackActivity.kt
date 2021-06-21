@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import bit.linux.tinyspacex.Helpers.URL
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
@@ -100,7 +100,7 @@ class WelcomebackActivity : AppCompatActivity() {
                         val perfilJson = perfil.toJson().toString()
 
                         val client = OkHttpClient()
-                        val url = URL()
+                        val url = getURL()
 
                         val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), perfilJson)
 
@@ -152,7 +152,7 @@ class WelcomebackActivity : AppCompatActivity() {
         val client = OkHttpClient()
 
         // buscar o URL
-        val url = URL()
+        val url = getURL()
 
         val request =
             Request.Builder().url("$url/user/")

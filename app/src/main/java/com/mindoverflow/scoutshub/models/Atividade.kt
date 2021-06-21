@@ -12,8 +12,8 @@ class Atividade {
     var local           : String? = null
     var localInicio     : String? = null
     var localFim        : String? = null
-    var coordenadas     : String? = null
-    var urlLocal        : String? = null
+    var latitude        : String? = null
+    var longitude       : String? = null
     var dataInicio      : String? = null
     var dataFim         : String? = null
 
@@ -28,8 +28,8 @@ class Atividade {
         local           : String?,
         localInicio     : String?,
         localFim        : String?,
-        coordenadas     : String?,
-        urlLocal        : String?,
+        latitude        : String?,
+        longitude       : String?,
         dataInicio      : String?,
         dataFim         : String?
     ) {
@@ -42,8 +42,8 @@ class Atividade {
         this.local          = local
         this.localInicio    = localInicio
         this.localFim       = localFim
-        this.coordenadas    = coordenadas
-        this.urlLocal       = urlLocal
+        this.latitude       = latitude
+        this.longitude      = longitude
         this.dataInicio     = dataInicio
         this.dataFim        = dataFim
     }
@@ -65,8 +65,8 @@ class Atividade {
         jsonObject.put("local"              ,local)
         jsonObject.put("local_inicio"       ,localInicio)
         jsonObject.put("local_fim"          ,localFim)
-        jsonObject.put("coordenadas"        ,coordenadas)
-        jsonObject.put("url_local"          ,urlLocal)
+        jsonObject.put("latitude"           ,latitude)
+        jsonObject.put("longitude"          ,longitude)
         jsonObject.put("data_inicio"        ,dataInicio)
         jsonObject.put("data_fim"           ,dataFim)
 
@@ -96,8 +96,8 @@ class Atividade {
             atividade.local             = if(!jsonObject.isNull("local"))           jsonObject.getString("local")           else null
             atividade.localInicio       = if(!jsonObject.isNull("local_inicio"))    jsonObject.getString("local_inicio")    else null
             atividade.localFim          = if(!jsonObject.isNull("local_fim"))       jsonObject.getString("local_fim")       else null
-            atividade.coordenadas       = if(!jsonObject.isNull("coordenadas"))     jsonObject.getString("coordenadas")     else null
-            atividade.urlLocal          = if(!jsonObject.isNull("url_local"))       jsonObject.getString("url_local")       else null
+            atividade.latitude          = if(!jsonObject.isNull("latitude"))        jsonObject.getString("latitude")        else null
+            atividade.longitude         = if(!jsonObject.isNull("longitude"))       jsonObject.getString("longitude")       else null
             atividade.dataInicio        = if(!jsonObject.isNull("data_inicio"))     jsonObject.getString("data_inicio")     else null
             atividade.dataFim           = if(!jsonObject.isNull("data_fim"))        jsonObject.getString("data_fim")        else null
 
