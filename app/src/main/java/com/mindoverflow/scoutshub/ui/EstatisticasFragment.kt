@@ -24,11 +24,13 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.gms.location.*
+import com.mindoverflow.scoutshub.PedidosAcesso
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.models.Participante
 import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
+import com.mindoverflow.scoutshub.ui.Login.Signup1Activity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -57,6 +59,8 @@ class EstatisticasFragment : Fragment() {
     var arraydayseveryone : Array<Any> = arrayOf(0,0,0,0,0,0,0,0,0,0)
 
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -67,8 +71,17 @@ class EstatisticasFragment : Fragment() {
 
 
         val rootView = inflater.inflate(R.layout.fragment_estatisticas, container, false)
-
+        val btacessos = rootView.findViewById<ImageView>(R.id.button3)
         val textviewcoordenadas = rootView.findViewById<TextView>(R.id.textViewCoordenadas)
+
+
+        btacessos.setOnClickListener{
+
+            val intent = Intent(requireContext(), PedidosAcesso::class.java)
+            startActivity(intent)
+        }
+
+
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -274,6 +287,7 @@ class EstatisticasFragment : Fragment() {
 
         }
         return rootView
+
     }
 
 
