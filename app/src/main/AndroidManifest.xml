@@ -40,7 +40,7 @@
         <activity android:name=".ImagePickModeActivity" />
         <activity android:name=".ui.IamgePickActivity" />
         <activity android:name=".ImagePickActivity" />
-        <activity android:name=".pedidos_acesso" />
+        <activity android:name=".PedidosAcesso" />
         <activity android:name=".ui.Atividades.SampleMapsActivity" />
         <activity android:name=".ui.Atividades.AvailableActivitiesActivity" />
         <activity

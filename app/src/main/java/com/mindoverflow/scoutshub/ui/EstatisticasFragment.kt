@@ -45,7 +45,7 @@ import java.util.*
 
 class EstatisticasFragment : Fragment() {
 
-     var lat: Double = 0.0
+    var lat: Double = 0.0
     var lng: Double = 0.0
     var cidade : String = ""
     var listaComConfirmacao: MutableList<Participante> = arrayListOf()
