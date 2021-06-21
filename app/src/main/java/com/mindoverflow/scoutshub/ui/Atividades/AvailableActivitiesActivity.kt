@@ -100,9 +100,11 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             cardBeginData.text = cardAvalableActivities[position].dataInicio.toString()
             cardOverData.text = cardAvalableActivities[position].dataFim.toString()
 
+            // Click on image and get coordinates of location
             cardImageView.setOnClickListener{
                 val intent = Intent(this@AvailableActivitiesActivity,
                     MapsActivity::class.java)
+                // send latitude and logitude to MapsActivity
                 intent.putExtra("LOCATION_LATITUDE",
                     cardAvalableActivities[position].latitude)
                 intent.putExtra("LOCATION_LONGITUDE",
