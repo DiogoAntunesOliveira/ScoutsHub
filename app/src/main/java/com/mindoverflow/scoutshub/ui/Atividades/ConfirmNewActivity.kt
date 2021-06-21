@@ -109,7 +109,7 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
         }
 
 
-
+        //Faz um post um request de POST com as informações anteriores
         buttonAddNewActivity.setOnClickListener {
             println(selectedPreviousRowsID)
             println(dataAtividade)
@@ -121,7 +121,8 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
                 val httpclient = OkHttpClient()
 
                 val getrequest =
-                    Request.Builder().url("http://mindoverflow.amipca.xyz:60000/activities/")
+                    Request.Builder()
+                        .url("http://mindoverflow.amipca.xyz:60000/activities/")
                         .build()
                 httpclient.newCall(getrequest).execute().use { response ->
 
@@ -137,7 +138,7 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
                         val todasatividades : JSONObject = jsonArrayArticles.get(index) as JSONObject
                         val atividadeinteira = Atividade.fromJson(todasatividades)*/
 
-                        //Se der erro foi por culpa do Jorge, alterou as cenas aqui em cima
+                        //Obtem a atividade inteira e se o id nao for null adiciona 1
                         val atividadeinteira = Atividade.fromJson(string, index)
 
                         if (atividadeinteira.idAtividade != null) {idjson = atividadeinteira.idAtividade.toString()

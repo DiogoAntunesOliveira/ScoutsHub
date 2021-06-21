@@ -72,6 +72,8 @@ class EstatisticasFragment : Fragment() {
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
 
+
+        //Se não houver permissões , exibe um popup  , se houver obtem a localização
         if (ActivityCompat.checkSelfPermission(requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -85,7 +87,7 @@ class EstatisticasFragment : Fragment() {
             )
             rootView.findViewById<TextView>(R.id.textView3).text = "Por favor dê permissões de localização"
             rootView.findViewById<TextView>(R.id.cidade).text = ""
-            rootView.findViewById<TextView>(R.id.textViewCoordenadas).text = "Para isso , renicie a aplicação por favor"
+            rootView.findViewById<TextView>(R.id.textViewCoordenadas).text = ""
         } else {
            getLastLocation()
 
@@ -107,6 +109,9 @@ class EstatisticasFragment : Fragment() {
                     .url("http://mindoverflow.amipca.xyz:60000/participant/utilizador/$id_utilizador/")
                     .build()
 
+
+                //Obtem todos os objetos participantes
+                //Os objetos que tiverem confirmacao diferente de 0 são adicionados a uma lista
                 client.newCall(participanterequest).execute().use { response ->
                     val string: String = response.body!!.string()
 
@@ -282,7 +287,7 @@ class EstatisticasFragment : Fragment() {
     }
 
     fun getLastLocation() {
-        if (isLocationEnabled()) {
+        if (isLocationEnabled() == true) {
             if (ActivityCompat.checkSelfPermission(requireContext(),
                     Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                     requireContext(),
@@ -414,11 +419,13 @@ class EstatisticasFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     fun NewLocationData() {
+        //Esta função atualiza a localização
+        //nessa localização atualizada , define uma prioridade , um intervalo e quantos updates irá haver na mesma
         var locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 0
-        locationRequest.fastestInterval = 0
-        locationRequest.numUpdates = 1
+        locationRequest.interval = 6
+        locationRequest.fastestInterval = 3
+        locationRequest.numUpdates = 3
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
         fusedLocationProviderClient!!.requestLocationUpdates(
@@ -427,8 +434,7 @@ class EstatisticasFragment : Fragment() {
     }
 
     fun isLocationEnabled(): Boolean {
-        //this function will return to us the state of the location service
-        //if the gps or the network provider is enabled then it will return true otherwise it will return false
+        //Esta funcao retorna o estado do GPS , se o GPS estiver ligado , retorna true , se não ,false
         var locationManager =
             getActivity()?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
