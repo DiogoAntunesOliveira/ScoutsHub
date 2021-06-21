@@ -38,7 +38,7 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps"></activity>
         <activity android:name=".ImagePickModeActivity" />
-        <activity android:name=".ui.IamgePickActivity" />
+        <activity android:name=".ui.ImagePickActivity" />
         <activity android:name=".ImagePickActivity" />
         <activity android:name=".PedidosAcesso" />
         <activity android:name=".ui.Atividades.SampleMapsActivity" />
@@ -68,7 +68,8 @@
         <activity android:name=".ui.Login.PopUp" />
         <activity android:name=".ui.Login.WelcomebackActivity" />
         <activity android:name=".ui.Instrucoes.InstrucoesActivity" />
-        <activity android:name=".ui.Instrucoes.StepsActivity" />
+        <activity android:name=".ui.Instrucoes.StepsActivityShowData" />
+        <activity android:name=".ui.Instrucoes.StepsActivityEditData"/>
         <activity android:name=".ui.Instrucoes.StepsOptionsActivity" />
         <activity android:name=".ui.Instrucoes.VideoActivity" />
         <activity android:name=".ui.Instrucoes.VideoOptionsActivity" />
