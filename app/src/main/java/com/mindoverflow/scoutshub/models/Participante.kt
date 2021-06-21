@@ -4,8 +4,8 @@ import org.json.JSONObject
 
 class Participante {
     var id_utilizador     : Int?    = null
-    var id_atividade      : Int? = null
-    var confirmacao       : Int? = null
+    var id_atividade      : Int?   = null
+    var confirmacao       : Int?   = null
 
     constructor(){
 
@@ -19,6 +19,10 @@ class Participante {
      this.id_utilizador = id_utilizador
      this.id_atividade = id_atividade
      this.confirmacao = confirmacao
+    }
+
+    constructor(confirmacao: Int?){
+        this.confirmacao = confirmacao
     }
 
 
