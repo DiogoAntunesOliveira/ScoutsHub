@@ -94,13 +94,13 @@ class NovaAtividadeActivity : AppCompatActivity() {
 
 
                 //Se não forem null é criado um Intent com o contexto como esta Activity e a proxima activity como classe
-                val intent = Intent(this, ConfirmNewActivity::class.java)
+                /*val intent = Intent(this, ConfirmNewActivity::class.java)
                 //De seguida é colocado as strings de informação (data , nome e descricao) dentro da string com os seus devidos ids/nomes
                 intent.putExtra("dataAtividade", dataHoraAtividade)
                 intent.putExtra("nomeCompleto", editTextNomeActividade.text.toString())
                 intent.putExtra("descricao", editTextDescricaoAtividade.text.toString())
                 //Inicia a proxima actividade
-                this.startActivity(intent)
+                this.startActivity(intent)*/
 
             }
 

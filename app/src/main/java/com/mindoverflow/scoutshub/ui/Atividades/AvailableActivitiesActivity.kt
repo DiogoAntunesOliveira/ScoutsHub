@@ -9,10 +9,19 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.MapsActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.ui.Login.FrontPage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONArray
+import org.json.JSONObject
+import java.net.URL
 
 class AvailableActivitiesActivity : AppCompatActivity() {
 
@@ -70,6 +79,31 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                                             dataInicio  = "1/5/2035",
                                             dataFim = "1/6/4565"))
 
+        GlobalScope.launch(Dispatchers.IO){
+            val client = OkHttpClient()
+            val request = Request.Builder().url(getURL()+ "/activities").build()
+
+            // Send the request and analyze the response
+            client.newCall(request).execute().use { response ->
+
+                // Convert the response into string then into JsonArray
+                val activityJsonArrayStr: String = response.body!!.string()
+                val activityJsonArray = JSONArray(activityJsonArrayStr)
+
+                // Add the elements in the list
+                for (index in 0 until activityJsonArray.length()) {
+                    val jsonActivity = activityJsonArray.get(index) as JSONObject
+                    val activities = Atividade.fromJson(jsonActivity)
+                    cardAvalableActivities.add(activities)
+                }
+
+                GlobalScope.launch(Dispatchers.Main){
+                    availableActivitesAdapter.notifyDataSetChanged()
+                }
+
+            }
+        }
+
     }
 
     inner class AvailableActivitesAdapter : BaseAdapter(){
@@ -92,13 +126,12 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             var cardType = rowView.findViewById<TextView>(R.id.typeTextView)
             var cardBeginData = rowView.findViewById<TextView>(R.id.BeginDataTextView)
             var cardOverData = rowView.findViewById<TextView>(R.id.OverDataTextView)
+            val cardImageView = rowView.findViewById<ImageView>(R.id.imageViewCard)
 
             cardTitle.text = cardAvalableActivities[position].nome.toString()
             cardType.text = cardAvalableActivities[position].tipo.toString()
             cardBeginData.text = cardAvalableActivities[position].dataInicio.toString()
             cardOverData.text = cardAvalableActivities[position].dataFim.toString()
-
-            val cardImageView = rowView.findViewById<ImageView>(R.id.imageViewCard)
 
             cardImageView.setOnClickListener{
                 val intent = Intent(this@AvailableActivitiesActivity, MapsActivity::class.java)

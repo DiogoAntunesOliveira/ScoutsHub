@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import bit.linux.tinyspacex.Helpers.URL
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.Utilizador
@@ -37,7 +37,7 @@ class PopUp : AppCompatActivity() {
             utilizador.id_tipo = 1
 
             GlobalScope.launch(Dispatchers.IO) {
-                val url = URL()
+                val url = getURL()
 
                 val client = OkHttpClient()
 

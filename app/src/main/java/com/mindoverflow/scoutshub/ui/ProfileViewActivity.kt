@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import bit.linux.tinyspacex.Helpers.DateFormaterApi
 import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.DateFormaterPtToIng
-import com.mindoverflow.scoutshub.GetURL.Companion.URL
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
 import com.mindoverflow.scoutshub.models.Atividade
@@ -103,7 +103,7 @@ class ProfileViewActivity : AppCompatActivity() {
 
         val atividades = java.util.ArrayList<Atividade>()
 
-        val url = URL()
+        val url = getURL()
 
         val client = OkHttpClient()
 
@@ -132,7 +132,7 @@ class ProfileViewActivity : AppCompatActivity() {
 
         val atividades = ArrayList<Atividade>()
 
-        val url = URL()
+        val url = getURL()
 
         val request = Request.Builder().url("$url/activities")
             .get()
@@ -245,7 +245,7 @@ class ProfileViewActivity : AppCompatActivity() {
         //GlobalScope.launch(Dispatchers.IO) {
         val client = OkHttpClient()
 
-        val url = URL()
+        val url = getURL()
         //val dateFormated = DateFormaterIng(newData.dtNasc!!)
 
         val requestBody = RequestBody.create(

@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mindoverflow.scoutshub.GetURL.Companion.URL
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.adapter.RecycleViewAdapter
@@ -59,7 +59,7 @@ class SearchBarActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
 
-        val url = URL()
+        val url = getURL()
 
         val request =
             Request.Builder().url("$url/perfil/")
@@ -160,7 +160,7 @@ class SearchBarActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
 
-        val ip = URL()
+        val ip = getURL()
 
         val request =
             Request.Builder().url("$ip/perfil/")

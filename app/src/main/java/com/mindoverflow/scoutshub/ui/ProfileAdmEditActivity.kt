@@ -11,7 +11,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import bit.linux.tinyspacex.Helpers.DateFormaterApi
 import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
-import com.mindoverflow.scoutshub.GetURL.Companion.URL
+import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Perfil
 import kotlinx.coroutines.Dispatchers
@@ -73,7 +73,7 @@ class ProfileAdmEditActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
 
-        val url = URL()
+        val url = getURL()
 
         val request = Request.Builder().url("$url/perfil/${id}")
             .delete()
