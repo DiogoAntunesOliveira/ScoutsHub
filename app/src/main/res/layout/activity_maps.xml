@@ -24,12 +24,12 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="580dp"
-        app:cardCornerRadius="@dimen/_30sdp" >
+        android:layout_marginBottom="557dp"
+        app:cardCornerRadius="@dimen/_30sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
 
             <TextView

@@ -4,6 +4,7 @@ import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -14,6 +15,7 @@ import com.google.android.gms.maps.model.MapStyleOptions
 import com.google.android.gms.maps.model.MapStyleOptions.loadRawResourceStyle
 import com.google.android.gms.maps.model.MarkerOptions
 import com.mindoverflow.scoutshub.ApiLogicBackend.ActivitiesLocation
+import org.w3c.dom.Text
 import java.net.CacheRequest
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -48,6 +50,12 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         val options = GoogleMapOptions()
         val newLatitude = intent.getStringExtra("LOCATION_LATITUDE")
         val newLongitude = intent.getStringExtra("LOCATION_LONGITUDE")
+
+        var longitudeTextView = findViewById<TextView>(R.id.longitudeTextView)
+        var latiudeTextView = findViewById<TextView>(R.id.latiudeTextView)
+
+        latiudeTextView.text = newLatitude
+        longitudeTextView.text = newLongitude
 
         // Add a marker
         val activitiesLocation = ActivitiesLocation(newLatitude!!.toDouble(), newLongitude!!.toDouble())
