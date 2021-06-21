@@ -86,6 +86,7 @@ class AvailableActivitiesActivity : AppCompatActivity() {
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val rowView = layoutInflater.inflate(R.layout.row_see_atividades, parent, false)
 
+            // XML variables
             var cardTitle = rowView.findViewById<TextView>(R.id.cardTitleActivities)
             var cardType = rowView.findViewById<TextView>(R.id.typeTextView)
             var cardBeginData = rowView.findViewById<TextView>(R.id.BeginDataTextView)
