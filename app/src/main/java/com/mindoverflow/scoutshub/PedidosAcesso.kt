@@ -75,6 +75,11 @@ class PedidosAcesso : AppCompatActivity() {
                             .delete()
                             .build()
 
+                    val request2 =
+                        Request.Builder().url("$url/perfil/${perfil.idPerfil}")
+                            .delete()
+                            .build()
+
                     client.newCall(request1).execute().use { response ->
 
                         println(response.body!!.toString())

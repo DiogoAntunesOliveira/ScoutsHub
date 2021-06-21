@@ -114,7 +114,6 @@ class WelcomebackActivity : AppCompatActivity() {
                             .post(requestBody1)
                             .build()
 
-
                         client.newCall(request1).execute().use { response ->
                             println(response.body!!.string())
                         }
@@ -126,8 +125,6 @@ class WelcomebackActivity : AppCompatActivity() {
 
                             startActivity(returnIntent)
                         }
-
-
                     // se o return for null
                     } else {
                         GlobalScope.launch(Dispatchers.Main) {
@@ -135,15 +132,12 @@ class WelcomebackActivity : AppCompatActivity() {
                         }
                     }
                 }
-
             // se os campos nao tiver preenchidos
             } else {
                 Toast.makeText(this@WelcomebackActivity, "Campos em Branco. Por favor preencha todos os campos", Toast.LENGTH_SHORT).show()
             }
         }
     }
-
-
 
     private fun UserNameVerification(mail : String, pass : String) : Utilizador? {
 

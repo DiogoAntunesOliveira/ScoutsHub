@@ -46,10 +46,7 @@ class Signup2Activity : AppCompatActivity() {
             // editor
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
-
-
             if (morada.text.toString().isNotEmpty() && codPostal.text.toString().isNotEmpty() && dtNasc.text.toString().isNotEmpty()) {
-
                 // por dados em sharedpreferences
                 editor.putInt("nin", nin.text.toString().toInt())
                 editor.putString("codPostal", codPostal.text.toString())
