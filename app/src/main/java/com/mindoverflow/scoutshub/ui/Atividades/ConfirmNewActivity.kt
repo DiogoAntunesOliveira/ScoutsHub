@@ -152,7 +152,7 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
                     nextidjson,
                     nomeCompleto,
                     "",
-                    "",
+                    "https://www.decorfacil.com/wp-content/uploads/2017/03/20171011fachada-casa-simples-pequena-99-960x600.jpg",
                     descricao,
                     "0",
                     "",

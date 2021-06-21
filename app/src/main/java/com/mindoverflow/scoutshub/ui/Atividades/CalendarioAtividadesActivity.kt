@@ -4,35 +4,28 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.transition.AutoTransition
+import android.transition.TransitionManager
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
+import androidx.cardview.widget.CardView
+import androidx.constraintlayout.widget.ConstraintLayout
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.domain.Event
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Atividade
-import com.mindoverflow.scoutshub.ui.MateriaisFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.internal.format
-import org.json.JSONArray
 import org.json.JSONObject
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.ZoneId
-import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 import java.util.*
 
@@ -102,9 +95,9 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                 val string : String = response.body!!.string()
 
                 val jsonObject = JSONObject(string)
-                val jsonArrayArticles = jsonObject.getJSONArray("activities")
+                val jsonArrayAtividades = jsonObject.getJSONArray("activities")
 
-                for ( index in  0 until jsonArrayArticles.length()) {
+                for ( index in  0 until jsonArrayAtividades.length()) {
                     val atividade = Atividade.fromJson(string, index)
                     atividades.add(atividade)
 
@@ -264,11 +257,28 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
             val datamaster = eventos[position].data.toString()
             val datadescricaotitulo : List<String> = datamaster.split("*")
 
+            val expandableView = rowView.findViewById<ConstraintLayout>(R.id.expandableView);
+            val buttonExpand = rowView.findViewById<Button>(R.id.buttonExpand);
+            val cardView = rowView.findViewById<CardView>(R.id.card_view);
+
+            buttonExpand.setOnClickListener(View.OnClickListener {
+                if (expandableView.getVisibility() === View.GONE) {
+                    TransitionManager.beginDelayedTransition(cardView, AutoTransition())
+                    expandableView.setVisibility(View.VISIBLE)
+                    buttonExpand.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
+                } else {
+                    TransitionManager.beginDelayedTransition(cardView, AutoTransition())
+                    expandableView.setVisibility(View.GONE)
+                    buttonExpand.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
+                }
+            })
 
             dateEventlist.text = formatterhour.format(Date(eventos[position].timeInMillis))
             titleEventList.text = datadescricaotitulo[0]
             descEventList.text = datadescricaotitulo[1]
             colorTintEventList.setColorFilter(eventos[position].color)
+
+
 
             return rowView
         }

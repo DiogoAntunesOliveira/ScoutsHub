@@ -6,8 +6,8 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Color
 import android.location.*
+import android.os.Build
 import android.os.Bundle
 import android.os.Looper
 import android.view.LayoutInflater
@@ -16,16 +16,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartModel
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
-import com.github.aachartmodel.aainfographics.aaoptionsmodel.AAStyle
 import com.google.android.gms.location.*
-import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SavedUserData
+import com.mindoverflow.scoutshub.models.Atividade
+import com.mindoverflow.scoutshub.models.Participante
+import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -34,6 +37,9 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -42,8 +48,12 @@ class EstatisticasFragment : Fragment() {
      var lat: Double = 0.0
     var lng: Double = 0.0
     var cidade : String = ""
+    var listaComConfirmacao: MutableList<Participante> = arrayListOf()
     lateinit var locationRequest: LocationRequest
+    var atividadesvalidas: MutableList<Atividade> = arrayListOf()
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    var arraydays : Array<Any> = arrayOf(0,0,0,0,0,0,0,0,0,0)
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,10 +61,12 @@ class EstatisticasFragment : Fragment() {
 
         ): View? {
 
+
+
+
         val rootView = inflater.inflate(R.layout.fragment_estatisticas, container, false)
 
         val textviewcoordenadas = rootView.findViewById<TextView>(R.id.textViewCoordenadas)
-
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
@@ -83,60 +95,135 @@ class EstatisticasFragment : Fragment() {
                     lng = location?.longitude
                 }*/
 
+            GlobalScope.launch(Dispatchers.IO) {
+                var id_utilizador = SavedUserData.id_utilizador
 
-        //Documentation https://github.com/AAChartModel/AAChartCore-Kotlin
-        val aaChartView = rootView.findViewById<AAChartView>(R.id.aa_chart_view)
+
+                delay(100)
+                val client = OkHttpClient()
+
+                val participanterequest = Request.Builder()
+                    .url("http://mindoverflow.amipca.xyz:60000/participant/utilizador/$id_utilizador/")
+                    .build()
+
+                client.newCall(participanterequest).execute().use { response ->
+                    val string: String = response.body!!.string()
+
+                    val jsonObjectTotal = JSONObject(string)
 
 
-        val aaChartModel: AAChartModel = AAChartModel()
-            .chartType(AAChartType.Area)
-//            .title("Participated Activities")
-            .dataLabelsEnabled(false)
-            .yAxisLabelsEnabled(false)
-            .xAxisLabelsEnabled(true)
-            .markerRadius(4F)
-            .axesTextColor("#cc3904")
-            .xAxisGridLineWidth(0.0F)
-            .yAxisGridLineWidth(0.0F)
-            .yAxisTitle("")
-            .series(arrayOf(
-                AASeriesElement()
-                    .name("Tokyo")
-                    .color("#EE8300")
-                    .data(arrayOf(7.0,
-                        6.9,
-                        9.5,
-                        14.5,
-                        18.2,
-                        21.5,
-                        25.2,
-                        26.5,
-                        23.3,
-                        18.3,
-                        13.9,
-                        9.6)),
-                AASeriesElement()
-                    .name("NewYork")
-                    .color("#d6b59a")
-                    .data(arrayOf(0.2,
-                        0.8,
-                        5.7,
-                        11.3,
-                        17.0,
-                        22.0,
-                        24.8,
-                        24.1,
-                        20.1,
-                        14.1,
-                        8.6,
-                        2.5))
-            )
-            )
-        //This method is called only for the first time after you create an AAChartView instance object
-        aaChartView.aa_drawChartWithChartModel(aaChartModel)
+                    val jsonparticipante: JSONArray =
+                        jsonObjectTotal.getJSONArray("participante") as JSONArray
+                    for (index in 0 until jsonparticipante.length()) {
+                        val getjson: JSONObject = jsonparticipante.get(index) as JSONObject
+//                        var iconTempo = if (!jsonweather.isNull("id_atividades")){ jsonweather.getInt("id_atividades")} else null
+                        val participante = Participante.fromJson(getjson)
+                        if (participante.confirmacao != 0 && participante.confirmacao != null) {
 
-        //This method is recommended to be called for updating the series data dynamically(Usar na API?)
-        //aaChartView.aa_onlyRefreshTheChartDataWithChartModelSeries(chartModelSeriesArray)
+                            listaComConfirmacao.add(participante)
+                            println(listaComConfirmacao)
+                        }
+                    }
+                }
+
+                    val atividadesvalidasinforequest = Request.Builder()
+                    .url("http://mindoverflow.amipca.xyz:60000/activities/")
+                    .build()
+                    client.newCall(atividadesvalidasinforequest).execute().use { response ->
+                        val string: String = response.body!!.string()
+                        println(string)
+                        val jsonObject = JSONObject(string)
+                        val jsonArrayAtividadesValidas = jsonObject.getJSONArray("activities") as JSONArray
+
+                        for (index in 0 until jsonArrayAtividadesValidas.length()) {
+                            val atividadevalida = Atividade.fromJson(string, index)
+                                for(size in 0 until listaComConfirmacao.size)
+                                    if(atividadevalida.idAtividade == listaComConfirmacao[size].id_atividade){
+                                        atividadesvalidas.add(atividadevalida)
+                                        println(atividadesvalidas)
+                            }
+
+                        }
+
+                        }
+
+                        GlobalScope.launch(Dispatchers.Main) {
+                            //Documentation https://github.com/AAChartModel/AAChartCore-Kotlin
+
+                            for(atividadevalida in atividadesvalidas){
+                                val datenow = Calendar.getInstance().time
+
+                                val atividadefor = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.UK)
+                                val atividadeday: Date = atividadefor.parse(atividadevalida.dataInicio)
+
+                                val diff: Long = atividadeday.time - datenow.time
+
+                                val dayCount = diff.toFloat() / (24 * 60 * 60 * 1000)
+
+                                if(dayCount <30)
+                                {
+                                arraydays[(dayCount/3).toInt()] =+ 1
+                                }
+                            }
+
+
+                                val aaChartView = rootView.findViewById<AAChartView>(R.id.aa_chart_view)
+                                val aaChartModel: AAChartModel = AAChartModel()
+                                    .chartType(AAChartType.Area)
+                                    //            .title("Participated Activities")
+                                    .dataLabelsEnabled(false)
+                                    .yAxisLabelsEnabled(false)
+                                    .xAxisLabelsEnabled(true)
+                                    .markerRadius(4F)
+                                    .categories(arrayOf("Hoje a 3 dias","4-6 dias","7-9 dias","10-12 dias","13-15 dias","16-18 dias","19-21 dias","22-24 dias","25-27 dias","28-30 dias"))
+                                    .axesTextColor("#cc3904")
+                                    .xAxisGridLineWidth(0.0F)
+                                    .yAxisGridLineWidth(0.0F)
+                                    .yAxisTitle("")
+                                    .series(arrayOf(
+                                        AASeriesElement()
+                                            .name("Atividades Participadas")
+                                            .color("#EE8300")
+                                            .data(
+                                                arrayOf(
+                                                arraydays[0],
+                                                arraydays[1],
+                                                arraydays[2],
+                                                arraydays[3],
+                                                arraydays[4],
+                                                arraydays[5],
+                                                arraydays[6],
+                                                arraydays[7],
+                                                arraydays[8],
+                                                arraydays[9])),
+                                        AASeriesElement()
+                                            .name("NewYork")
+                                            .color("#d6b59a")
+                                            .data(arrayOf(0.2,
+                                                0.8,
+                                                5.7,
+                                                11.3,
+                                                17.0,
+                                                22.0,
+                                                24.8,
+                                                24.1,
+                                                20.1,
+                                                14.1))
+                                    )
+                                    )
+                                //This method is called only for the first time after you create an AAChartView instance object
+
+                                aaChartView.aa_drawChartWithChartModel(aaChartModel)
+
+
+
+
+                            //This method is recommended to be called for updating the series data dynamically(Usar na API?)
+                            //aaChartView.aa_onlyRefreshTheChartDataWithChartModelSeries(chartModelSeriesArray)
+                         }
+                        //println(str)
+                    }
+
         }
         return rootView
     }
@@ -184,7 +271,6 @@ class EstatisticasFragment : Fragment() {
         var addresses = geocoder.getFromLocation(lat, lng, 2)
         println(addresses)
 
-        println("Rolling down in the deep  - " + addresses.size)
         if(addresses.get(0).locality == null){
             if(addresses.get(1).locality == null){
                 city = addresses.get(0).countryName
