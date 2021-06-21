@@ -118,12 +118,14 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                     val client = OkHttpClient()
                     print("teste1")
 
+                    // ATENTION: here i create a new constructor in Atividade class for only send
+                    // post with confirmation
                     val participant = Participante(
                         confirmacao = 1
                     )
                     print("teste2")
 
-                    // create body for post in participant
+                    // Create body for post in participant
                     val requestBody = RequestBody.create(
                         "application/json".toMediaTypeOrNull(),
                         participant.toJson().toString()
