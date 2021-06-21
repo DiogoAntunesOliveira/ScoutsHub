@@ -1,4 +1,3 @@
-
 package com.mindoverflow.scoutshub.ui
 
 import android.Manifest
@@ -365,7 +364,7 @@ class EstatisticasFragment : Fragment() {
                 .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade?.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
                 .build()
             println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade?.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
-            //   println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
+            // println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
 
             client.newCall(request).execute().use { response ->
                 val jsStr: String = response.body!!.string()
