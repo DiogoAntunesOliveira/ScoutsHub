@@ -51,8 +51,10 @@ class EstatisticasFragment : Fragment() {
     var listaComConfirmacao: MutableList<Participante> = arrayListOf()
     lateinit var locationRequest: LocationRequest
     var atividadesvalidas: MutableList<Atividade> = arrayListOf()
+    var todasatividades: MutableList<Atividade> = arrayListOf()
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    var arraydays : Array<Any> = arrayOf(0,0,0,0,0,0,0,0,0,0)
+    var arraydaysuser : Array<Any> = arrayOf(0,0,0,0,0,0,0,0,0,0)
+    var arraydayseveryone : Array<Any> = arrayOf(0,0,0,0,0,0,0,0,0,0)
 
 
     override fun onCreateView(
@@ -137,11 +139,12 @@ class EstatisticasFragment : Fragment() {
 
                         for (index in 0 until jsonArrayAtividadesValidas.length()) {
                             val atividadevalida = Atividade.fromJson(string, index)
-                                for(size in 0 until listaComConfirmacao.size)
+                            todasatividades.add(atividadevalida)
+                                for(size in 0 until listaComConfirmacao.size){
                                     if(atividadevalida.idAtividade == listaComConfirmacao[size].id_atividade){
                                         atividadesvalidas.add(atividadevalida)
                                         println(atividadesvalidas)
-                            }
+                            }}
 
                         }
 
@@ -150,6 +153,35 @@ class EstatisticasFragment : Fragment() {
                         GlobalScope.launch(Dispatchers.Main) {
                             //Documentation https://github.com/AAChartModel/AAChartCore-Kotlin
 
+                            for(atividades in todasatividades) {
+                                val datenow = Calendar.getInstance().time
+
+                                val atividadefor =
+                                    SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.UK)
+                                val atividadeday: Date = atividadefor.parse(atividades.dataInicio)
+
+                                val diff: Long = atividadeday.time - datenow.time
+                                val dayCount = diff.toFloat() / (24 * 60 * 60 * 1000)
+                                val dayCountLimited : Int = (dayCount / 3).toInt()
+
+                                if (diff.toFloat() / (24 * 60 * 60 * 1000) > 0) {
+                                    if (dayCount < 30) {
+                                        when(arraydayseveryone[dayCountLimited]){
+                                            0->arraydayseveryone[dayCountLimited] = 1
+                                            1->arraydayseveryone[dayCountLimited] = 2
+                                            2->arraydayseveryone[dayCountLimited] = 3
+                                            3->arraydayseveryone[dayCountLimited] = 4
+                                            4->arraydayseveryone[dayCountLimited] = 5
+                                            5->arraydayseveryone[dayCountLimited] = 6
+                                            6->arraydayseveryone[dayCountLimited] = 7
+                                            7->arraydayseveryone[dayCountLimited] = 8
+                                            8->arraydayseveryone[dayCountLimited] = 9
+                                            9->arraydayseveryone[dayCountLimited] = 10
+                                            10->arraydayseveryone[dayCountLimited] = 11
+                                        }
+                                    }
+                                }
+                            }
                             for(atividadevalida in atividadesvalidas){
                                 val datenow = Calendar.getInstance().time
 
@@ -157,12 +189,26 @@ class EstatisticasFragment : Fragment() {
                                 val atividadeday: Date = atividadefor.parse(atividadevalida.dataInicio)
 
                                 val diff: Long = atividadeday.time - datenow.time
-
                                 val dayCount = diff.toFloat() / (24 * 60 * 60 * 1000)
+                                var dayCountLimited : Int = (dayCount / 3).toInt()
 
-                                if(dayCount <30)
-                                {
-                                arraydays[(dayCount/3).toInt()] =+ 1
+                                if (diff.toFloat() / (24 * 60 * 60 * 1000) > 0) {
+                                    if(dayCount <30)
+                                    {
+                                        when(arraydaysuser[dayCountLimited]){
+                                            0->arraydaysuser[dayCountLimited] = 1
+                                            1->arraydaysuser[dayCountLimited] = 2
+                                            2->arraydaysuser[dayCountLimited] = 3
+                                            3->arraydaysuser[dayCountLimited] = 4
+                                            4->arraydaysuser[dayCountLimited] = 5
+                                            5->arraydaysuser[dayCountLimited] = 6
+                                            6->arraydaysuser[dayCountLimited] = 7
+                                            7->arraydaysuser[dayCountLimited] = 8
+                                            8->arraydaysuser[dayCountLimited] = 9
+                                            9->arraydaysuser[dayCountLimited] = 10
+                                            10->arraydaysuser[dayCountLimited] = 11
+                                        }
+                                    }
                                 }
                             }
 
@@ -176,41 +222,43 @@ class EstatisticasFragment : Fragment() {
                                     .xAxisLabelsEnabled(true)
                                     .markerRadius(4F)
                                     .categories(arrayOf("Hoje a 3 dias","4-6 dias","7-9 dias","10-12 dias","13-15 dias","16-18 dias","19-21 dias","22-24 dias","25-27 dias","28-30 dias"))
-                                    .axesTextColor("#cc3904")
+                                    .axesTextColor("#4871bd")
                                     .xAxisGridLineWidth(0.0F)
                                     .yAxisGridLineWidth(0.0F)
                                     .yAxisTitle("")
                                     .series(arrayOf(
                                         AASeriesElement()
-                                            .name("Atividades Participadas")
-                                            .color("#EE8300")
+                                            .name("Atividades Existentes")
+                                            .color("#A254F2")
                                             .data(
                                                 arrayOf(
-                                                arraydays[0],
-                                                arraydays[1],
-                                                arraydays[2],
-                                                arraydays[3],
-                                                arraydays[4],
-                                                arraydays[5],
-                                                arraydays[6],
-                                                arraydays[7],
-                                                arraydays[8],
-                                                arraydays[9])),
+                                                    arraydayseveryone[0],
+                                                    arraydayseveryone[1],
+                                                    arraydayseveryone[2],
+                                                    arraydayseveryone[3],
+                                                    arraydayseveryone[4],
+                                                    arraydayseveryone[5],
+                                                    arraydayseveryone[6],
+                                                    arraydayseveryone[7],
+                                                    arraydayseveryone[8],
+                                                    arraydayseveryone[9])),
                                         AASeriesElement()
-                                            .name("NewYork")
-                                            .color("#d6b59a")
-                                            .data(arrayOf(0.2,
-                                                0.8,
-                                                5.7,
-                                                11.3,
-                                                17.0,
-                                                22.0,
-                                                24.8,
-                                                24.1,
-                                                20.1,
-                                                14.1))
-                                    )
-                                    )
+                                            .name("Atividades Participadas")
+                                            .color("#48C9BB")
+                                            .data(
+                                                arrayOf(
+                                                    arraydaysuser[0],
+                                                    arraydaysuser[1],
+                                                    arraydaysuser[2],
+                                                    arraydaysuser[3],
+                                                    arraydaysuser[4],
+                                                    arraydaysuser[5],
+                                                    arraydaysuser[6],
+                                                    arraydaysuser[7],
+                                                    arraydaysuser[8],
+                                                    arraydaysuser[9]))
+
+                                    ))
                                 //This method is called only for the first time after you create an AAChartView instance object
 
                                 aaChartView.aa_drawChartWithChartModel(aaChartModel)
