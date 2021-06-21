@@ -99,8 +99,8 @@ class AvailableActivitiesActivity : AppCompatActivity() {
 
             cardImageView.setOnClickListener{
                 val intent = Intent(this@AvailableActivitiesActivity, MapsActivity::class.java)
-                intent.putExtra("LOCATION_LATITUDE", 41.50683511835558)
-                intent.putExtra("LOCATION_LONGITUDE", -8.335268312668875)
+                intent.putExtra("LOCATION_LATITUDE", cardAvalableActivities[position].latitude)
+                intent.putExtra("LOCATION_LONGITUDE", cardAvalableActivities[position].longitude)
                 startActivity(intent)
             }
 
