@@ -122,6 +122,8 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                         confirmacao = 1
                     )
                     print("teste2")
+
+                    // create body for post in participant
                     val requestBody = RequestBody.create(
                         "application/json".toMediaTypeOrNull(),
                         participant.toJson().toString()
@@ -131,6 +133,7 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                             cardAvalableActivities[position].idAtividade
                             + "/utilizador/" + SavedUserData.id_utilizador)
 
+                    // Send and post previous body
                     val request = Request.Builder()
                         .url(
                             getURL() + "/participant/atividade/" +
@@ -140,12 +143,17 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                         .post(requestBody)
                         .build()
 
+                    // Verification if succesfull
                     client.newCall(request).execute().use { response ->
                         Log.d("participante", response.message)
 
                         GlobalScope.launch(Dispatchers.Main) {
                             if (response.message == "OK"){
                                 println("Successfully posted")
+                            }else{
+                                Toast.makeText(this@AvailableActivitiesActivity,
+                                    "Ja esta inscrito nesta atividade", Toast.LENGTH_SHORT)
+                                    .show()
                             }
                         }
                     }
