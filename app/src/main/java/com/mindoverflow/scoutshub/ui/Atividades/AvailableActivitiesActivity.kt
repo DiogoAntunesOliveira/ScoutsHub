@@ -12,6 +12,7 @@ import android.widget.TextView
 import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.MapsActivity
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.adapter.CustomAdapter
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.ui.Login.FrontPage
 import kotlinx.coroutines.Dispatchers
@@ -34,75 +35,38 @@ class AvailableActivitiesActivity : AppCompatActivity() {
 
         var listViewCards = findViewById<ListView>(R.id.listViewActivities)
         var availableActivitesAdapter = AvailableActivitesAdapter()
-        listViewCards.adapter = availableActivitesAdapter
         supportActionBar?.hide()
-
-        cardAvalableActivities.add(Atividade(idAtividade = 1,
-                                            nome = "DockerActivity",
-                                            tipo  = "Programar",
-                                            imagem = "https://img.ibxk.com.br/2020/09/07/07121720532021.jpg",
-                                            descricao = "Divertir" ,
-                                            custo = "50",
-                                            local = "Braga",
-                                            localInicio   = "Braga" ,
-                                            localFim   = "miami",
-                                            coordenadas  = "1231311516186111dw61da1d5wa1d",
-                                            urlLocal     = "https://www.google.com/maps/universe",
-                                            dataInicio  = "1/5/2035",
-                                            dataFim = "1/6/4565"))
-
-        cardAvalableActivities.add(Atividade(idAtividade = 2,
-                                            nome = "Linux",
-                                            tipo  = "BashFiles",
-                                            imagem = "https://img.wallpapersafari.com/desktop/1280/1024/53/59/W6u2aO.jpg",
-                                            descricao = "Divertir" ,
-                                            custo = "50",
-                                            local = "Braga",
-                                            localInicio   = "Braga" ,
-                                            localFim   = "Los Angeles",
-                                            coordenadas  = "1231311516186111dw61da1d5wa1d",
-                                            urlLocal     = "https://www.google.com/maps/universe",
-                                            dataInicio  = "1/5/2035",
-                                            dataFim = "1/6/4565"))
-
-        cardAvalableActivities.add(Atividade(idAtividade = 3,
-                                            nome = "Kotlin",
-                                            tipo  = "kt files",
-                                            imagem = "https://img.wallpapersafari.com/desktop/1280/1024/17/52/9Sl4iQ.jpg",
-                                            descricao = "Divertir" ,
-                                            custo = "50",
-                                            local = "Braga",
-                                            localInicio   = "Braga" ,
-                                            localFim   = "Tokyo",
-                                            coordenadas  = "1231311516186111dw61da1d5wa1d",
-                                            urlLocal     = "https://www.google.com/maps/universe",
-                                            dataInicio  = "1/5/2035",
-                                            dataFim = "1/6/4565"))
 
         GlobalScope.launch(Dispatchers.IO){
             val client = OkHttpClient()
             val request = Request.Builder().url(getURL()+ "/activities").build()
 
-            // Send the request and analyze the response
-            client.newCall(request).execute().use { response ->
+            // Adding activities to the recycler view
+            GlobalScope.launch(Dispatchers.IO) {
+                // Make srequest to api "/activities"
+                client.newCall(request).execute().use { response ->
+                    // convert json in string
+                    val activitiesString = (response.body!!.string())
+                    // Take the string and found the json array
+                    val jsonArray = JSONObject(activitiesString).getJSONArray("activities")
 
-                // Convert the response into string then into JsonArray
-                val activityJsonArrayStr: String = response.body!!.string()
-                val activityJsonArray = JSONArray(activityJsonArrayStr)
+                    // Iterate until lengh of jsonArray
+                    for (index in 0 until jsonArray.length()) {
+                        // transform previous jsonArray to Atividade object
+                        val atividade = Atividade.fromJson(activitiesString, index)
+                        // add to our mutable array
+                        cardAvalableActivities.add(atividade)
+                    }
 
-                // Add the elements in the list
-                for (index in 0 until activityJsonArray.length()) {
-                    val jsonActivity = activityJsonArray.get(index) as JSONObject
-                    val activities = Atividade.fromJson(jsonActivity)
-                    cardAvalableActivities.add(activities)
                 }
-
                 GlobalScope.launch(Dispatchers.Main){
                     availableActivitesAdapter.notifyDataSetChanged()
                 }
-
             }
+
         }
+        // Create content
+        listViewCards.adapter = availableActivitesAdapter
 
     }
 
