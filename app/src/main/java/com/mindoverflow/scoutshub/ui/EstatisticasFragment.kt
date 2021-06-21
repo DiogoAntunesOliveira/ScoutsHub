@@ -228,21 +228,6 @@ class EstatisticasFragment : Fragment() {
                                     .yAxisTitle("")
                                     .series(arrayOf(
                                         AASeriesElement()
-                                            .name("Atividades Participadas")
-                                            .color("#48C9BB")
-                                            .data(
-                                                arrayOf(
-                                                arraydaysuser[0],
-                                                arraydaysuser[1],
-                                                arraydaysuser[2],
-                                                arraydaysuser[3],
-                                                arraydaysuser[4],
-                                                arraydaysuser[5],
-                                                arraydaysuser[6],
-                                                arraydaysuser[7],
-                                                arraydaysuser[8],
-                                                arraydaysuser[9])),
-                                        AASeriesElement()
                                             .name("Atividades Existentes")
                                             .color("#A254F2")
                                             .data(
@@ -256,10 +241,24 @@ class EstatisticasFragment : Fragment() {
                                                     arraydayseveryone[6],
                                                     arraydayseveryone[7],
                                                     arraydayseveryone[8],
-                                                    arraydayseveryone[9],
-                                                ))
-                                    )
-                                    )
+                                                    arraydayseveryone[9])),
+                                        AASeriesElement()
+                                            .name("Atividades Participadas")
+                                            .color("#48C9BB")
+                                            .data(
+                                                arrayOf(
+                                                    arraydaysuser[0],
+                                                    arraydaysuser[1],
+                                                    arraydaysuser[2],
+                                                    arraydaysuser[3],
+                                                    arraydaysuser[4],
+                                                    arraydaysuser[5],
+                                                    arraydaysuser[6],
+                                                    arraydaysuser[7],
+                                                    arraydaysuser[8],
+                                                    arraydaysuser[9]))
+
+                                    ))
                                 //This method is called only for the first time after you create an AAChartView instance object
 
                                 aaChartView.aa_drawChartWithChartModel(aaChartModel)
