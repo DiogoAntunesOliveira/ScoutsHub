@@ -31,4 +31,5 @@
         <item>Departamento 3</item>
         <item>Departamento 4</item>
     </string-array>
+    <string name="title_activity_maps">Map</string>
 </resources>

@@ -5,8 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
-import com.google.android.gms.common.api.Response
-import java.lang.reflect.Method
 
 class ImagePickModeActivity : AppCompatActivity() {
 
@@ -20,9 +18,12 @@ class ImagePickModeActivity : AppCompatActivity() {
         private const val IMAGE_PICK_CODE = 999
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_image_pick_mode)
+
+        supportActionBar!!.hide()
 
         val imageView = findViewById<Button>(R.id.imageView)
         val imageButton = findViewById<Button>(R.id.imageButton)

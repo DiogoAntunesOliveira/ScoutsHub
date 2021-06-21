@@ -1,14 +1,18 @@
 package com.mindoverflow.scoutshub.ui.Atividades
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.ListView
 import android.widget.TextView
+import com.mindoverflow.scoutshub.MapsActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Atividade
+import com.mindoverflow.scoutshub.ui.Login.FrontPage
 
 class AvailableActivitiesActivity : AppCompatActivity() {
 
@@ -93,6 +97,15 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             cardType.text = cardAvalableActivities[position].tipo.toString()
             cardBeginData.text = cardAvalableActivities[position].dataInicio.toString()
             cardOverData.text = cardAvalableActivities[position].dataFim.toString()
+
+            val cardImageView = rowView.findViewById<ImageView>(R.id.imageViewCard)
+
+            cardImageView.setOnClickListener{
+                val intent = Intent(this@AvailableActivitiesActivity, MapsActivity::class.java)
+                intent.putExtra("LOCATION_LATITUDE", 41.50683511835558)
+                intent.putExtra("LOCATION_LONGITUDE", -8.335268312668875)
+                startActivity(intent)
+            }
 
             return  rowView
 
