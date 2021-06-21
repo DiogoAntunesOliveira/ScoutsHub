@@ -67,7 +67,7 @@ class ProfileViewActivity : AppCompatActivity() {
         //Adding activities to the recycler view
         GlobalScope.launch(Dispatchers.IO) {
             val arrayTodasAtividades =  GettingAllActivities()
-            atividades = AddingActivities(arrayTodasAtividades)
+            atividades = AddingActivities(arrayTodasAtividades, user.idUtilizador!!)
 
             GlobalScope.launch(Dispatchers.Main){
                 //creating our adapter
@@ -85,7 +85,7 @@ class ProfileViewActivity : AppCompatActivity() {
         //Going foward to the activity "EditingProfile"
         goAhead.setOnClickListener {
             //To do - Get the information of the inserted user in the search view
-            intent = Intent(this@ProfileViewActivity, PerfilEditActivity::class.java)
+            intent = Intent(this@ProfileViewActivity, ProfileAdmEditActivity::class.java)
 
             intent.putExtra("user_data", user.toJson().toString())
             startActivityForResult(intent, 1001)
@@ -99,17 +99,19 @@ class ProfileViewActivity : AppCompatActivity() {
 
     }
 
-    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>): ArrayList<Atividade> {
+    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>, userId : Int): ArrayList<Atividade> {
 
-        val idUtilizador = 1
         val atividades = java.util.ArrayList<Atividade>()
 
         val url = URL()
 
         val client = OkHttpClient()
 
+        println("testeeeeeeeeeeeeeee")
+        println(userId)
+
         for (index in 0 until arrayTodasAtividades.size){
-            val request = Request.Builder().url("$url/participant/${arrayTodasAtividades[index].idAtividade}/utilizador/$idUtilizador")
+            val request = Request.Builder().url("$url/participant/atividade/${arrayTodasAtividades[index].idAtividade}/utilizador/$userId")
                 .get()
                 .build()
 
@@ -195,10 +197,7 @@ class ProfileViewActivity : AppCompatActivity() {
         val nin = findViewById<TextView>(R.id.textViewPerfilEscuteiroNin)
         val totalAtivParticip = findViewById<TextView>(R.id.textViewPerfilEscuteiroTotalAtivParticip)
 
-        println("teste1")
         val dateFormated = DateFormaterApi(user.dtNasc.toString())
-
-        println("teste2")
 
         nomeUtilizador.text = user.nome
         dtNasc.text = dateFormated

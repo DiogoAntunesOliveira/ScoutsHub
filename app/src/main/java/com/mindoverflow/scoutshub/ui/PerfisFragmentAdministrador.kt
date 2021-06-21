@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -19,13 +18,11 @@ import bit.linux.tinyspacex.Helpers.DateFormaterApi
 import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.getImageUrl
 import com.mindoverflow.scoutshub.GetURL.Companion.URL
-import com.mindoverflow.scoutshub.ImagePickModeActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.models.Perfil
-import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -42,6 +39,7 @@ class PerfisFragmentAdministrador : Fragment() {
     //lateinit var adapter : PerfilAdapter
 
     lateinit var user : Perfil
+    var verification : String? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -51,11 +49,24 @@ class PerfisFragmentAdministrador : Fragment() {
 
         val rootView = inflater.inflate(R.layout.fragment_perfil_administrador, container, false)
 
-        val userId = SavedUserData.id_utilizador.toString()
+        val userId = SavedUserData.id_utilizador
+
+        //Se o tipo de user não for administrador, não pode usar a search view
+        if(userId != 1){
+            val searchImage: ImageView = rootView.findViewById(R.id.imageViewSearch)
+            val searchText: TextView = rootView.findViewById(R.id.textViewSearch)
+
+            //Definir a searchImage e do searchText como Gone
+            searchImage.visibility = View.GONE
+            searchText.visibility = View.GONE
+
+            //Á Variavel verification é atribuido 1 para controlo de tipo de user mais á frente
+            verification = "1"
+        }
 
         GlobalScope.launch(Dispatchers.IO) {
             //Get the user by Id, using a get request
-            user = GetUser(userId)
+            user = GetUser(userId!!)
 
             GlobalScope.launch(Dispatchers.Main) {
                 InsertDataIntoUser(user, rootView)
@@ -75,7 +86,7 @@ class PerfisFragmentAdministrador : Fragment() {
         //Adding activities to the recycler view
         GlobalScope.launch(Dispatchers.IO) {
             val arrayTodasAtividades =  GettingAllActivities()
-            atividades = AddingActivities(arrayTodasAtividades, userId)
+            atividades = AddingActivities(arrayTodasAtividades, userId!!)
 
             GlobalScope.launch(Dispatchers.Main){
                 //creating our adapter
@@ -92,30 +103,29 @@ class PerfisFragmentAdministrador : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val uploadImage = view.findViewById<ImageView>(R.id.imageViewPesquisa1)
+
         val searchImage: ImageView = view.findViewById(R.id.imageViewSearch)
         val searchText: TextView = view.findViewById(R.id.textViewSearch)
-        val editPerfil : ImageView = view.findViewById(R.id.buttonEditAdm1)
+        val editPerfil : ImageView = view.findViewById(R.id.imageView6)
 
-        searchImage.setOnClickListener{
-            val intent = Intent(activity, SearchBarActivity::class.java)
-            startActivity(intent)
+        if(verification != "1"){
+            searchImage.setOnClickListener{
+                val intent = Intent(activity, SearchBarActivity::class.java)
+                startActivity(intent)
+            }
+
+            searchText.setOnClickListener{
+                val intent = Intent(activity, SearchBarActivity::class.java)
+
+                startActivity(intent)
+            }
         }
 
-        searchText.setOnClickListener{
-            val intent = Intent(activity, SearchBarActivity::class.java)
-
-            startActivity(intent)
-        }
         editPerfil.setOnClickListener {
             val intent = Intent(activity, ProfileAdmEditActivity::class.java)
             intent.putExtra("user_data", user.toJson().toString())
 
             startActivityForResult(intent, 1001)
-        }
-        uploadImage.setOnClickListener{
-            val intent = Intent(activity, ImagePickModeActivity::class.java)
-            startActivity(intent)
         }
     }
 
@@ -212,7 +222,7 @@ class PerfisFragmentAdministrador : Fragment() {
     }
 
     //Ads the activities correspondent to the user
-    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>, userId : String): ArrayList<Atividade> {
+    private fun AddingActivities(arrayTodasAtividades: ArrayList<Atividade>, userId : Int): ArrayList<Atividade> {
 
         val atividades = java.util.ArrayList<Atividade>()
 
@@ -221,7 +231,7 @@ class PerfisFragmentAdministrador : Fragment() {
         val client = OkHttpClient()
 
         for (index in 0 until arrayTodasAtividades.size){
-            val request = Request.Builder().url("$url/participant/${arrayTodasAtividades[index].idAtividade}/utilizador/$userId")
+            val request = Request.Builder().url("$url/participant/atividade/${arrayTodasAtividades[index].idAtividade}/utilizador/$userId")
                 .get()
                 .build()
 
@@ -292,7 +302,7 @@ class PerfisFragmentAdministrador : Fragment() {
         getImageUrl(user.imagem!!, image)
     }
 
-    private fun GetUser(userId : String) : Perfil{
+    private fun GetUser(userId : Int) : Perfil{
 
         val client = OkHttpClient()
         val url = URL()

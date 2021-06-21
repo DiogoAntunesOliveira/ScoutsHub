@@ -52,8 +52,8 @@
         <activity android:name=".ui.Instrucoes.VideoActivity" />
         <activity android:name=".ui.Instrucoes.VideoOptionsActivity" />
         <activity android:name=".ui.ProfileViewActivity" />
+        <activity android:name=".ui.ProfileUserEditActivity" />
         <activity android:name=".ui.ProfileAdmEditActivity" />
-        <activity android:name=".ui.PerfilEditActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
