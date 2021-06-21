@@ -94,6 +94,7 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             val cardImageView = rowView.findViewById<ImageView>(R.id.imageViewCard)
             var buttonAcepetRequest = rowView.findViewById<Button>(R.id.buttonCardAvailableActivityAccept)
 
+            // Insert text in XML variables
             cardTitle.text = cardAvalableActivities[position].nome.toString()
             cardType.text = cardAvalableActivities[position].tipo.toString()
             cardBeginData.text = cardAvalableActivities[position].dataInicio.toString()
