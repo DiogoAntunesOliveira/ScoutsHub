@@ -44,9 +44,7 @@
             android:id="@+id/textViewPerfilAdminNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="120dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Profile Name"
             android:textColor="@color/black"
@@ -54,6 +52,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
+
 
         <TextView
             android:id="@+id/textViewPerfilAdminDataNasc"
@@ -142,7 +141,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewProfile"
+            android:id="@+id/recyclerViewProfileUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_10sdp"
@@ -164,7 +163,7 @@
             android:text="Atividades Recentes"
             android:textColor="@color/black"
             android:textSize="@dimen/_20sdp"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewProfile"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewProfileUser"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -283,24 +282,24 @@
 
         <ImageView
             android:id="@+id/imageView6"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="88dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="80dp"
+            android:background="@drawable/ic_edit_profile_button"
             app:layout_constraintStart_toEndOf="@+id/textViewPerfilAdminDataNasc"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1"
-            app:srcCompat="@drawable/ic_edit_profile_button" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa1" />
 
         <Button
             android:id="@+id/button4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="144dp"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="62dp"
             android:text="Button"
             android:visibility="invisible"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewProfileUser" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
