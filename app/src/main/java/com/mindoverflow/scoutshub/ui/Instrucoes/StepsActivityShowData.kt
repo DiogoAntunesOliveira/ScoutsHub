@@ -33,8 +33,7 @@ class StepsActivityShowData: AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.btnBack)
 
         backButton.setOnClickListener {
-            val intent = Intent(this, StepsOptionsActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         //encontrar os ids do xml

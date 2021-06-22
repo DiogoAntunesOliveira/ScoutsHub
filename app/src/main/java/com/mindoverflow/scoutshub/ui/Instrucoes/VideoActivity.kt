@@ -20,17 +20,16 @@ class VideoActivity: AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.btnBack)
 
         backButton.setOnClickListener {
-            val intent = Intent(this, VideoOptionsActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val videoView = findViewById<VideoView>(R.id.video_view)
 
         // recolher os valores do intent que enviamos da activity anterior
-        val uri:String = intent.getStringExtra("data").toString()
+        val uri = intent.getStringExtra("data")
         videoView.setVideoPath(uri)
 
-        // adicionar no display os botões de "play", "next", "previous" e a barra de progresso
+        // adicionar no barra de botões no display
         val mediaController = MediaController(this)
         videoView.setMediaController(mediaController)
         mediaController.setAnchorView(videoView)

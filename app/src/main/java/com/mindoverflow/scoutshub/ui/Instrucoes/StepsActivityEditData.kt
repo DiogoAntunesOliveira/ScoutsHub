@@ -30,8 +30,7 @@ class StepsActivityEditData: AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.btnBack)
 
         backButton.setOnClickListener {
-            val intent = Intent(this, StepsOptionsActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         saveButton.setOnClickListener {

@@ -43,14 +43,14 @@ class PopUp : AppCompatActivity() {
 
                 val utilizadorJson = utilizador.toJson().toString()
 
-                val requestBody2 = RequestBody.create("application/json".toMediaTypeOrNull(), utilizadorJson)
+                val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), utilizadorJson)
 
-                val request2 = Request.Builder()
+                val request1 = Request.Builder()
                     .url("$url/user")
-                    .post(requestBody2)
+                    .post(requestBody1)
                     .build()
 
-                client.newCall(request2).execute().use { response ->
+                client.newCall(request1).execute().use { response ->
                    println(response.body!!.string())
                 }
 

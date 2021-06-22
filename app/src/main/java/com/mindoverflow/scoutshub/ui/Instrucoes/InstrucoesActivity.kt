@@ -20,8 +20,7 @@ class  InstrucoesActivity: AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.btnBack)
 
         backButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         val videoBtn = findViewById<Button>(R.id.btnVideo)

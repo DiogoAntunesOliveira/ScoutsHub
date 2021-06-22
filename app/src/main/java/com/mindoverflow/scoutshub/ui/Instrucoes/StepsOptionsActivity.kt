@@ -17,8 +17,7 @@ class StepsOptionsActivity: AppCompatActivity() {
         val backButton = findViewById<ImageButton>(R.id.btnBack)
 
         backButton.setOnClickListener {
-            val intent = Intent(this, InstrucoesActivity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         // declaração de variáveis
