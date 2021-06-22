@@ -1,4 +1,3 @@
-
 package com.mindoverflow.scoutshub.ui
 
 import android.Manifest
@@ -24,11 +23,13 @@ import com.github.aachartmodel.aainfographics.aachartcreator.AAChartType
 import com.github.aachartmodel.aainfographics.aachartcreator.AAChartView
 import com.github.aachartmodel.aainfographics.aachartcreator.AASeriesElement
 import com.google.android.gms.location.*
+import com.mindoverflow.scoutshub.PedidosAcesso
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.models.Participante
 import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
+import com.mindoverflow.scoutshub.ui.Login.Signup1Activity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -45,7 +46,7 @@ import java.util.*
 
 class EstatisticasFragment : Fragment() {
 
-     var lat: Double = 0.0
+    var lat: Double = 0.0
     var lng: Double = 0.0
     var cidade : String = ""
     var listaComConfirmacao: MutableList<Participante> = arrayListOf()
@@ -55,6 +56,8 @@ class EstatisticasFragment : Fragment() {
     lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     var arraydaysuser : Array<Any> = arrayOf(0,0,0,0,0,0,0,0,0,0)
     var arraydayseveryone : Array<Any> = arrayOf(0,0,0,0,0,0,0,0,0,0)
+
+
 
 
     override fun onCreateView(
@@ -67,12 +70,23 @@ class EstatisticasFragment : Fragment() {
 
 
         val rootView = inflater.inflate(R.layout.fragment_estatisticas, container, false)
-
+        val btacessos = rootView.findViewById<ImageView>(R.id.button3)
         val textviewcoordenadas = rootView.findViewById<TextView>(R.id.textViewCoordenadas)
+
+
+        btacessos.setOnClickListener{
+
+            val intent = Intent(requireContext(), PedidosAcesso::class.java)
+            startActivity(intent)
+        }
+
+
 
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
 
+
+        //Se não houver permissões , exibe um popup  , se houver obtem a localização
         if (ActivityCompat.checkSelfPermission(requireContext(),
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 requireContext(),
@@ -86,7 +100,7 @@ class EstatisticasFragment : Fragment() {
             )
             rootView.findViewById<TextView>(R.id.textView3).text = "Por favor dê permissões de localização"
             rootView.findViewById<TextView>(R.id.cidade).text = ""
-            rootView.findViewById<TextView>(R.id.textViewCoordenadas).text = "Para isso , renicie a aplicação por favor"
+            rootView.findViewById<TextView>(R.id.textViewCoordenadas).text = ""
         } else {
            getLastLocation()
 
@@ -108,6 +122,9 @@ class EstatisticasFragment : Fragment() {
                     .url("http://mindoverflow.amipca.xyz:60000/participant/utilizador/$id_utilizador/")
                     .build()
 
+
+                //Obtem todos os objetos participantes
+                //Os objetos que tiverem confirmacao diferente de 0 são adicionados a uma lista
                 client.newCall(participanterequest).execute().use { response ->
                     val string: String = response.body!!.string()
 
@@ -274,6 +291,7 @@ class EstatisticasFragment : Fragment() {
 
         }
         return rootView
+
     }
 
 
@@ -283,7 +301,7 @@ class EstatisticasFragment : Fragment() {
     }
 
     fun getLastLocation() {
-        if (isLocationEnabled()) {
+        if (isLocationEnabled() == true) {
             if (ActivityCompat.checkSelfPermission(requireContext(),
                     Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                     requireContext(),
@@ -351,7 +369,7 @@ class EstatisticasFragment : Fragment() {
                 .url("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade?.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
                 .build()
             println("https://api.openweathermap.org/data/2.5/weather?q=${textviewcidade?.text}&appid=d0378a78177e7edd9d0648161be50dae&units=metric")
-            //   println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
+            // println("https://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lng + "&appid=d0378a78177e7edd9d0648161be50dae")
 
             client.newCall(request).execute().use { response ->
                 val jsStr: String = response.body!!.string()
@@ -415,11 +433,13 @@ class EstatisticasFragment : Fragment() {
 
     @SuppressLint("MissingPermission")
     fun NewLocationData() {
+        //Esta função atualiza a localização
+        //nessa localização atualizada , define uma prioridade , um intervalo e quantos updates irá haver na mesma
         var locationRequest = LocationRequest()
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        locationRequest.interval = 0
-        locationRequest.fastestInterval = 0
-        locationRequest.numUpdates = 1
+        locationRequest.interval = 6
+        locationRequest.fastestInterval = 3
+        locationRequest.numUpdates = 3
         fusedLocationProviderClient =
             LocationServices.getFusedLocationProviderClient(requireActivity())
         fusedLocationProviderClient!!.requestLocationUpdates(
@@ -428,8 +448,7 @@ class EstatisticasFragment : Fragment() {
     }
 
     fun isLocationEnabled(): Boolean {
-        //this function will return to us the state of the location service
-        //if the gps or the network provider is enabled then it will return true otherwise it will return false
+        //Esta funcao retorna o estado do GPS , se o GPS estiver ligado , retorna true , se não ,false
         var locationManager =
             getActivity()?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(

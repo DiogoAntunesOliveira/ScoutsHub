@@ -7,7 +7,6 @@ class Instrucao {
     var idInstrucao : Int?      = null
     var titulo      : String?   = null
     var descricao   : String?   = null
-    var imagem      : String?   = null
 
     constructor()
 
@@ -15,41 +14,47 @@ class Instrucao {
 
         id_intrucao: Int?,
         titulo: String?,
-        descricao: String?,
-        imagem: String?,
+        descricao: String?
 
     ) {
 
         this.idInstrucao = id_intrucao
         this.titulo = titulo
         this.descricao = descricao
-        this.imagem = imagem
     }
 
     fun toJson() : JSONObject {
 
         val jsonObject = JSONObject()
 
-        jsonObject.put("id_intrucao", idInstrucao)
+        jsonObject.put("id_instrucao", idInstrucao)
         jsonObject.put("titulo", titulo)
         jsonObject.put("descricao", descricao)
-        jsonObject.put("imagem", imagem)
 
         return jsonObject
     }
 
     companion object {
 
-        fun fromJson(jsonObject: JSONObject) : Instrucao {
+        fun fromJson(jsStr: String?, arrayPosition: Int?) : Instrucao {
 
-            val intrucoes = Instrucao()
+            val instrucoes = Instrucao()
 
-            intrucoes.idInstrucao = jsonObject.getInt("id_intrucao")
-            intrucoes.titulo = jsonObject.getString("titulo")
-            intrucoes.descricao = jsonObject.getString("descricao")
-            intrucoes.imagem = jsonObject.getString("imagem")
+            val jsonObject : JSONObject
 
-            return intrucoes
+            //If there is the need to get a Json array from a json object
+            if(arrayPosition != null) {
+                val jsonArray = JSONObject(jsStr!!).getJSONArray("instructions")
+                jsonObject = JSONObject(jsonArray[arrayPosition].toString())
+            } else {
+                jsonObject = JSONObject(jsStr!!)
+            }
+
+            instrucoes.idInstrucao       = if(!jsonObject.isNull("id_instrucao"))    jsonObject.getInt("id_instrucao")       else null
+            instrucoes.titulo            = if(!jsonObject.isNull("titulo"))          jsonObject.getString("titulo")          else null
+            instrucoes.descricao         = if(!jsonObject.isNull("descricao"))       jsonObject.getString("descricao")       else null
+
+            return instrucoes
         }
 
     }

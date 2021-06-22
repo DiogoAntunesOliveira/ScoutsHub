@@ -80,7 +80,7 @@ class Perfil {
             //If there is the need to get a Json array from a json object
             if(arrayPosition != null) {
                 val jsonArray = JSONObject(jsStr!!).getJSONArray("perfis")
-                jsonObject = JSONObject(jsonArray[arrayPosition!!].toString())
+                jsonObject = JSONObject(jsonArray[arrayPosition].toString())
             } else {
                 jsonObject = JSONObject(jsStr!!)
             }

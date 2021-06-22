@@ -1,10 +1,8 @@
 package com.mindoverflow.scoutshub
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import bit.linux.tinyspacex.Helpers
@@ -15,7 +13,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONObject
 
-class pedidos_acesso : AppCompatActivity() {
+class PedidosAcesso : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pedidos_acesso)
@@ -66,7 +64,7 @@ class pedidos_acesso : AppCompatActivity() {
 
                     userCompare.id_tipo = 3
 
-                    val intent = Intent(this, pedidos_acesso::class.java)
+                    val intent = Intent(this, PedidosAcesso::class.java)
                     startActivity(intent)
                 }
 
@@ -74,6 +72,11 @@ class pedidos_acesso : AppCompatActivity() {
 
                     val request1 =
                         Request.Builder().url("$url/user/${userCompare.id_utilizador}")
+                            .delete()
+                            .build()
+
+                    val request2 =
+                        Request.Builder().url("$url/perfil/${perfil.idPerfil}")
                             .delete()
                             .build()
 

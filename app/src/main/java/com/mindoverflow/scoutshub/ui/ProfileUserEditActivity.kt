@@ -12,7 +12,16 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import bit.linux.tinyspacex.Helpers
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.models.Perfil
+import com.mindoverflow.scoutshub.models.Utilizador
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.RequestBody
 
 
 class ProfileUserEditActivity : AppCompatActivity() {
@@ -43,16 +52,19 @@ class ProfileUserEditActivity : AppCompatActivity() {
 
 
         buttonEdit.setOnClickListener {
-            val returnIntent = Intent()
+                val returnIntent = Intent()
+                val userEdited = SaveChanges(user)
 
-            val userEdited = SaveChanges(user)
-            println("teste3")
-            println(userEdited.toJson().toString())
+                GlobalScope.launch(Dispatchers.IO) {
+                    SavingUserEmail()
+                }
 
-            //Return to Profile view activity the edited user
-            returnIntent.putExtra("perfil_editado", userEdited.toJson().toString())
-            setResult(Activity.RESULT_OK, returnIntent)
-            finish()
+                //Return to Profile view activity the edited user
+                returnIntent.putExtra("perfil_editado", userEdited.toJson().toString())
+                setResult(Activity.RESULT_OK, returnIntent)
+                finish()
+
+
         }
 
 
@@ -76,9 +88,10 @@ class ProfileUserEditActivity : AppCompatActivity() {
             user.dtNasc = Helpers.DateFormaterApi(user.dtNasc!!)
         }
 
+        val userEmail = SavedUserData.email_utilizador
 
         editTextNome.setText(user.nome)
-        editTextEmail.setText("")
+        editTextEmail.setText(userEmail)
         editTextNin.setText(user.nin.toString())
         editTextMorada.setText(user.morada)
         editTextCodigoPostal.setText(user.codigoPostal)
@@ -96,6 +109,7 @@ class ProfileUserEditActivity : AppCompatActivity() {
         val editTextNin = findViewById<EditText>(R.id.textViewEditarNin)
         val editTextEmail = findViewById<EditText>(R.id.textViewEditarEmail)
 
+        SavedUserData.email_utilizador = editTextEmail.text.toString()
 
         val idPerfil = user.idPerfil
         val nome = editTextNome.text.toString()
@@ -109,10 +123,31 @@ class ProfileUserEditActivity : AppCompatActivity() {
         val totalAtivParticip = user.totalAtivParticip
         val idEquipa = user.idEquipa
 
-        //val dateNascimentoFormated = DateFormaterTeste(dataNascimento)
-
 
         return Perfil(idPerfil, nome, imagem, dataNascimento, genero, numeroTelefone.toInt(), morada, codigoPostal, nin.toInt(), totalAtivParticip!!.toInt(), idEquipa!!.toInt(), user.idUtilizador!!.toInt())
     }
+    fun SavingUserEmail() {
 
+        val client = OkHttpClient()
+
+        val url = Helpers.getURL()
+        //val dateFormated = DateFormaterIng(newData.dtNasc!!)
+
+        val user = Utilizador(SavedUserData.id_utilizador, SavedUserData.email_utilizador, SavedUserData.palavra_pass, SavedUserData.id_tipo)
+
+        val requestBody = RequestBody.create(
+            "application/json".toMediaTypeOrNull(),
+            user.toJson().toString()
+        )
+
+        val request =
+            Request.Builder()
+                .url("$url/user/${user.id_utilizador}")
+                .put(requestBody)
+                .build()
+
+        client.newCall(request).execute().use { response ->
+            val response = (response.body!!.string())
+        }
+    }
 }

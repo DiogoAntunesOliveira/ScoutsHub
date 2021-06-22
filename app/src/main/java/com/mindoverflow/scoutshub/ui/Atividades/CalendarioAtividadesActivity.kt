@@ -1,5 +1,6 @@
 package com.mindoverflow.scoutshub.ui.Atividades
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -16,12 +17,15 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.github.sundeepk.compactcalendarview.CompactCalendarView
 import com.github.sundeepk.compactcalendarview.domain.Event
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SavedUserData
 import com.mindoverflow.scoutshub.models.Atividade
+import com.mindoverflow.scoutshub.models.Participante
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import org.json.JSONArray
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
@@ -72,7 +76,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
 
 
-
+        //Declara o calendario
         compactCalendar =
             findViewById<View>(R.id.compactcalendar_view) as CompactCalendarView
 
@@ -89,7 +93,43 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
         GlobalScope.launch(Dispatchers.IO) {
             val client = OkHttpClient()
-            val request = Request.Builder().url("http://mindoverflow.amipca.xyz:60000/activities/").build()
+
+            var listapart: MutableList<Participante> = arrayListOf()
+
+            var id_utilizador = SavedUserData.id_utilizador
+
+            //Indica qual endereço para fazer pedidos HTTP
+            val participanterequest =
+               Request.Builder()
+               .url("http://mindoverflow.amipca.xyz:60000/participant/utilizador/$id_utilizador/")
+               .build()
+
+            //Obtem os todos as atividades que o utilizador está a participar e envia-os para uma lista
+            client.newCall(participanterequest).execute().use { response ->
+                val string: String = response.body!!.string()
+
+                val jsonObjectTotal = JSONObject(string)
+
+
+                val jsonparticipante: JSONArray =
+                    jsonObjectTotal.getJSONArray("participante") as JSONArray
+                for (index in 0 until jsonparticipante.length()) {
+                    val getjson: JSONObject = jsonparticipante.get(index) as JSONObject
+//                        var iconTempo = if (!jsonweather.isNull("id_atividades")){ jsonweather.getInt("id_atividades")} else null
+                    val calendarioparticipante = Participante.fromJson(getjson)
+                    if (calendarioparticipante.confirmacao != 0 &&
+                        calendarioparticipante.confirmacao != null) {
+
+                        listapart.add(calendarioparticipante)
+                        println(listapart)
+                    }
+                }
+            }
+
+            //Obtem todas as informações das atividades que o utilizador participa e converte os mesmos para eventos no calendario
+            val request = Request.Builder()
+                .url("http://mindoverflow.amipca.xyz:60000/activities/")
+                .build()
             client.newCall(request).execute().use { response ->
 
                 val string : String = response.body!!.string()
@@ -100,15 +140,20 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
                 for ( index in  0 until jsonArrayAtividades.length()) {
                     val atividade = Atividade.fromJson(string, index)
                     atividades.add(atividade)
+                    for(size in 0 until listapart.size){
+                        if(atividade.idAtividade == listapart[size].id_atividade){
 
-                    val formatadoratividade = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK)
-                    val dataatividadeinicio = LocalDateTime.parse(atividade.dataInicio, formatadoratividade)
-                    val atividademilis = dataatividadeinicio.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
+                        val formatadoratividade = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.UK)
+                        val dataatividadeinicio = LocalDateTime.parse(atividade.dataInicio, formatadoratividade)
+                        val atividademilis = dataatividadeinicio.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
 
-                    var coranterior = coraleatoria
-                    coraleatoria = coreslist.random()
-                    if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
-                    compactCalendar!!.addEvent(Event(coraleatoria,atividademilis,atividade.nome + " *" + atividade.descricao))
+                            var coranterior = coraleatoria
+                            coraleatoria = coreslist.random()
+                            if(coranterior==coraleatoria){coraleatoria = coreslist.random()}
+                            compactCalendar!!.addEvent(Event(coraleatoria,atividademilis,atividade.nome + "*" + atividade.descricao))
+                        }}
+
+
                 }
                 response.body!!.close()
             }
@@ -125,7 +170,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
         }
 
 
-        //Declara uma MutableList de tipo Evento que contem um array com eventos
+        //Para testes declara uma MutableList de tipo Evento que contem um array com eventos
  /*       var eventosapagar : MutableList<Event> = arrayListOf(
             Event(coraleatoria, 1607040400000L, "Teachers' Professional Day * Welcome to Teachers Day"),
             Event(coraleatoria, 1624273932000, "Tessdate * Description Test"),
@@ -230,22 +275,29 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
 
     }
 
+    //Declara uma classe adapter
     inner class CalendarioAtividadesAdapter : BaseAdapter() {
+        //Obtem quantos items o eventos contém
         override fun getCount(): Int {
             return eventos.size
         }
 
+        //Obtem o item associado com determinada posição
         override fun getItem(position: Int): Any {
             return eventos[position]
 
         }
 
+        //Obtem o id da linha associada com uma posiçao especifica na listView
         override fun getItemId(position: Int): Long {
             return 0
         }
 
+        //Obtem a view que vai ser utilizada para realizar a listView
+        @SuppressLint("ViewHolder")
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
+            //É dado inflate da row_calendarios
             val rowView = layoutInflater.inflate(R.layout.row_calendario, parent, false)
             val formatterhour = SimpleDateFormat("hh:mm")
 
@@ -254,6 +306,7 @@ class CalendarioAtividadesActivity : AppCompatActivity() {
             val descEventList = rowView.findViewById<TextView>(R.id.descEventList)
             val colorTintEventList = rowView.findViewById<ImageView>(R.id.colorTintEventList)
 
+            //Obtem a data do evento e separa-o em uma lista com 2 strings
             val datamaster = eventos[position].data.toString()
             val datadescricaotitulo : List<String> = datamaster.split("*")
 

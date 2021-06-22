@@ -55,7 +55,7 @@ class ProfileViewActivity : AppCompatActivity() {
         }
 
         //getting recyclerview from xml
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewProfile)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerViewProfileAdm)
 
         //adding a layout manager
         recyclerView.layoutManager =
@@ -107,8 +107,6 @@ class ProfileViewActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
 
-        println("testeeeeeeeeeeeeeee")
-        println(userId)
 
         for (index in 0 until arrayTodasAtividades.size){
             val request = Request.Builder().url("$url/participant/atividade/${arrayTodasAtividades[index].idAtividade}/utilizador/$userId")
@@ -116,13 +114,17 @@ class ProfileViewActivity : AppCompatActivity() {
                 .build()
 
             client.newCall(request).execute().use { response ->
-                if(response.body!!.string() != "\"participante\": []"){
+                val response = (response.body!!.string())
+
+                if(response != "{\"participante\":[]}"){
                     atividades.add(
                         arrayTodasAtividades[index]
                     )
                 }
             }
         }
+        println("atividades")
+        println(atividades)
         return atividades
     }
 
@@ -263,9 +265,9 @@ class ProfileViewActivity : AppCompatActivity() {
 
             val response = (response.body!!.string())
 
-            if (response == "{\"message\":\"Perfil updated successfully\"}") {
-                toReturn = newData.toJson().toString()
-            }
+
+            toReturn = newData.toJson().toString()
+
         }
         println("teste5")
         return toReturn

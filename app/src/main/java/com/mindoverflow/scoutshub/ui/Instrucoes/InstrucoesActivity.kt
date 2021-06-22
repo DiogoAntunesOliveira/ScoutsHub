@@ -4,9 +4,12 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
+import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
 
-class InstrucoesActivity : AppCompatActivity() {
+class  InstrucoesActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,18 +17,25 @@ class InstrucoesActivity : AppCompatActivity() {
 
         supportActionBar!!.hide()
 
-        val VideoBtn = findViewById<Button>(R.id.video_btn)
-        val StepsBtn = findViewById<Button>(R.id.steps_btn)
+        val backButton = findViewById<ImageButton>(R.id.btnBack)
+
+        backButton.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        val videoBtn = findViewById<Button>(R.id.btnVideo)
+        val stepsBtn = findViewById<Button>(R.id.btnSteps)
 
         // caso selecione o botão de video, mudamos para a activity destinada a mostrar o video
-        VideoBtn.setOnClickListener {
-            val intent = Intent(this, VideoOptionsActivity::class.java)
+        videoBtn.setOnClickListener {
+            val intent = Intent (this, VideoOptionsActivity::class.java)
             startActivity(intent)
         }
 
         // caso selecione o botão de video, mudamos para a activity destinada a mostrar os passos
-        StepsBtn.setOnClickListener {
-            val intent = Intent(this, StepsOptionsActivity::class.java)
+        stepsBtn.setOnClickListener {
+            val intent = Intent (this, StepsOptionsActivity::class.java)
             startActivity(intent)
         }
     }

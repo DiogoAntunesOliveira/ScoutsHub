@@ -20,9 +20,9 @@
 
     <fragment
         android:id="@+id/navigation_perfil"
-        android:name="com.mindoverflow.scoutshub.ui.PerfisFragmentAdministrador"
+        android:name="com.mindoverflow.scoutshub.ui.PerfisFragmentUser"
         android:label="@string/title_perfil"
-        tools:layout="@layout/fragment_perfil_administrador" />
+        tools:layout="@layout/fragment_perfil_user" />
 
     <fragment
         android:id="@+id/navigation_estatisticas"

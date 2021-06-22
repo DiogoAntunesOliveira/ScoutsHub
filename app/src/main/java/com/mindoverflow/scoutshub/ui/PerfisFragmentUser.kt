@@ -33,13 +33,12 @@ import okhttp3.RequestBody
 import org.json.JSONObject
 
 
-class PerfisFragmentAdministrador : Fragment() {
+class PerfisFragmentUser : Fragment() {
 
     //var perfis : MutableList<Perfil> = arrayListOf()
     //lateinit var adapter : PerfilAdapter
 
-    lateinit var user : Perfil
-    var verification : String? = null
+    var user : Perfil? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -47,46 +46,43 @@ class PerfisFragmentAdministrador : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val rootView = inflater.inflate(R.layout.fragment_perfil_administrador, container, false)
+        val rootView = inflater.inflate(R.layout.fragment_perfil_user, container, false)
 
-        val userId = SavedUserData.id_utilizador
+        val searchImage: ImageView = rootView.findViewById(R.id.imageViewSearch)
+        val searchText: TextView = rootView.findViewById(R.id.textViewSearch)
 
-        //Se o tipo de user não for administrador, não pode usar a search view
-        if(userId != 1){
-            val searchImage: ImageView = rootView.findViewById(R.id.imageViewSearch)
-            val searchText: TextView = rootView.findViewById(R.id.textViewSearch)
-
-            //Definir a searchImage e do searchText como Gone
+        //Definir a searchImage e do searchText como Gone
+        if(SavedUserData.id_tipo != 1){
             searchImage.visibility = View.GONE
             searchText.visibility = View.GONE
-
-            //Á Variavel verification é atribuido 1 para controlo de tipo de user mais á frente
-            verification = "1"
         }
 
         GlobalScope.launch(Dispatchers.IO) {
             //Get the user by Id, using a get request
+
+            val userId = SavedUserData.id_utilizador
             user = GetUser(userId!!)
 
             GlobalScope.launch(Dispatchers.Main) {
-                InsertDataIntoUser(user, rootView)
+                InsertDataIntoUser(user!!, rootView)
             }
         }
 
         //getting recyclerview from xml
-        val recyclerView = rootView.findViewById(R.id.recyclerViewProfile) as RecyclerView
+        val recyclerView = rootView.findViewById(R.id.recyclerViewProfileUser) as RecyclerView
 
         //adding a layoutmanager
         //val layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
 
-        var atividades: ArrayList<Atividade>
 
         //Adding activities to the recycler view
         GlobalScope.launch(Dispatchers.IO) {
+            val userId = SavedUserData.id_utilizador
+
             val arrayTodasAtividades =  GettingAllActivities()
-            atividades = AddingActivities(arrayTodasAtividades, userId!!)
+            val atividades = AddingActivities(arrayTodasAtividades, userId!!)
 
             GlobalScope.launch(Dispatchers.Main){
                 //creating our adapter
@@ -108,22 +104,21 @@ class PerfisFragmentAdministrador : Fragment() {
         val searchText: TextView = view.findViewById(R.id.textViewSearch)
         val editPerfil : ImageView = view.findViewById(R.id.imageView6)
 
-        if(verification != "1"){
-            searchImage.setOnClickListener{
-                val intent = Intent(activity, SearchBarActivity::class.java)
-                startActivity(intent)
-            }
 
-            searchText.setOnClickListener{
-                val intent = Intent(activity, SearchBarActivity::class.java)
+        searchImage.setOnClickListener{
+            val intent = Intent(activity, SearchBarActivity::class.java)
+            startActivity(intent)
+        }
 
-                startActivity(intent)
-            }
+        searchText.setOnClickListener{
+            val intent = Intent(activity, SearchBarActivity::class.java)
+
+            startActivity(intent)
         }
 
         editPerfil.setOnClickListener {
-            val intent = Intent(activity, ProfileAdmEditActivity::class.java)
-            intent.putExtra("user_data", user.toJson().toString())
+            val intent = Intent(activity, ProfileUserEditActivity::class.java)
+            intent.putExtra("user_data", user!!.toJson().toString())
 
             startActivityForResult(intent, 1001)
         }
@@ -154,7 +149,7 @@ class PerfisFragmentAdministrador : Fragment() {
                             val userFromJson = Perfil.fromJson(userUpdated, null)
                             userFromJson.dtNasc = DateFormaterIngToPt(userFromJson.dtNasc.toString())
                             user = userFromJson
-                            insertingDataIntoUserAfterPut(user)
+                            insertingDataIntoUserAfterPut(user!!)
                         }
                     }
                 }
@@ -213,10 +208,12 @@ class PerfisFragmentAdministrador : Fragment() {
 
             val response = (response.body!!.string())
 
-            if (response == "{\"message\":\"Perfil updated successfully\"}") {
-                toReturn = newData.toJson().toString()
-            }
+
+            toReturn = newData.toJson().toString()
+
         }
+
+        println(toReturn)
 
         return toReturn
     }
@@ -236,11 +233,14 @@ class PerfisFragmentAdministrador : Fragment() {
                 .build()
 
             client.newCall(request).execute().use { response ->
-                if(response.body!!.string() != "\"participante\": []"){
-                    atividades.add(
-                        arrayTodasAtividades[index]
-                    )
-                }
+
+                val response = (response.body!!.string())
+                println(response)
+
+                if(response != "{\"participante\":[]}")
+                atividades.add(
+                    arrayTodasAtividades[index]
+                )
             }
         }
         return atividades
