@@ -130,12 +130,15 @@
         android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="28dp"
         android:background="@drawable/rounded_corner"
         android:fontFamily="@font/poppins_medium"
         android:text="Eliminar Perfil"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonEdit"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
