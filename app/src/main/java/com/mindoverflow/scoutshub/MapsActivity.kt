@@ -1,5 +1,9 @@
 package com.mindoverflow.scoutshub
 
+// author : José Diogo Antunes Oliveira
+// data : 21/6/2021
+// description : Connect to Google Cloud Maps API and configure MapsActivity
+
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
