@@ -7,7 +7,7 @@
     tools:context=".ui.Atividades.AvailableActivitiesActivity">
 
     <ImageView
-        android:id="@+id/back_Activities"
+        android:id="@+id/backActivitiesButton"
         android:layout_width="39dp"
         android:layout_height="38dp"
         android:layout_marginStart="15dp"
@@ -40,6 +40,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back_Activities" />
+        app:layout_constraintTop_toBottomOf="@+id/backActivitiesButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

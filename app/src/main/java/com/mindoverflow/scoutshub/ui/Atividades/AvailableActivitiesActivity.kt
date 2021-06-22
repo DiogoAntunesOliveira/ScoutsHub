@@ -1,5 +1,9 @@
 package com.mindoverflow.scoutshub.ui.Atividades
 
+// author : José Diogo Antunes Oliveira
+// data : 16/6/2021
+// description : Show available activities and connect to MapsActivity
+
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -67,6 +71,10 @@ class AvailableActivitiesActivity : AppCompatActivity() {
         }
         // Create content
         listViewCards.adapter = availableActivitesAdapter
+
+        findViewById<ImageView>(R.id.backActivitiesButton).setOnClickListener{
+            finish()
+        }
 
     }
 
