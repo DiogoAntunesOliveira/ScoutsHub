@@ -1,7 +1,6 @@
 package com.mindoverflow.scoutshub.ui
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,10 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Material
-import com.mindoverflow.scoutshub.ui.Atividades.ConfirmNewActivity
+import com.mindoverflow.scoutshub.ui.Atividades.CreateNewActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 
 
 class MateriaisFragment : Fragment() {
@@ -71,7 +69,7 @@ class MateriaisFragment : Fragment() {
 
         buttonnextmaterial.setOnClickListener{
 
-            val intent = Intent(activity, ConfirmNewActivity::class.java)
+            val intent = Intent(activity, CreateNewActivity::class.java)
             intent.putExtra("IDs", selectedRowsIds)
             intent.putExtra("descricao", descricaoRecebida)
             intent.putExtra("nomeCompleto" , nomeRecebido)

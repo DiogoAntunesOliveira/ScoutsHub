@@ -107,38 +107,34 @@
 
         <Button
             android:id="@+id/buttonHora"
-            android:layout_width="106dp"
-            android:layout_height="55dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="130dp"
+            android:layout_height="38dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/rounded_corner"
             android:fontFamily="@font/poppins_medium"
             android:text="Escolher Hora"
-            android:textSize="12sp"
+            android:textSize="10sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
-            app:layout_constraintEnd_toEndOf="@+id/editTextNomeCompleto" />
+            app:layout_constraintEnd_toEndOf="@+id/editTextNomeCompleto"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView"
+            app:layout_constraintVertical_bias="0.733" />
 
         <TextView
             android:id="@+id/textViewHora"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="20dp"
+            android:layout_width="59dp"
+            android:layout_height="38dp"
+            android:layout_marginEnd="72dp"
             android:fontFamily="@font/poppins_medium"
+            android:gravity="center"
             android:text="00:00"
-            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
-            app:layout_constraintEnd_toStartOf="@+id/buttonHora" />
-
-        <TextView
-            android:id="@+id/textViewData"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="20dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="00/00/0000"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextNomeCompleto"
-            app:layout_constraintEnd_toStartOf="@+id/textViewHora" />
+            app:layout_constraintEnd_toStartOf="@+id/buttonHora"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/editTextNomeCompleto"
+            app:layout_constraintTop_toBottomOf="@+id/calendarView"
+            app:layout_constraintVertical_bias="0.578" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

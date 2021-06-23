@@ -42,6 +42,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.math.roundToInt
 
 
 class EstatisticasFragment : Fragment() {
@@ -397,9 +398,9 @@ class EstatisticasFragment : Fragment() {
 
 
                     when (iconTempo) {
-                        "01d", "01n" ->{ textviewtempo?.text = "Ceu Limpo"
+                        "01d", "01n" ->{ textviewtempo?.text = "Céu Limpo"
                             imageIconTempo?.setBackgroundResource(R.drawable.weather_sun)}
-                        "02d" ,"02n" -> {textviewtempo?.text = "Ceu pouco nublado"
+                        "02d" ,"02n" -> {textviewtempo?.text = "Céu pouco nublado"
                             imageIconTempo?.setBackgroundResource(R.drawable.weather_low_clouds)}
                         "03d" , "03n" , "04d" , "04n" -> {textviewtempo?.text = "Ceu nublado"
                             imageIconTempo?.setBackgroundResource(R.drawable.weather_clouds)}
@@ -419,9 +420,10 @@ class EstatisticasFragment : Fragment() {
                     }
 
                     if (temp != null) {
-                        val tempfloat = temp.toFloat()
+                        val tempfloat = temp.toFloat().roundToInt()
                         activity?.findViewById<TextView>(R.id.textView3)?.text =
-                            String.format("%.2f", tempfloat) + "ºC"
+                            "$tempfloat ºC"
+                    //String.format("%.2f", tempfloat) + "ºC"
                     } else {
                         activity?.findViewById<TextView>(R.id.textView3)?.text = "--- ºC"
                     }
