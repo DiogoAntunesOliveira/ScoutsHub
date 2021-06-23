@@ -128,7 +128,7 @@
                 android:id="@+id/button2"
                 android:layout_width="105dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="88dp"
+                android:layout_marginStart="36dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/button_activities_reverse"
@@ -142,16 +142,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewCard"
                 app:layout_constraintVertical_bias="1.0" />
-
-            <ImageView
-                android:id="@+id/imageView4"
-                android:layout_width="77dp"
-                android:layout_height="41dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginBottom="10dp"
-                android:src="@drawable/ic_points"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/textView15"

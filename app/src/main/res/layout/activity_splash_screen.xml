@@ -45,6 +45,7 @@
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/bubbles" />
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,10 +60,28 @@
         android:background="#80000000"
         tools:context=".MainActivity">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="365dp"
+            android:layout_marginEnd="76dp"
+            android:layout_marginBottom="172dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="SCOUTS HUB"
+            android:textColor="#FFFFFF"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <View
             android:id="@+id/view2"
             android:layout_width="match_parent"
             android:layout_height="243dp"
+            android:layout_marginBottom="-1dp"
             android:background="@drawable/round_corners"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

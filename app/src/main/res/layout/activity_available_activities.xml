@@ -14,8 +14,7 @@
         android:layout_marginTop="40dp"
         android:src="@drawable/ic_baseline_arrow_back_ios_24"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="@color/black">
+        app:layout_constraintTop_toTopOf="parent">
 
     </ImageView>
 
@@ -32,7 +31,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
+    <ListView
         android:id="@+id/listViewActivities"
         android:layout_width="match_parent"
         android:layout_height="0dp"
