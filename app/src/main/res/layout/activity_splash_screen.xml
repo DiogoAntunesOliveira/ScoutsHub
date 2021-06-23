@@ -45,5 +45,74 @@
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/bubbles" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="2dp"
+        android:background="#80000000"
+        tools:context=".MainActivity">
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="243dp"
+            android:background="@drawable/round_corners"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/bt_signup"
+            android:layout_width="311dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="144dp"
+            android:background="@drawable/button_activities_reverse"
+            android:backgroundTint="@null"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Registrar"
+            android:textColor="@color/brown_500"
+            app:backgroundTint="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view2" />
+
+        <Button
+            android:id="@+id/bt_signin"
+            android:layout_width="311dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="39dp"
+            android:layout_marginBottom="34dp"
+            android:background="@drawable/button_activities"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Entrar"
+            android:textColor="@color/white"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toTopOf="@+id/bt_signup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button5" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="97dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="14dp"
+            android:background="@drawable/button_activities"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toTopOf="@+id/bt_signin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view2"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </RelativeLayout>

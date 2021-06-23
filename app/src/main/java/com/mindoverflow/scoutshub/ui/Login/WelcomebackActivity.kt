@@ -42,9 +42,6 @@ class WelcomebackActivity : AppCompatActivity() {
         val login_bt = findViewById<Button>(R.id.login_bt)
 
         bt_back.setOnClickListener {
-
-            val intent = Intent(this, FrontPage::class.java)
-            startActivity(intent)
             finish()
         }
 
