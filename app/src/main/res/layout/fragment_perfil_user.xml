@@ -25,7 +25,7 @@
 
         <TextView
             android:id="@+id/textViewSearch"
-            android:layout_width="278dp"
+            android:layout_width="231dp"
             android:layout_height="39dp"
             android:layout_marginTop="36dp"
             android:text="Procurar um utilizador"
@@ -75,9 +75,9 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="360dp"
-            android:layout_height="285dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="269dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/custom_card_view"
             app:cardCornerRadius="@dimen/_24sdp"
             app:cardElevation="@dimen/_5sdp"
@@ -96,6 +96,7 @@
                     android:layout_marginTop="10dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -108,6 +109,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView9"
                     app:layout_constraintTop_toBottomOf="@+id/textView7" />
@@ -121,6 +123,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView10"
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -133,6 +136,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView11"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
@@ -145,6 +149,7 @@
                     android:layout_marginTop="5dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView12"
                     app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -158,6 +163,7 @@
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView14"
                     app:layout_constraintStart_toEndOf="@+id/textView13"
@@ -172,6 +178,7 @@
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -339,7 +346,7 @@
             android:id="@+id/imageButton2"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="36dp"
             android:background="@drawable/ic_log_out_button"
             app:layout_constraintEnd_toEndOf="parent"
