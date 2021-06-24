@@ -41,12 +41,13 @@
         android:id="@+id/bt_signin"
         android:layout_width="311dp"
         android:layout_height="51dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/button_activities_reverse"
         android:fontFamily="@font/poppins_medium"
         android:text="Entrar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="608dp"
-        android:background="@drawable/button_activities_reverse" />
+        app:layout_constraintTop_toTopOf="@+id/view2" />
 
     <Button
         android:layout_width="97dp"
@@ -63,14 +64,15 @@
         android:id="@+id/bt_signup"
         android:layout_width="311dp"
         android:layout_height="51dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/button_activities_reverse"
+        android:backgroundTint="@null"
         android:fontFamily="@font/poppins_medium"
         android:text="Registrar"
         android:textColor="@color/brown_500"
+        app:backgroundTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="688dp"
-        android:backgroundTint="@null"
-        android:background="@drawable/button_activities_reverse"
-        app:backgroundTint="@null"/>
+        app:layout_constraintTop_toBottomOf="@+id/bt_signin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

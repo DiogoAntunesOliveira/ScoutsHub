@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SplashScreen
 import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +57,7 @@ class PopUp : AppCompatActivity() {
 
                 GlobalScope.launch(Dispatchers.Main){
 
-                    val intent = Intent(this@PopUp, FrontPage::class.java)
+                    val intent = Intent(this@PopUp, SplashScreen::class.java)
                     startActivity(intent)
                 }
             }
