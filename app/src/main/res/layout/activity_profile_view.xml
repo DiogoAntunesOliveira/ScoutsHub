@@ -15,13 +15,13 @@
 
         <ImageView
             android:id="@+id/imageViewVoltarAtras"
-            android:layout_width="38dp"
-            android:layout_height="38dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="36dp"
+            android:background="@drawable/ic_backward_arrow"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/ic_backward_arrow" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -40,57 +40,60 @@
 
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageView"
-            android:layout_width="344dp"
-            android:layout_height="226dp"
-            android:layout_marginTop="32dp"
+            android:id="@+id/imageViewPesquisa2"
+            android:layout_width="@dimen/_136sdp"
+            android:layout_height="104dp"
+            android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
+            app:civ_border_color="#00FFFFFF"
+            app:civ_border_width="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiro"
-            app:srcCompat="@drawable/ic_launcher_foreground"
-            tools:ignore="VectorDrawableCompat"
-            app:shapeAppearanceOverlay="@style/roundedImageView"/>
+            app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiro" />
 
         <TextView
             android:id="@+id/textViewPerfilEscuteiroNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins_semibold"
+            android:fontFamily="@font/poppins_medium"
             android:text="Profile Name"
             android:textColor="@color/brown_500"
-            android:textSize="@dimen/_20sdp"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/imageViewPesquisa2" />
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="360dp"
-            android:layout_height="285dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
+            android:layout_width="0dp"
+            android:layout_height="269dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/custom_card_view"
             app:cardCornerRadius="@dimen/_24sdp"
             app:cardElevation="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroNome">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="330dp">
+                android:layout_height="match_parent">
 
 
                 <ImageView
                     android:id="@+id/edit_user2"
-                    android:layout_width="38dp"
-                    android:layout_height="38dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginEnd="30dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
                     android:background="@drawable/ic_edit_profile_button"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView18"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
@@ -98,66 +101,76 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="72dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewPerfilEscuteiroGenero"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
+                    android:layout_marginTop="97dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView9"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewPerfilEscuteiroContacto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
+                    android:layout_marginTop="122dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView10"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewPerfilEscuteiroMorada"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
+                    android:layout_marginTop="147dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView11"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewPerfilEscuteiroCodigoPostal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="14dp"
+                    android:layout_marginTop="172dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/textView12"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewPerfilEscuteiroNin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toStartOf="@+id/textView14"
                     app:layout_constraintStart_toEndOf="@+id/textView13"
@@ -168,10 +181,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
+                    android:textColor="@color/black"
                     android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView14"
@@ -182,69 +196,73 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="70dp"
                     android:fontFamily="@font/poppins_medium"
                     android:includeFontPadding="false"
                     android:text="data nasimento:"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView18" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="95dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="genero:"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="120dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="telemovel:"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="145dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Rua:"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="170dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="Codigo Postal:"
                     android:textColor="@color/black"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="28dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="NIN:"
                     android:textColor="@color/black"
@@ -263,7 +281,7 @@
                     android:text="Atividades Parcticipadas:"
                     android:textColor="@color/black"
                     android:textSize="14sp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewPerfilEscuteiroTotalAtivParticip"
                     app:layout_constraintStart_toEndOf="@+id/textViewPerfilEscuteiroNin"
                     app:layout_constraintTop_toBottomOf="@+id/textViewPerfilEscuteiroCodigoPostal" />
 

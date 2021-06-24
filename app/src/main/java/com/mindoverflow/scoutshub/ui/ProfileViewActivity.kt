@@ -10,6 +10,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import bit.linux.tinyspacex.Helpers
 import bit.linux.tinyspacex.Helpers.DateFormaterApi
 import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.DateFormaterPtToIng
@@ -47,7 +48,6 @@ class ProfileViewActivity : AppCompatActivity() {
 
         // Get the information of the user that has been searched
         val jsonString = intent.getStringExtra("User")
-        println(jsonString)
 
         //jsonString can´t be null or else we will be inserting empty data on the user
         if(jsonString != null){
@@ -208,6 +208,9 @@ class ProfileViewActivity : AppCompatActivity() {
         val nin = findViewById<TextView>(R.id.textViewPerfilEscuteiroNin)
         val totalAtivParticip = findViewById<TextView>(R.id.textViewPerfilEscuteiroTotalAtivParticip)
 
+        //Image View
+        val image = findViewById<ImageView>(R.id.imageViewPesquisa2)
+
         val dateFormated = DateFormaterApi(user.dtNasc.toString())
 
         nomeUtilizador.text = user.nome
@@ -219,7 +222,7 @@ class ProfileViewActivity : AppCompatActivity() {
         nin.text = user.nin.toString()
         totalAtivParticip.text = user.totalAtivParticip.toString()
 
-
+        Helpers.getImageUrl(user.imagem!!, image)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

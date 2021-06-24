@@ -40,7 +40,6 @@ object Helpers {
     }
 
     fun getURL(): String {
-
         return "http://mindoverflow.amipca.xyz:60000"
     }
 

@@ -13,7 +13,7 @@
         android:fontFamily="@font/poppins_semibold"
         android:text="Editar Perfil de Utilizador"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/brown_500"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -116,8 +116,8 @@
 
     <ImageView
         android:id="@+id/imageViewGoBack"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="56dp"
         android:background="@drawable/ic_backward_arrow"
@@ -126,8 +126,8 @@
 
     <Button
         android:id="@+id/buttonEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="158dp"
+        android:layout_height="50dp"
         android:layout_marginTop="64dp"
         android:background="@drawable/rounded_corner"
         android:fontFamily="@font/poppins_medium"
@@ -139,17 +139,17 @@
 
     <Button
         android:id="@+id/buttonDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="158dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="28dp"
         android:background="@drawable/rounded_corner"
         android:fontFamily="@font/poppins_medium"
         android:text="Eliminar Perfil"
         android:textStyle="bold"
+        app:backgroundTint="#5A4635"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonEdit"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonEdit" />
 </androidx.constraintlayout.widget.ConstraintLayout>
