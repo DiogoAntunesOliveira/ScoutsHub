@@ -1,6 +1,7 @@
 package com.mindoverflow.scoutshub.adapter
 
 import android.R.id
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.RecyclerItem
+import com.mindoverflow.scoutshub.ui.ProfileViewActivity
 import java.lang.String
 
 
@@ -47,6 +49,12 @@ class RecycleViewAdapter internal constructor(recyclerList: MutableList<Recycler
         val currentItem: RecyclerItem = recyclerList[position]
         holder.imageView.setImageResource(currentItem.imageResource)
         holder.textView.text = currentItem.text
+        holder.itemView.setOnClickListener{
+            // get context of iteView
+            var context =  holder.itemView.context
+            var intent = Intent(context, ProfileViewActivity::class.java)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
