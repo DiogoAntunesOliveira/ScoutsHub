@@ -59,7 +59,7 @@
             android:name=".MainActivity"
             android:label="@string/app_name" />
         <activity android:name=".ui.Atividades.NovaAtividadeActivity" />
-        <activity android:name=".ui.Atividades.ConfirmNewActivity" />
+        <activity android:name=".ui.Atividades.CreateNewActivity" />
         <activity android:name=".ui.Atividades.CalendarioAtividadesActivity" />
         <activity android:name=".ui.SearchBarActivity" />
         <activity android:name=".ui.Login.FrontPage" />

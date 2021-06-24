@@ -34,7 +34,7 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 
 
-class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener{
+class CreateNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener{
 
     lateinit var spinner : Spinner
 
@@ -120,37 +120,8 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
 
                 val httpclient = OkHttpClient()
 
-                val getrequest =
-                    Request.Builder()
-                        .url("http://mindoverflow.amipca.xyz:60000/activities/")
-                        .build()
-                httpclient.newCall(getrequest).execute().use { response ->
-
-                    val string = response.body!!.string()
-
-                    val jsonObject = JSONObject(string)
-
-                    val jsonArrayArticles = jsonObject.getJSONArray("activities")
-
-                    println(jsonArrayArticles.length())
-                    for (index in 0 until jsonArrayArticles.length()) {
-                        /*
-                        val todasatividades : JSONObject = jsonArrayArticles.get(index) as JSONObject
-                        val atividadeinteira = Atividade.fromJson(todasatividades)*/
-
-                        //Obtem a atividade inteira e se o id nao for null adiciona 1
-                        val atividadeinteira = Atividade.fromJson(string, index)
-
-                        if (atividadeinteira.idAtividade != null) {idjson = atividadeinteira.idAtividade.toString()
-                        }else {
-                            idjson += 1}
-                    }
-                    response.body!!.close()
-                }
-                var nextidjson = Integer.parseInt(idjson)+1
-
                 val novaAtividade = Atividade(
-                    nextidjson,
+                    null,
                     nomeCompleto,
                     "",
                     "https://www.decorfacil.com/wp-content/uploads/2017/03/20171011fachada-casa-simples-pequena-99-960x600.jpg",
@@ -191,7 +162,6 @@ class ConfirmNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListe
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 this.startActivity(intent)
-                finish()
             }
 
 
