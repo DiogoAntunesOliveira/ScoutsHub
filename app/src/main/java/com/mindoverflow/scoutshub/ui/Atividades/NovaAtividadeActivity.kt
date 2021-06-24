@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mindoverflow.scoutshub.R
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -46,7 +44,6 @@ class NovaAtividadeActivity : AppCompatActivity() {
             val dateformatter = SimpleDateFormat("dd/MM/yyyy")
 
             dataAtividade = dateformatter.format(datemilitodate)
-            findViewById<TextView>(R.id.textViewData).setText(dataAtividade)
         }
 
         findViewById<Button>(R.id.buttonHora).setOnClickListener{
@@ -85,7 +82,7 @@ class NovaAtividadeActivity : AppCompatActivity() {
             if(editTextNomeActividade.text != null && editTextDescricaoAtividade.text != null || editTextNomeActividade.text.toString() != "" && editTextDescricaoAtividade.text.toString() != ""  ){
 
 
-                val notprocesseddata = (findViewById<TextView>(R.id.textViewData).text.toString() + findViewById<TextView>(R.id.textViewHora).text.toString())
+                val notprocesseddata = (dataAtividade + findViewById<TextView>(R.id.textViewHora).text.toString())
                 val dataHoraParser = SimpleDateFormat("dd/MM/yyyyHH:mm").parse(notprocesseddata)
                 val dataHoraFormatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(dataHoraParser)
 
@@ -94,7 +91,7 @@ class NovaAtividadeActivity : AppCompatActivity() {
 
 
                 //Se não forem null é criado um Intent com o contexto como esta Activity e a proxima activity como classe
-                val intent = Intent(this, ConfirmNewActivity::class.java)
+                val intent = Intent(this, CreateNewActivity::class.java)
                 //De seguida é colocado as strings de informação (data , nome e descricao) dentro da string com os seus devidos ids/nomes
                 intent.putExtra("dataAtividade", dataHoraAtividade)
                 intent.putExtra("nomeCompleto", editTextNomeActividade.text.toString())
