@@ -101,7 +101,7 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             var cardBeginData = rowView.findViewById<TextView>(R.id.BeginDataTextView)
             var cardOverData = rowView.findViewById<TextView>(R.id.OverDataTextView)
             val cardImageView = rowView.findViewById<ImageView>(R.id.imageViewCard)
-            val buttonAcepetRequest = rowView.findViewById<ImageView>(R.id.buttonCardAvailableActivityAccept)
+            val buttonAcepetRequest = rowView.findViewById<Button>(R.id.buttonCardAvailableActivityAccept)
 
             cardTitle.text = cardAvalableActivities[position].nome.toString()
             cardType.text = cardAvalableActivities[position].tipo.toString()

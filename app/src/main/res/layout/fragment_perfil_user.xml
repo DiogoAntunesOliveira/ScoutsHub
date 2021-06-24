@@ -18,7 +18,7 @@
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="3dp"
             android:background="@drawable/baseline_search_24"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,7 +27,7 @@
             android:id="@+id/textViewSearch"
             android:layout_width="231dp"
             android:layout_height="39dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="8dp"
             android:text="Procurar um utilizador"
             app:layout_constraintStart_toEndOf="@+id/imageViewSearch"
             app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,9 @@
             android:id="@+id/textViewPerfilAdmin"
             android:layout_width="358dp"
             android:layout_height="53dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="28dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="@string/Perfil"
             android:textAlignment="center"
@@ -74,19 +76,21 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="360dp"
+            android:layout_width="0dp"
             android:layout_height="269dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
+            android:layout_marginEnd="40dp"
             android:background="@drawable/custom_card_view"
             app:cardCornerRadius="@dimen/_24sdp"
             app:cardElevation="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAdminNome">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="330dp">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/textViewPerfilAdminDataNasc"
@@ -133,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="1dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
                     android:textColor="@color/black"
@@ -159,7 +163,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="5dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
@@ -174,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/poppins_medium"
                     android:text="TextView"
@@ -274,17 +278,6 @@
                     app:layout_constraintStart_toEndOf="@+id/textViewPerfilAdminNin"
                     app:layout_constraintTop_toBottomOf="@+id/textViewPerfilAdminCodigoPostal" />
 
-                <ImageView
-                    android:id="@+id/edit_user"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="@drawable/ic_edit_profile_button"
-                    android:backgroundTint="@color/brown_500"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <TextView
                     android:id="@+id/textView6"
                     android:layout_width="wrap_content"
@@ -297,6 +290,19 @@
                     android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/edit_user"
+                    android:layout_width="40dp"
+                    android:layout_height="31dp"
+                    android:layout_marginStart="169dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/textView6"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_edit_profile_button" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -320,12 +326,12 @@
             android:id="@+id/textViewAtv1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="50dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Atividades Recentes"
-            android:textSize="@dimen/_20sdp"
             android:textColor="@color/brown_500"
+            android:textSize="@dimen/_20sdp"
             app:layout_constraintBottom_toTopOf="@+id/recyclerViewProfileUser"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
@@ -343,16 +349,16 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewProfileUser" />
 
         <ImageView
-            android:id="@+id/imageButton2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="36dp"
-            android:background="@drawable/ic_log_out_button"
+            android:id="@+id/imageView4"
+            android:layout_width="43dp"
+            android:layout_height="38dp"
+            android:layout_marginStart="38dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toEndOf="@+id/textViewSearch"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_log_out_button" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -79,7 +79,7 @@ class WelcomebackActivity : AppCompatActivity() {
                         perfil.genero = sharedPreferences.getString("genero", null)
                         perfil.totalAtivParticip = 0
                         perfil.idEquipa = 1
-                        perfil.imagem = "https://cdn.discordapp.com/attachments/839158641474928710/855830146682060850/5f3b486198cb4e1db5729207a666c750.png"
+                        perfil.imagem = "https://cdn.discordapp.com/attachments/689891154149376033/857678265888276540/Craig-Federighi-Memoji.png"
 
 
                         val perfilJson = perfil.toJson().toString()

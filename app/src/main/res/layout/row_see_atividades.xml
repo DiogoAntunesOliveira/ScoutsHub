@@ -42,8 +42,8 @@
 
             <ImageView
                 android:id="@+id/imageViewCard"
-                android:layout_width="223dp"
-                android:layout_height="135dp"
+                android:layout_width="221dp"
+                android:layout_height="125dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
                 android:src="@drawable/bryce_canyon"
@@ -119,16 +119,16 @@
                 android:textSize="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.434"
+                app:layout_constraintHorizontal_bias="0.474"
                 app:layout_constraintStart_toEndOf="@+id/button2"
                 app:layout_constraintTop_toBottomOf="@+id/buttonCardAvailableActivityAccept"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="1.0" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="105dp"
                 android:layout_height="36dp"
-                android:layout_marginStart="36dp"
+                android:layout_marginStart="44dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/button_activities_reverse"
@@ -141,7 +141,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/button"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageViewCard"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/textView15"
