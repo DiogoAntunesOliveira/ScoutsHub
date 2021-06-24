@@ -18,22 +18,25 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_width="169dp"
+        android:layout_height="159dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/ic_acept_button" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="221dp"
         android:layout_height="30dp"
-        android:layout_marginTop="16dp"
-        android:text="Conta Registrada"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Conta Registada"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/view5"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
@@ -42,11 +45,13 @@
         android:layout_width="225dp"
         android:layout_height="51dp"
         android:layout_marginBottom="28dp"
-        android:background="@drawable/rounded_corner"
-        android:text="Finalizar Registro"
+        android:fontFamily="sans-serif-medium"
+        android:text="Finalizar Registo"
         app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="@+id/view5"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="@+id/view5" />
+        app:layout_constraintStart_toStartOf="@+id/view5"
+        app:backgroundTint="@null"
+        android:background="@drawable/button_activities"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
