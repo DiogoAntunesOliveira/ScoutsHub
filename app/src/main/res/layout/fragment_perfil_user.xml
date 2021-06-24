@@ -349,7 +349,7 @@
             app:layout_constraintTop_toBottomOf="@+id/recyclerViewProfileUser" />
 
         <ImageView
-            android:id="@+id/imageView4"
+            android:id="@+id/LogOut"
             android:layout_width="43dp"
             android:layout_height="38dp"
             android:layout_marginStart="38dp"

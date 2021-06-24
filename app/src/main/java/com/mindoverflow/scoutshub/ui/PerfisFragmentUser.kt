@@ -20,6 +20,7 @@ import bit.linux.tinyspacex.Helpers.getImageUrl
 import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
+import com.mindoverflow.scoutshub.SplashScreen
 import com.mindoverflow.scoutshub.adapter.CustomAdapter
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.models.Perfil
@@ -111,6 +112,7 @@ class PerfisFragmentUser : Fragment() {
         val searchImage: ImageView = view.findViewById(R.id.imageViewSearch)
         val searchText: TextView = view.findViewById(R.id.textViewSearch)
         val editPerfil : ImageView = view.findViewById(R.id.edit_user)
+        val logOut : ImageView = view.findViewById(R.id.LogOut)
 
 
         searchImage.setOnClickListener{
@@ -129,6 +131,12 @@ class PerfisFragmentUser : Fragment() {
             intent.putExtra("user_data", perfil!!.toJson().toString())
 
             startActivityForResult(intent, 1001)
+        }
+
+        logOut.setOnClickListener {
+            val intent = Intent(activity, SplashScreen::class.java)
+
+            startActivity(intent)
         }
     }
 
@@ -241,10 +249,11 @@ class PerfisFragmentUser : Fragment() {
 
                 val response = (response.body!!.string())
 
-                if(response != "{\"participante\":[]}")
-                atividades.add(
-                    arrayTodasAtividades[index]
-                )
+                if(response != "{\"participante\":[]}"){
+                    atividades.add(
+                        arrayTodasAtividades[index]
+                    )
+                }
             }
         }
         return atividades

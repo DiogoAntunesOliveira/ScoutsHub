@@ -10,9 +10,17 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import bit.linux.tinyspacex.Helpers
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.RecyclerItem
 import com.mindoverflow.scoutshub.ui.ProfileViewActivity
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import org.json.JSONObject
 import java.lang.String
 
 
@@ -46,14 +54,31 @@ class RecycleViewAdapter internal constructor(recyclerList: MutableList<Recycler
     }
 
     override fun onBindViewHolder(holder: RecyclerViewHolder, position: Int) {
+        //The current row correspondent to the position in the search view that has been clicked
         val currentItem: RecyclerItem = recyclerList[position]
+
         holder.imageView.setImageResource(currentItem.imageResource)
         holder.textView.text = currentItem.text
+
         holder.itemView.setOnClickListener{
             // get context of iteView
-            var context =  holder.itemView.context
-            var intent = Intent(context, ProfileViewActivity::class.java)
-            context.startActivity(intent)
+            val context =  holder.itemView.context
+
+            println("name")
+            println(holder.textView.text)
+
+            var perfil : Perfil? = null
+
+            GlobalScope.launch(Dispatchers.IO) {
+                perfil = UserNameVerification(holder.textView.text.toString())
+                println("perfil")
+                println(perfil)
+                GlobalScope.launch(Dispatchers.Main) {
+                    val intent = Intent(context, ProfileViewActivity::class.java)
+                    intent.putExtra("User", perfil!!.toJson().toString())
+                    context.startActivity(intent)
+                }
+            }
         }
     }
 
@@ -122,6 +147,35 @@ class RecycleViewAdapter internal constructor(recyclerList: MutableList<Recycler
         return mListener
     }*/
 
+    private fun UserNameVerification(user : kotlin.String) : Perfil? {
+        //val users = ArrayList<Perfil>()
+
+        var userToReturn : Perfil? = null
+
+        val client = OkHttpClient()
+
+        val url = Helpers.getURL()
+
+        val request =
+            Request.Builder().url("$url/perfil/")
+                .get()
+                .build()
+
+        client.newCall(request).execute().use { response ->
+
+            val jsStr = (response.body!!.string())
+            val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
+
+            for (index in 0 until jsonArray.length()) {
+                val userCompare = Perfil.fromJson(jsStr, index)
+
+                if(user.equals(userCompare.nome!!, ignoreCase = true)){
+                    userToReturn = userCompare
+                }
+            }
+        }
+        return userToReturn
+    }
 
 
     init {

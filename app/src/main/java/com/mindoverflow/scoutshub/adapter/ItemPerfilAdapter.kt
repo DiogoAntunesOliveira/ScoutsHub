@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import bit.linux.tinyspacex.Helpers.getImageUrl
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Atividade
 
@@ -33,8 +34,11 @@ class CustomAdapter(val userList: ArrayList<Atividade>) : RecyclerView.Adapter<C
         fun bindItems(atividade: Atividade) {
             val textViewName = itemView.findViewById(R.id.card_item_name) as TextView
             val textViewAddress  = itemView.findViewById(R.id.card_item_description) as TextView
+            val textViewImage  = itemView.findViewById(R.id.vard_item_image) as ImageView
+
             textViewName.text = atividade.nome
             textViewAddress.text = atividade.localInicio
+            getImageUrl(atividade.imagem.toString() ,textViewImage)
         }
     }
 }
