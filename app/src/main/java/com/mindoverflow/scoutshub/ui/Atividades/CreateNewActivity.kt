@@ -1,19 +1,18 @@
 package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.navigation.fragment.findNavController
-import com.github.sundeepk.compactcalendarview.domain.Event
 import com.mindoverflow.scoutshub.MainActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Atividade
+import com.mindoverflow.scoutshub.models.Equipa
 import com.mindoverflow.scoutshub.ui.MateriaisFragment
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.TESTE_DIC_KEY
 import com.mindoverflow.scoutshub.ui.MateriaisFragment.Companion.dataAtividade
@@ -26,11 +25,10 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.Exception
 import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.ZoneId
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 
@@ -51,15 +49,37 @@ class CreateNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListen
         val descricaoPreviousActivity = intent.getStringExtra("descricao")
         val selectedPreviousRowsID = intent.getSerializableExtra("IDs")
 
-        val equipamento = findViewById<Button>(R.id.equipamento)
+
         val buttonAddNewActivity = findViewById<Button>(R.id.buttonAddNewActivity)
 
+       /* var departamentos: MutableList<String> = arrayListOf()
+
         //Fazer os botões visiveis
-        equipamento.visibility = View.VISIBLE
+      //  equipamento.visibility = View.VISIBLE
         buttonAddNewActivity.visibility = View.VISIBLE
 
+        GlobalScope.launch(Dispatchers.IO) {
+            val client = OkHttpClient()
+            val atividadesvalidasinforequest = Request.Builder()
+                .url("http://mindoverflow.amipca.xyz:60000/team")
+                .build()
+            client.newCall(atividadesvalidasinforequest).execute().use { response ->
+                val string: String = response.body!!.string()
+                println(string)
+                val jsonObject = JSONObject(string)
+                val jsonArrayTeams = jsonObject.getJSONArray("teams") as JSONArray
+
+                for (index in 0 until jsonArrayTeams.length()) {
+                    val jsonTeam : JSONObject = jsonArrayTeams.get(index) as JSONObject
+                    val equipa = Equipa.fromJson(jsonTeam)
+                    departamentos.add("Departamento " + equipa.nome_equipa!!)
+                }
+
+            } }*/
+
         //Declarar o spinner
-        var spinner = findViewById<Spinner>(R.id.departamento)
+        val spinner = findViewById<Spinner>(R.id.departamento)
+
         //Formata o ArrayAdapter utilizando o modelo simple_spinner_item
         val adapter: ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
             this,
@@ -83,11 +103,12 @@ class CreateNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListen
         findViewById<TextView>(R.id.nomeCompleto).text = nomeCompleto
 
 
-        val googleStreetLink = findViewById<EditText>(R.id.googleLink)
-
+        val longitude = findViewById<EditText>(R.id.longitudeActivity)
+        val latitude = findViewById<EditText>(R.id.latitudeActivity)
+        val localizacao = findViewById<EditText>(R.id.localizacao)
 
         //Ao clicar no botão equipamento os botões ficam invisiveis
-        equipamento.setOnClickListener {
+      /*  equipamento.setOnClickListener {
 
             equipamento.visibility = View.INVISIBLE
             buttonAddNewActivity.visibility = View.INVISIBLE
@@ -106,7 +127,7 @@ class CreateNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListen
             //Declara as operações para iniciar o fragment nestas são ,substitui o constraintlayout pelo fragment e no final inicia o fragment
             fragmentManager.beginTransaction().replace(R.id.confirmarConstraint, fragment).commit()
 
-        }
+        }*/
 
 
         //Faz um post um request de POST com as informações anteriores
@@ -127,11 +148,11 @@ class CreateNewActivity : AppCompatActivity() , AdapterView.OnItemSelectedListen
                     "https://www.decorfacil.com/wp-content/uploads/2017/03/20171011fachada-casa-simples-pequena-99-960x600.jpg",
                     descricao,
                     "0",
+                    localizacao.text.toString(),
                     "",
                     "",
-                    "",
-                    "",
-                    "",
+                    latitude.text.toString(),
+                    longitude.text.toString(),
                     dataAtividade,
                     dataAtividade
                 )
