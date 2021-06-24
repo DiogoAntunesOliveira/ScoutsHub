@@ -37,6 +37,7 @@ class ProfileAdmEditActivity : AppCompatActivity() {
 
         supportActionBar!!.hide()
 
+
         val jsonString = intent.getStringExtra("user_data")
 
         val perfil = Perfil.fromJson(jsonString, null)

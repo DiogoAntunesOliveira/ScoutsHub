@@ -69,7 +69,8 @@
             android:layout_marginTop="24dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_calendar" />
+            app:srcCompat="@drawable/ic_calendar"
+            android:tint="#5A4635"/>
 
         <TextView
             android:id="@+id/titleOption1"
@@ -115,7 +116,8 @@
             android:layout_marginTop="44dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_fire" />
+            app:srcCompat="@drawable/ic_activities_button"
+            android:tint="#5A4635" />
 
         <TextView
             android:id="@+id/titleOption2"
@@ -173,7 +175,8 @@
             android:layout_marginTop="44dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_docs" />
+            app:srcCompat="@drawable/ic_instuctions_button"
+            android:tint="#5A4635"/>
 
         <TextView
             android:id="@+id/titleOption3"
