@@ -79,7 +79,7 @@
             android:layout_marginStart="43dp"
             android:layout_marginTop="33dp"
             android:layout_marginEnd="42dp"
-            android:layout_marginBottom="31dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/button_activities"
             android:text="Entrar"
             app:backgroundTint="@null"
