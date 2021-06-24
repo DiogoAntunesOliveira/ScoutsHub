@@ -40,20 +40,16 @@ class ProfileUserEditActivity : AppCompatActivity() {
         val jsonString = intent.getStringExtra("user_data")
 
 
-        val user = Perfil.fromJson(jsonString, null)
+        val perfil = Perfil.fromJson(jsonString, null)
 
-        //here i get the user email
-        //Email()
-
-        User(user)
+        User(perfil)
 
         supportActionBar!!.hide()
 
 
-
         buttonEdit.setOnClickListener {
                 val returnIntent = Intent()
-                val userEdited = SaveChanges(user)
+                val userEdited = SaveChanges(perfil)
 
                 GlobalScope.launch(Dispatchers.IO) {
                     SavingUserEmail()
