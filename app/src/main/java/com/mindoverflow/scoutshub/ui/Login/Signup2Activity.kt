@@ -30,9 +30,7 @@ class Signup2Activity : AppCompatActivity() {
         val bt_next2 = findViewById<Button>(R.id.bt_next2)
 
         bt_back.setOnClickListener {
-
-            val intent = Intent(this, Signup1Activity::class.java)
-            startActivity(intent)
+            finish()
         }
 
         bt_next2.setOnClickListener {
@@ -46,7 +44,13 @@ class Signup2Activity : AppCompatActivity() {
             // editor
             val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
-            if (morada.text.toString().isNotEmpty() && codPostal.text.toString().isNotEmpty() && dtNasc.text.toString().isNotEmpty()) {
+            if (morada.text.toString().isNotEmpty() && codPostal.text.toString().isNotEmpty() && dtNasc.text.toString().isNotEmpty() && telemovel.text.toString().isNotEmpty()) {
+
+                if (nin.text.toString().isEmpty()) {
+
+                    nin.setText("123456789")
+                }
+
                 // por dados em sharedpreferences
                 editor.putInt("nin", nin.text.toString().toInt())
                 editor.putString("codPostal", codPostal.text.toString())
@@ -62,7 +66,7 @@ class Signup2Activity : AppCompatActivity() {
 
             } else {
 
-                Toast.makeText(this, "Por favor preencha os campos obrigatorios", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor preencha todos campos", Toast.LENGTH_SHORT).show()
             }
         }
     }

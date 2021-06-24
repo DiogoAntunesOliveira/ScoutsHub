@@ -19,14 +19,12 @@ class FrontPage : AppCompatActivity() {
         bt_signin.setOnClickListener {
 
             val intent = Intent(this, WelcomebackActivity::class.java)
-            finish()
             startActivity(intent)
         }
 
         bt_signup.setOnClickListener {
 
             val intent = Intent(this, Signup1Activity::class.java)
-            finish()
             startActivity(intent)
         }
     }

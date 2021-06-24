@@ -53,7 +53,6 @@ class WelcomebackActivity : AppCompatActivity() {
             // se estiver preenchido
             if (mail.text.toString().isNotEmpty() && pass.text.toString().isNotEmpty()) {
 
-
                 // para correr noutra thread da main para nao crashar
                 GlobalScope.launch(Dispatchers.IO) {
 

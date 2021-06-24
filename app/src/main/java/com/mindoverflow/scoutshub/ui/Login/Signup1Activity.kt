@@ -24,9 +24,6 @@ class Signup1Activity : AppCompatActivity() {
 
 
         bt_back.setOnClickListener {
-
-            val intent = Intent(this, FrontPage::class.java)
-            startActivity(intent)
             finish()
         }
 
@@ -63,12 +60,19 @@ class Signup1Activity : AppCompatActivity() {
             // apilcar em sharedpreferences
             editor.apply()
 
-            if (nome.text.toString().isNotEmpty() && mail.text.toString().isNotEmpty() && (pass.text.toString().isNotEmpty() == pass1.text.toString().isNotEmpty())){
+            if (nome.text.toString().isNotEmpty() && mail.text.toString().isNotEmpty() && (pass.text.toString().isNotEmpty() && pass1.text.toString().isNotEmpty()) && (genero == "Masculino" || genero == "Femenino")){
 
-                val intent = Intent(this, Signup2Activity::class.java)
-                startActivity(intent)
+                    if (pass.text.toString() == pass1.text.toString()) {
 
-            }else {
+                        val intent = Intent(this, Signup2Activity::class.java)
+                        startActivity(intent)
+
+                    } else {
+
+                        Toast.makeText(this, "As passwords não coincidem. Por Favor tente novamente", Toast.LENGTH_SHORT).show()
+                    }
+
+            }else if (pass.text.toString() != pass1.text.toString()) {
 
                 Toast.makeText(this, "Por favor preencha todos os campos", Toast.LENGTH_SHORT).show()
             }

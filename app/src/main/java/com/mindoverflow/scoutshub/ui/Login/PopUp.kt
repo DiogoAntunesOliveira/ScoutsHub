@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.R
+import com.mindoverflow.scoutshub.SplashScreen
 import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.Utilizador
 import kotlinx.coroutines.Dispatchers
@@ -56,7 +58,8 @@ class PopUp : AppCompatActivity() {
 
                 GlobalScope.launch(Dispatchers.Main){
 
-                    val intent = Intent(this@PopUp, FrontPage::class.java)
+                    val intent = Intent(this@PopUp, SplashScreen::class.java)
+                    Toast.makeText(this@PopUp, "Conta criada com sucesso, aguarde que o seu perfil seja aceita para entrar", Toast.LENGTH_SHORT).show()
                     startActivity(intent)
                 }
             }
