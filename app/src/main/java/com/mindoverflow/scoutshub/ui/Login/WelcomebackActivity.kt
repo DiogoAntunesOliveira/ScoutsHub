@@ -79,20 +79,9 @@ class WelcomebackActivity : AppCompatActivity() {
                         perfil.nin = sharedPreferences.getInt("nin", 123456789)
                         perfil.genero = sharedPreferences.getString("genero", null)
                         perfil.totalAtivParticip = 0
-                        perfil.idEquipa = 5
+                        perfil.idEquipa = 1
                         perfil.imagem = "https://cdn.discordapp.com/attachments/839158641474928710/855830146682060850/5f3b486198cb4e1db5729207a666c750.png"
-                        println("information")
-                        println(perfil.idUtilizador)
-                        println(perfil.dtNasc)
-                        println(perfil.codigoPostal)
-                        println(perfil.contacto)
-                        println(perfil.morada)
-                        println(perfil.nin)
-                        println(perfil.genero)
-                        println(perfil.totalAtivParticip)
-                        println(perfil.idEquipa)
-                        println(perfil.imagem)
-                        println(perfil.idEquipa)
+
 
                         val perfilJson = perfil.toJson().toString()
 
@@ -101,11 +90,6 @@ class WelcomebackActivity : AppCompatActivity() {
 
                         val requestBody1 = RequestBody.create("application/json".toMediaTypeOrNull(), perfilJson)
 
-                        println("user to login")
-                        println(userToLogin.id_utilizador)
-                        println("perfilJson")
-                        println(perfilJson)
-
                         val request1 = Request.Builder()
                             .url("$url/perfil/user/${userToLogin.id_utilizador}")
                             .post(requestBody1)
@@ -113,6 +97,15 @@ class WelcomebackActivity : AppCompatActivity() {
 
                         client.newCall(request1).execute().use { response ->
                             println(response.body!!.string())
+                        }
+
+                        //Verificação de que o perfil já existe
+                        val perfilExistence = perfilExistence()
+
+                        println("####teste1 Delete#########")
+                        if(perfilExistence != null){
+                            println("####teste2 Delete#########")
+                            deletePerfil(perfilExistence)
                         }
 
                         GlobalScope.launch(Dispatchers.Main) {
@@ -169,12 +162,54 @@ class WelcomebackActivity : AppCompatActivity() {
                 }
             }
 
-            println("response body")
             println(response.body!!.toString())
         }
-        println("userToLogin")
-        println(userToLogin)
+
         return userToLogin
+    }
+
+    private fun perfilExistence() : Perfil? {
+        val client = OkHttpClient()
+        val url = getURL()
+
+        val request1 = Request.Builder()
+            .url("$url/perfil")
+            .get()
+            .build()
+
+        //Verificação do perfil já existir
+        client.newCall(request1).execute().use { response ->
+            val jsStr = (response.body!!.string())
+
+            val jsonArray = JSONObject(jsStr).getJSONArray("perfis")
+
+            for (a in 0 until jsonArray.length() - 1) {
+                for (b in a + 1 until jsonArray.length()){
+                    val perfil1 = Perfil.fromJson(jsStr, a)
+                    val perfil2 = Perfil.fromJson(jsStr, b)
+
+                    if(perfil1.idUtilizador == perfil2.idUtilizador){
+                        return perfil2
+                    }
+                }
+            }
+        }
+        return null
+    }
+
+    private fun deletePerfil(perfil : Perfil){
+        val client = OkHttpClient()
+        val url = getURL()
+
+        val request1 = Request.Builder()
+            .url("$url/perfil/${perfil.idPerfil}")
+            .delete()
+            .build()
+
+        //Verificação do perfil já existir
+        client.newCall(request1).execute().use { response ->
+            println(response.body!!.string())
+        }
     }
 }
 

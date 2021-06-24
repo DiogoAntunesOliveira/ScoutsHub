@@ -71,8 +71,10 @@ class ProfileAdmEditActivity : AppCompatActivity() {
 
         buttonDelete.setOnClickListener {
             GlobalScope.launch(Dispatchers.IO) {
-                DeleteUser(perfil.idPerfil!!)
+                DeleteUser(perfil.idPerfil!!, perfil.idUtilizador!!)
                 GlobalScope.launch(Dispatchers.Main) {
+                    val returnIntent = Intent()
+                    setResult(Activity.RESULT_CANCELED, returnIntent)
                     finish()
                 }
             }
@@ -82,18 +84,26 @@ class ProfileAdmEditActivity : AppCompatActivity() {
             finish()
         }
     }
-    fun DeleteUser(id: Int){
+    fun DeleteUser(idPerfil: Int, idUtilizador: Int){
 
         val client = OkHttpClient()
 
         val url = getURL()
 
-        val request = Request.Builder().url("$url/perfil/${id}")
+        val request1 = Request.Builder().url("$url/perfil/$idPerfil")
             .delete()
             .build()
 
-        client.newCall(request).execute().use { response ->
+        client.newCall(request1).execute().use { response ->
+            println(response.body!!.string())
+        }
 
+        val request2 = Request.Builder().url("$url/user/$idUtilizador")
+            .delete()
+            .build()
+
+        client.newCall(request2).execute().use { response ->
+            println(response.body!!.string())
         }
     }
 

@@ -38,7 +38,7 @@ class PerfisFragmentUser : Fragment() {
     //var perfis : MutableList<Perfil> = arrayListOf()
     //lateinit var adapter : PerfilAdapter
 
-    var user : Perfil? = null
+    var perfil : Perfil? = null
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
@@ -58,13 +58,13 @@ class PerfisFragmentUser : Fragment() {
         }
 
         GlobalScope.launch(Dispatchers.IO) {
-            //Get the user by Id, using a get request
 
+            //Get the user by Id, using a get request
             val userId = SavedUserData.id_utilizador
-            user = GetUser(userId!!)
+            perfil = GetUserPerfil(userId!!)
 
             GlobalScope.launch(Dispatchers.Main) {
-                InsertDataIntoUser(user!!, rootView)
+                InsertDataIntoUser(perfil!!, rootView)
             }
         }
 
@@ -84,7 +84,15 @@ class PerfisFragmentUser : Fragment() {
             val arrayTodasAtividades =  GettingAllActivities()
             val atividades = AddingActivities(arrayTodasAtividades, userId!!)
 
+
             GlobalScope.launch(Dispatchers.Main){
+
+                val activityTitle = rootView.findViewById<TextView>(R.id.textViewAtv1)
+
+                if(atividades.isNullOrEmpty()){
+                    activityTitle.visibility = View.GONE
+                }
+
                 //creating our adapter
                 val adapter = CustomAdapter(atividades)
                 //now adding the adapter to recyclerview
@@ -102,7 +110,7 @@ class PerfisFragmentUser : Fragment() {
 
         val searchImage: ImageView = view.findViewById(R.id.imageViewSearch)
         val searchText: TextView = view.findViewById(R.id.textViewSearch)
-        val editPerfil : ImageView = view.findViewById(R.id.imageView6)
+        val editPerfil : ImageView = view.findViewById(R.id.edit_user)
 
 
         searchImage.setOnClickListener{
@@ -118,7 +126,7 @@ class PerfisFragmentUser : Fragment() {
 
         editPerfil.setOnClickListener {
             val intent = Intent(activity, ProfileUserEditActivity::class.java)
-            intent.putExtra("user_data", user!!.toJson().toString())
+            intent.putExtra("user_data", perfil!!.toJson().toString())
 
             startActivityForResult(intent, 1001)
         }
@@ -146,10 +154,10 @@ class PerfisFragmentUser : Fragment() {
                     if (userUpdated != null) {
                         GlobalScope.launch(Dispatchers.Main) {
                             //registers the update made to the user on the app
-                            val userFromJson = Perfil.fromJson(userUpdated, null)
-                            userFromJson.dtNasc = DateFormaterIngToPt(userFromJson.dtNasc.toString())
-                            user = userFromJson
-                            insertingDataIntoUserAfterPut(user!!)
+                            val perfilFromJson = Perfil.fromJson(userUpdated, null)
+                            perfilFromJson.dtNasc = DateFormaterIngToPt(perfilFromJson.dtNasc.toString())
+                            perfil = perfilFromJson
+                            insertingDataIntoUserAfterPut(perfil!!)
                         }
                     }
                 }
@@ -212,9 +220,6 @@ class PerfisFragmentUser : Fragment() {
             toReturn = newData.toJson().toString()
 
         }
-
-        println(toReturn)
-
         return toReturn
     }
 
@@ -235,7 +240,6 @@ class PerfisFragmentUser : Fragment() {
             client.newCall(request).execute().use { response ->
 
                 val response = (response.body!!.string())
-                println(response)
 
                 if(response != "{\"participante\":[]}")
                 atividades.add(
@@ -302,7 +306,7 @@ class PerfisFragmentUser : Fragment() {
         getImageUrl(user.imagem!!, image)
     }
 
-    private fun GetUser(userId : Int) : Perfil{
+    private fun GetUserPerfil(userId : Int) : Perfil{
 
         val client = OkHttpClient()
         val url = getURL()
@@ -313,37 +317,8 @@ class PerfisFragmentUser : Fragment() {
 
         client.newCall(request).execute().use { response ->
             val jsStr = (response.body!!.string())
-            println(jsStr)
 
             return Perfil.fromJson(jsStr, 0)
         }
     }
-
-
-    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        //getting recyclerview from xml
-        val recyclerView = findViewById(R.id.recyclerView) as RecyclerView
-
-        //adding a layoutmanager
-        recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-
-
-        //crating an arraylist to store users using the data class user
-        val users = ArrayList<Atividade>()
-
-        //adding some dummy data to the list
-        users.add(Atividade(1, "acampamento", "canoagem", "divercao", 10,  ))
-        users.add(User("Ramiz Khan", "Ranchi Jharkhand"))
-        users.add(User("Faiz Khan", "Ranchi Jharkhand"))
-        users.add(User("Yashar Khan", "Ranchi Jharkhand"))
-
-        //creating our adapter
-        val adapter = CustomAdapter(users)
-
-        //now adding the adapter to recyclerview
-        recyclerView.adapter = adapter
-    }*/
-
 }

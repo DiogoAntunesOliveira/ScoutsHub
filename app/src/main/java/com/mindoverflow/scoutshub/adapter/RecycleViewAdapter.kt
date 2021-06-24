@@ -1,5 +1,6 @@
 package com.mindoverflow.scoutshub.adapter
 
+import android.R.id
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.RecyclerItem
-import kotlin.collections.ArrayList
+import java.lang.String
+
 
 // The classe used as an adapter for the RecylerView
 class RecycleViewAdapter internal constructor(recyclerList: MutableList<RecyclerItem>) :
@@ -19,8 +21,8 @@ class RecycleViewAdapter internal constructor(recyclerList: MutableList<Recycler
 
     // recyclerList not full
     private val recyclerList: List<RecyclerItem>
-
     private var recyclerListFull: List<RecyclerItem> = ArrayList<RecyclerItem>(recyclerList)
+    //private var mListener : RecycleViewAdapter.OnItemClickListener? = null
 
     inner class RecyclerViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -79,6 +81,40 @@ class RecycleViewAdapter internal constructor(recyclerList: MutableList<Recycler
             notifyDataSetChanged()
         }
     }
+
+    /*class EnquiryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var imageView : TextView
+        var textView: TextView
+
+        init {
+            imageView = itemView.findViewById(R.id.imageViewPesquisa)
+            textView = itemView.findViewById(R.id.textViewPesquisa)
+            itemView.setOnClickListener {
+                val lister = setOnItemClickListener(listener)
+                if (mListener != null) {
+                    val position = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        cursor.moveToPosition(position)
+                        id = cursor.getInt(cursor.getColumnIndex(FormContract.FormEntry._ID))
+                        Log.d("ID", String.valueOf(id))
+                        mListner.onItemClick(position)
+                    }
+                }
+            }
+        }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) : RecycleViewAdapter.OnItemClickListener? {
+        mListener = listener
+
+        return mListener
+    }*/
+
+
 
     init {
         this.recyclerList = recyclerList

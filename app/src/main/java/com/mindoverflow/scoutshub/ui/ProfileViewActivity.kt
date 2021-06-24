@@ -3,6 +3,7 @@ package com.mindoverflow.scoutshub.ui
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -70,6 +71,13 @@ class ProfileViewActivity : AppCompatActivity() {
             atividades = AddingActivities(arrayTodasAtividades, user.idUtilizador!!)
 
             GlobalScope.launch(Dispatchers.Main){
+
+                val activityTitle = findViewById<TextView>(R.id.textViewAtv2)
+
+                if(atividades.isNullOrEmpty()){
+                    activityTitle.visibility = View.GONE
+                }
+
                 //creating our adapter
                 val adapter = CustomAdapter(atividades)
                 //now adding the adapter to recyclerview
@@ -79,7 +87,7 @@ class ProfileViewActivity : AppCompatActivity() {
 
 
         goBack = findViewById<ImageView>(R.id.imageViewVoltarAtras)
-        goAhead = findViewById<ImageView>(R.id.hamburguerButton)
+        goAhead = findViewById<ImageView>(R.id.edit_user2)
 
 
         //Going foward to the activity "EditingProfile"
@@ -123,8 +131,6 @@ class ProfileViewActivity : AppCompatActivity() {
                 }
             }
         }
-        println("atividades")
-        println(atividades)
         return atividades
     }
 
@@ -181,6 +187,9 @@ class ProfileViewActivity : AppCompatActivity() {
                         }
                     }
                 }
+            }
+            if (resultCode == RESULT_CANCELED) {
+                finish()
             }
         }
         return
@@ -269,7 +278,6 @@ class ProfileViewActivity : AppCompatActivity() {
             toReturn = newData.toJson().toString()
 
         }
-        println("teste5")
         return toReturn
     }
 }

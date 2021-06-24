@@ -1,10 +1,13 @@
 package com.mindoverflow.scoutshub.ui
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.view.Gravity
 import android.view.Menu
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -33,25 +36,27 @@ class SearchBarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_bar)
 
+        supportActionBar!!.hide()
+
         GlobalScope.launch(Dispatchers.IO) {
-            val usersFromJson: ArrayList<Perfil> = GetUsers()
+            val users: ArrayList<Perfil> = GetUsers()
             GlobalScope.launch(Dispatchers.Main) {
-                fillUsersList(usersFromJson)
-                println(fillUsersList(usersFromJson))
+
+                fillUsersList(users)
                 setUpRecyclerView()
             }
         }
-
-
-        supportActionBar!!.hide()
     }
 
+    //When this activity restarts,
+    //its going back to the Perfis Fragment user
     override fun onRestart() {
         super.onRestart()
 
         finish()
     }
 
+    //Getting all of the users in the data base with the exception of the user using the search view
     private fun GetUsers() : ArrayList<Perfil> {
 
         val users = ArrayList<Perfil>()
@@ -81,8 +86,8 @@ class SearchBarActivity : AppCompatActivity() {
         return users
     }
 
-    //Adding some dummy data to the recycler List
-    private fun fillUsersList(usersFromJson : ArrayList<Perfil>) {
+    //Adding user data to the recycler view
+    private fun fillUsersList(users : ArrayList<Perfil>) {
         recyclerList = ArrayList()
 
         val image0 = R.drawable.bryce_canyon
@@ -91,13 +96,14 @@ class SearchBarActivity : AppCompatActivity() {
         // Deu um erro de index 2 : size 3 porque me faltava uma imagem
         val images = arrayListOf(image0, image1)
 
-        for (user in usersFromJson) {
+        for (user in users) {
             (recyclerList as ArrayList<RecyclerItem>).add(RecyclerItem(image1, user.nome!!))
         }
     }
 
     private fun setUpRecyclerView() {
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
+        //sets the size of the recycler view to be fixed
         recyclerView.setHasFixedSize(true)
         //sets the layout of the RecyclerView to be vertical
         val layoutManager: RecyclerView.LayoutManager = LinearLayoutManager(this)
@@ -105,12 +111,14 @@ class SearchBarActivity : AppCompatActivity() {
         adapter = RecycleViewAdapter(recyclerList!!)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
+
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
 
         val searchView = findViewById<android.widget.SearchView>(R.id.searchView)
-
+        val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
 
         //replace the action button of the keyboard with a more appropriate one
         searchView.imeOptions = EditorInfo.IME_ACTION_DONE
@@ -133,7 +141,9 @@ class SearchBarActivity : AppCompatActivity() {
                                 intent.putExtra("User" , userToView.toJson().toString())
                                 startActivity(intent)
                             } else {
-                                Toast.makeText(this@SearchBarActivity, "O utilizador inserido é invalido", Toast.LENGTH_LONG).show()
+                                val toast = Toast.makeText(this@SearchBarActivity, "O utilizador inserido é invalido", Toast.LENGTH_LONG)
+                                toast.setGravity(Gravity.CENTER, 0, 0)
+                                toast.show()
                             }
                         }
                     }
@@ -160,10 +170,10 @@ class SearchBarActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
 
-        val ip = getURL()
+        val url = getURL()
 
         val request =
-            Request.Builder().url("$ip/perfil/")
+            Request.Builder().url("$url/perfil/")
                 .get()
                 .build()
 
