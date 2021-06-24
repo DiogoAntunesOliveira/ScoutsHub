@@ -61,7 +61,7 @@ class RecycleViewAdapter internal constructor(recyclerList: MutableList<Recycler
         holder.textView.text = currentItem.text
 
         holder.itemView.setOnClickListener{
-            // get context of iteView
+            // get context of itemView
             val context =  holder.itemView.context
 
             println("name")

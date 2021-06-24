@@ -140,7 +140,6 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/poppins_medium"
             android:text="Participa nas atividades\ndisponiveis"
-            android:textColor="@color/black"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/optionImage2"
             app:layout_constraintTop_toBottomOf="@+id/titleOption2" />

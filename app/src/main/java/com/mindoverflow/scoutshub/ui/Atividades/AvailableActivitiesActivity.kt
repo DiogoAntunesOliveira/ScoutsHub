@@ -5,12 +5,16 @@ package com.mindoverflow.scoutshub.ui.Atividades
 // description : Show available activities and connect to MapsActivity
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.RequiresApi
+import bit.linux.tinyspacex.Helpers
+import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.MapsActivity
 import com.mindoverflow.scoutshub.R
@@ -93,6 +97,7 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             return 0
         }
 
+        @RequiresApi(Build.VERSION_CODES.O)
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val rowView = layoutInflater.inflate(R.layout.row_see_atividades, parent, false)
 
@@ -104,10 +109,13 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             val buttonAcepetRequest = rowView.findViewById<Button>(R.id.buttonCardAvailableActivityAccept)
             var buttonRejectRequest = rowView.findViewById<Button>(R.id.buttonCardAvailableActivityReject)
 
+            var formatedDataInicial = Helpers.DateFormaterApi(cardAvalableActivities[position].dataInicio.toString())
+            var formatedDataFimOver =  Helpers.DateFormaterApi(cardAvalableActivities[position].dataFim.toString())
+
             cardTitle.text = cardAvalableActivities[position].nome.toString()
             cardType.text = cardAvalableActivities[position].tipo.toString()
-            cardBeginData.text = cardAvalableActivities[position].dataInicio.toString()
-            cardOverData.text = cardAvalableActivities[position].dataFim.toString()
+            cardBeginData.text = formatedDataInicial
+            cardOverData.text = formatedDataFimOver
 
             cardImageView.setOnClickListener{
                 val intent = Intent(this@AvailableActivitiesActivity, MapsActivity::class.java)
