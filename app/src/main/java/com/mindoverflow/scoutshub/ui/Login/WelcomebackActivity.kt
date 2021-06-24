@@ -42,9 +42,6 @@ class WelcomebackActivity : AppCompatActivity() {
         val login_bt = findViewById<Button>(R.id.login_bt)
 
         bt_back.setOnClickListener {
-
-            val intent = Intent(this, FrontPage::class.java)
-            startActivity(intent)
             finish()
         }
 
@@ -55,7 +52,6 @@ class WelcomebackActivity : AppCompatActivity() {
 
             // se estiver preenchido
             if (mail.text.toString().isNotEmpty() && pass.text.toString().isNotEmpty()) {
-
 
                 // para correr noutra thread da main para nao crashar
                 GlobalScope.launch(Dispatchers.IO) {

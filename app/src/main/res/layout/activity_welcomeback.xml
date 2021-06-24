@@ -93,17 +93,4 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="76dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="23dp"
-        android:layout_marginBottom="11dp"
-        android:src="@drawable/ic_baseline_fingerprint_24"
-        app:layout_constraintBottom_toTopOf="@+id/login_bt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginpassword"
-        app:layout_constraintVertical_bias="0.0" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

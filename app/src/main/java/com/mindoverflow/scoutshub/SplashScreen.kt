@@ -8,6 +8,7 @@ import android.os.Handler
 import android.widget.TextView
 import com.airbnb.lottie.LottieAnimationView
 import com.mindoverflow.scoutshub.ui.Login.FrontPage
+import com.mindoverflow.scoutshub.ui.Login.WelcomebackActivity
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
