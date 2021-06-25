@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingStart="@dimen/_10sdp">
+
+    <androidx.cardview.widget.CardView
+
+        android:layout_width="@dimen/_260sdp"
+        android:layout_height="@dimen/_300sdp"
+        android:layout_margin="@dimen/_10sdp"
+        app:cardCornerRadius="@dimen/_30sdp"
+        app:cardElevation="@dimen/_5sdp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="29dp"
+                android:layout_height="26dp"
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_black_default_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+            <TextView
+                android:id="@+id/locationActivity"
+                android:layout_width="70dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Location"
+                app:layout_constraintBottom_toTopOf="@+id/imageViewCard"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+            <ImageView
+                android:id="@+id/imageViewCard"
+                android:layout_width="221dp"
+                android:layout_height="125dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:src="@drawable/find"
+                app:layout_constraintBottom_toTopOf="@+id/buttonCardAvailableActivityAccept"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <TextView
+                android:id="@+id/cardTitleActivities"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Activity Name"
+                android:textAlignment="center"
+                android:textSize="@dimen/_20sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:textColor="@color/brown_500"/>
+
+            <TextView
+                android:id="@+id/typeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="88dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="TextView"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/textView15"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/OverDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="152dp"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="TextView"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/typeTextView" />
+
+            <TextView
+                android:id="@+id/BeginDataTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="132dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="TextView"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/OverDataTextView" />
+
+            <Button
+                android:id="@+id/buttonCardAvailableActivityAccept"
+                android:layout_width="114dp"
+                android:layout_height="38dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_activities"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Aceitar"
+                android:textColor="#FFFFFF"
+                android:textSize="10dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.474"
+                app:layout_constraintStart_toEndOf="@+id/buttonCardAvailableActivityReject"
+                app:layout_constraintTop_toBottomOf="@+id/buttonCardAvailableActivityAccept"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/buttonCardAvailableActivityReject"
+                android:layout_width="105dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="44dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_activities_reverse"
+                android:fontFamily="@font/poppins_medium"
+                android:text="rejeitar"
+                android:textColor="#A9876B"
+                android:textSize="@dimen/_8sdp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewCard"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Data inicio:"
+                app:layout_constraintEnd_toStartOf="@+id/OverDataTextView"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/typeTextView" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="6dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Data fim:"
+                app:layout_constraintEnd_toStartOf="@+id/BeginDataTextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

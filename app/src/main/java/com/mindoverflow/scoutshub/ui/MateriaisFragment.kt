@@ -1,18 +1,19 @@
 package com.mindoverflow.scoutshub.ui
 
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Material
+import com.mindoverflow.scoutshub.ui.Atividades.CreateNewActivity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,6 +29,7 @@ class MateriaisFragment : Fragment() {
     var nomeRecebido : String? = null
     var descricaoRecebida : String? = null
     var dataRecebida : String? = null
+    var materiaisselecionados : TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,24 +54,21 @@ class MateriaisFragment : Fragment() {
 
         listaMateriais.adapter = adapter
 
+        materiaisselecionados = rootView.findViewById(R.id.numeroselecionado)
 
 
-
-        val equipa = Material(null, "Tendas", 14)
-        materiais.add(equipa)
-
-        materiais.add(Material(1, "Bussolas", 34))
-        materiais.add(Material(2, "Mochilas", 24))
-        materiais.add(Material(3, "Mapa", 44))
-        materiais.add(Material(4, "Garrafas de Agua", 27))
-        materiais.add(Material(5, "Lanterna", 29))
+        materiais.add(Material(0, "Corda", 14))
+        materiais.add(Material(1, "Kit Primeiros Socorros", 34))
+        materiais.add(Material(2, "Mochila", 24))
+        materiais.add(Material(3, "Saco de Dormir", 44))
+        materiais.add(Material(4, "Tenda", 27))
 
         val buttonnextmaterial = rootView.findViewById<Button>(R.id.buttonNextMaterial)
 
 
         buttonnextmaterial.setOnClickListener{
 
-            val intent = Intent(activity,ConfirmNewActivity::class.java)
+            val intent = Intent(activity, CreateNewActivity::class.java)
             intent.putExtra("IDs", selectedRowsIds)
             intent.putExtra("descricao", descricaoRecebida)
             intent.putExtra("nomeCompleto" , nomeRecebido)
@@ -117,21 +116,27 @@ class MateriaisFragment : Fragment() {
 
 
             val rowView = layoutInflater.inflate(R.layout.row_materiais, parent, false)
-
-            val idMaterial = rowView.findViewById<TextView>(R.id.textViewIdMaterial)
             val tipoMaterial = rowView.findViewById<TextView>(R.id.textViewTipo)
-            val quantidade = rowView.findViewById<TextView>(R.id.textViewQuantidade)
 
+
+            val contraint = rowView.findViewById<ConstraintLayout>(R.id.rowconstrain)
             val image = rowView.findViewById<ImageView>(R.id.plusSelect)
             val imageselected = rowView.findViewById<ImageView>(R.id.plusSelected)
 
             imageselected.visibility = View.INVISIBLE
 
 
+            when(materiais[position].idMaterial){
+                0 -> image.setImageResource(R.drawable.corda_materiais)
+                1 -> image.setImageResource(R.drawable.medkit_materiais)
+                2 -> image.setImageResource(R.drawable.mochila_materiais)
+                3 -> image.setImageResource(R.drawable.sacodedormir_materiais)
+                4 -> image.setImageResource(R.drawable.tenda_materiais)
+            }
 
-            idMaterial.text = materiais[position].idMaterial.toString()
+
+
             tipoMaterial.text = materiais[position].tipo
-            quantidade.text = materiais[position].quantidade.toString()
 
 
             rowView.setOnClickListener {
@@ -141,17 +146,19 @@ class MateriaisFragment : Fragment() {
                 if (imageselected.isVisible)
                 {
                     imageselected.visibility = View.INVISIBLE;
-                    selectedRowsIds.remove(idMaterial.text as String)
-                    rowView.setBackground(context?.let { it1 -> ContextCompat.getDrawable(it1, R.color.white) })
-
+ //                   selectedRowsIds.remove(materiais[position].idMaterial as String)
+                    contraint.setBackground(context?.let { it1 -> ContextCompat.getDrawable(it1, R.color.white) })
+                    materiaisselecionados?.text = (Integer.parseInt(materiaisselecionados?.text.toString())-1).toString()
 
                     println("              ------  Estou invisivel  ------                    ")
                 }
                 else if(imageselected.isInvisible)
                 {
                     imageselected.visibility = View.VISIBLE
-                    selectedRowsIds.add(idMaterial.text as String)
-                    rowView.setBackground(context?.let { it1 -> ContextCompat.getDrawable(it1, R.drawable.rounded_corner) });
+//                    selectedRowsIds.add(materiais[position].idMaterial as String)
+                    contraint.setBackground(context?.let { it1 -> ContextCompat.getDrawable(it1, R.drawable.rounded_corner) });
+                    materiaisselecionados?.text = (Integer.parseInt(materiaisselecionados?.text as String)+1).toString()
+
                     println("              -------  Estou visivel  ------                     ")
                 }
                 else{

@@ -6,8 +6,8 @@
         <item name="colorPrimaryVariant">@color/brown_500</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/orange_500</item>
-        <item name="colorSecondaryVariant">@color/orange_700</item>
+        <item name="colorSecondary">@color/brown_500</item>
+        <item name="colorSecondaryVariant">@color/brown_200</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar transparent -->
         <item name="android:windowTranslucentStatus">true</item>
@@ -56,6 +56,19 @@
 
         <item name="android:backgroundDimEnabled">true</item>
 
+    </style>
+
+
+    <style name="CardThemeActivities" parent="Theme.AplicacaoProjeto">
+        <!-- Primary brand color. -->
+        <item name="android:editTextColor">#EE8300</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+    </style>
+
+    <style name="roundedImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">30dp</item>
     </style>
 
 </resources>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="66dp"
+        android:layout_marginTop="286dp"
+        android:layout_marginEnd="67dp"
+        android:layout_marginBottom="193dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:textColor="#ffffff"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="SCOUTS HUB" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="391dp"
+        android:layout_height="243dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/round_corners"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/bt_signin"
+        android:layout_width="311dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="56dp"
+        android:background="@drawable/button_activities_reverse"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Entrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view2" />
+
+    <Button
+        android:layout_width="97dp"
+        android:layout_height="15dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/button_activities_reverse"
+        app:layout_constraintBottom_toTopOf="@+id/bt_signin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/bt_signup"
+        android:layout_width="311dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/button_activities_reverse"
+        android:backgroundTint="@null"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Registrar"
+        android:textColor="@color/brown_500"
+        app:backgroundTint="@null"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bt_signin" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,8 @@
 package com.mindoverflow.scoutshub
 
+import android.app.Activity
 import android.content.Intent
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -11,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.mindoverflow.scoutshub.ui.Atividades.AtividadesActivity
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,5 +39,4 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }

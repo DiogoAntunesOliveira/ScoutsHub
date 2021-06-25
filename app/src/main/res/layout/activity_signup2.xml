@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/brown_500">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="396dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/round_corners"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/bt_back"
+            android:layout_width="38dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/TextNumber"
+            android:layout_width="276dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Telemovel"
+            android:inputType="number"
+            android:paddingLeft="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/BirthDate" />
+
+        <EditText
+            android:id="@+id/BirthDate"
+            android:layout_width="276dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Data Nascimento Ex(xx-xx-xxxx)"
+            android:inputType="date"
+            android:paddingLeft="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Address" />
+
+        <EditText
+            android:id="@+id/Address"
+            android:layout_width="276dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Morada"
+            android:inputType="textPersonName"
+            android:paddingLeft="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PostalAddress" />
+
+        <EditText
+            android:id="@+id/PostalAddress"
+            android:layout_width="276dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Código Postal"
+            android:inputType="textPostalAddress"
+            android:paddingLeft="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/NIN" />
+
+        <EditText
+            android:id="@+id/NIN"
+            android:layout_width="276dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="NIN (Opcional)"
+            android:inputType="number"
+            android:paddingLeft="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Criar Conta"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/bt_next2"
+            android:layout_width="311dp"
+            android:layout_height="51dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/rounded_corner"
+            android:text="Próximo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
