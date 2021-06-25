@@ -71,14 +71,15 @@
                         android:layout_width="108dp"
                         android:layout_height="98dp"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="28dp"
+                        android:layout_marginTop="20dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@android:drawable/ic_dialog_map" />
+                        app:srcCompat="@drawable/ic_location" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.cardview.widget.CardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

@@ -38,7 +38,7 @@ class CustomAdapter(val userList: ArrayList<Atividade>) : RecyclerView.Adapter<C
 
             textViewName.text = atividade.nome
             textViewAddress.text = atividade.localInicio
-            getImageUrl(atividade.imagem.toString() ,textViewImage)
+            getImageUrl(atividade.imagem.toString(), textViewImage)
         }
     }
 }

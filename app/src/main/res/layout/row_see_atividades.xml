@@ -47,7 +47,7 @@
                 android:layout_height="125dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
-                android:src="@drawable/bryce_canyon"
+                android:src="@drawable/find"
                 app:layout_constraintBottom_toTopOf="@+id/buttonCardAvailableActivityAccept"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

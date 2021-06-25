@@ -15,7 +15,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_launcher_2_foreground"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -36,10 +36,10 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps">
+        </activity>
+
         <activity android:name=".ImagePickModeActivity" />
-        <activity android:name=".ui.ImagePickActivity" />
-        <activity android:name=".ImagePickActivity" />
         <activity android:name=".PedidosAcesso" />
         <activity android:name=".ui.Atividades.SampleMapsActivity" />
         <activity android:name=".ui.Atividades.AvailableActivitiesActivity" />

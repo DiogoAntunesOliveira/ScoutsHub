@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import bit.linux.tinyspacex.Helpers
+import bit.linux.tinyspacex.Helpers.getImageUrl
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.models.Perfil
 import com.mindoverflow.scoutshub.models.RecyclerItem
@@ -57,22 +58,22 @@ class RecycleViewAdapter internal constructor(recyclerList: MutableList<Recycler
         //The current row correspondent to the position in the search view that has been clicked
         val currentItem: RecyclerItem = recyclerList[position]
 
-        holder.imageView.setImageResource(currentItem.imageResource)
+
+        val imageView = holder.imageView
+
+        getImageUrl(recyclerList[position].imageResource, imageView)
+
         holder.textView.text = currentItem.text
 
         holder.itemView.setOnClickListener{
-            // get context of iteView
+            // get context of itemView
             val context =  holder.itemView.context
-
-            println("name")
-            println(holder.textView.text)
 
             var perfil : Perfil? = null
 
             GlobalScope.launch(Dispatchers.IO) {
                 perfil = UserNameVerification(holder.textView.text.toString())
-                println("perfil")
-                println(perfil)
+
                 GlobalScope.launch(Dispatchers.Main) {
                     val intent = Intent(context, ProfileViewActivity::class.java)
                     intent.putExtra("User", perfil!!.toJson().toString())

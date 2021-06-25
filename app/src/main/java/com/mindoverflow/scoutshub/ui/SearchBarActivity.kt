@@ -90,14 +90,14 @@ class SearchBarActivity : AppCompatActivity() {
     private fun fillUsersList(users : ArrayList<Perfil>) {
         recyclerList = ArrayList()
 
-        val image0 = R.drawable.bryce_canyon
-        val image1 = R.drawable.cathedral_rock
+        //val image0 = R.drawable.bryce_canyon
+        //val image1 = R.drawable.cathedral_rock
 
         // Deu um erro de index 2 : size 3 porque me faltava uma imagem
-        val images = arrayListOf(image0, image1)
+        //val images = arrayListOf(image0, image1)
 
         for (user in users) {
-            (recyclerList as ArrayList<RecyclerItem>).add(RecyclerItem(image1, user.nome!!))
+            (recyclerList as ArrayList<RecyclerItem>).add(RecyclerItem(user.imagem.toString(), user.nome!!))
         }
     }
 

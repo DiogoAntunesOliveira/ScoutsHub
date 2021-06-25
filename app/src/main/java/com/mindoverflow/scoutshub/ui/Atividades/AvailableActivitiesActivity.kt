@@ -6,19 +6,23 @@ package com.mindoverflow.scoutshub.ui.Atividades
 
 import android.content.Intent
 import android.os.Build
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
+import bit.linux.tinyspacex.Helpers
+import bit.linux.tinyspacex.Helpers.DateFormaterIngToPt
 import bit.linux.tinyspacex.Helpers.getURL
 import com.mindoverflow.scoutshub.MapsActivity
 import com.mindoverflow.scoutshub.R
 import com.mindoverflow.scoutshub.SavedUserData
+import com.mindoverflow.scoutshub.adapter.CustomAdapter
 import com.mindoverflow.scoutshub.models.Atividade
 import com.mindoverflow.scoutshub.models.Participante
+import com.mindoverflow.scoutshub.ui.Login.FrontPage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -26,12 +30,9 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import org.json.JSONArray
 import org.json.JSONObject
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.util.*
+import java.net.URL
 
 class AvailableActivitiesActivity : AppCompatActivity() {
 
@@ -109,26 +110,13 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             var buttonRejectRequest = rowView.findViewById<Button>(R.id.buttonCardAvailableActivityReject)
             var locationData = rowView.findViewById<TextView>(R.id.locationActivity)
 
+            var formatedDataInicial = Helpers.DateFormaterApi(cardAvalableActivities[position].dataInicio.toString())
+            var formatedDataFimOver =  Helpers.DateFormaterApi(cardAvalableActivities[position].dataFim.toString())
+
             cardTitle.text = cardAvalableActivities[position].nome.toString()
             cardType.text = cardAvalableActivities[position].tipo.toString()
-
-
-            val f1: DateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-
-            val cardBeginParse: Date = f1.parse(cardAvalableActivities[position].dataInicio)
-
-            val f2: DateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss")
-
-            cardBeginData.text = f2.format(cardBeginParse)
-
-            val cardOverParse: Date = f1.parse(cardAvalableActivities[position].dataInicio)
-
-            cardOverData.text = f2.format(cardOverParse)
-
-            if(cardAvalableActivities[position].local != null){
-                locationData.text = cardAvalableActivities[position].local
-            }
-            else {locationData.text = "Local indisponivel"}
+            cardBeginData.text = formatedDataInicial
+            cardOverData.text = formatedDataFimOver
 
             cardImageView.setOnClickListener{
                 val intent = Intent(this@AvailableActivitiesActivity, MapsActivity::class.java)
@@ -177,9 +165,14 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                         GlobalScope.launch(Dispatchers.Main) {
                             if (response.message == "OK"){
                                 println("Successfully posted")
+                                cardAvalableActivities.removeAt(position)
+                                notifyDataSetChanged()
+                                Toast.makeText(this@AvailableActivitiesActivity,
+                                    "Inscrito com sucesso!", Toast.LENGTH_SHORT)
+                                    .show()
                             }else{
                                 Toast.makeText(this@AvailableActivitiesActivity,
-                                    "Ja esta inscrito nesta atividade", Toast.LENGTH_SHORT)
+                                    "Ja esta inscrito nesta atividade!", Toast.LENGTH_SHORT)
                                     .show()
                             }
                         }
