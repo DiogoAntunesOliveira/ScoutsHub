@@ -164,9 +164,14 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                         GlobalScope.launch(Dispatchers.Main) {
                             if (response.message == "OK"){
                                 println("Successfully posted")
+                                cardAvalableActivities.removeAt(position)
+                                notifyDataSetChanged()
+                                Toast.makeText(this@AvailableActivitiesActivity,
+                                    "Inscrito com sucesso!", Toast.LENGTH_SHORT)
+                                    .show()
                             }else{
                                 Toast.makeText(this@AvailableActivitiesActivity,
-                                    "Ja esta inscrito nesta atividade", Toast.LENGTH_SHORT)
+                                    "Ja esta inscrito nesta atividade!", Toast.LENGTH_SHORT)
                                     .show()
                             }
                         }
