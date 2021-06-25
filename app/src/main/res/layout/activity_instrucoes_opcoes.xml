@@ -7,10 +7,10 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/buttonBack"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/ic_backward_arrow"/>
 
@@ -21,30 +21,32 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/subtitle"
-        android:text="Escolha a instrução que deseja ver"
+        android:text="Escolha a intrução que deseja ver"
         android:textSize="15sp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardVideo1"
+        android:id="@+id/cardView1"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/subtitle"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="170dp"
         app:cardCornerRadius="@dimen/_30sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -54,38 +56,35 @@
                 android:layout_height="100dp"
                 android:background="@drawable/instructions_image_fire"
                 android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/description1"
+                android:text="Fogueira"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Fogueira"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image1" />
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/image1"
+                android:layout_centerHorizontal="true"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardVideo2"
+        android:id="@+id/cardView2"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/subtitle"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="170dp"
         app:cardCornerRadius="@dimen/_30sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -95,38 +94,35 @@
                 android:layout_height="100dp"
                 android:background="@drawable/instructions_image_tent"
                 android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/description2"
+                android:text="Tenda"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Tenda"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image2" />
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/image2"
+                android:layout_centerHorizontal="true"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardVideo3"
+        android:id="@+id/cardView3"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_below="@+id/cardView1"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="370dp"
         app:cardCornerRadius="@dimen/_30sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -136,38 +132,35 @@
                 android:layout_height="100dp"
                 android:background="@drawable/instructions_image_knot"
                 android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/description3"
+                android:text="Nós"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Nó"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image3" />
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/image3"
+                android:layout_centerHorizontal="true"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardVideo4"
+        android:id="@+id/cardView4"
         android:layout_width="160dp"
         android:layout_height="160dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_below="@+id/cardView2"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="370dp"
         app:cardCornerRadius="@dimen/_30sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -177,25 +170,21 @@
                 android:layout_height="100dp"
                 android:background="@drawable/instructions_image_map"
                 android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/description4"
+                android:text="Mapa"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Mapa"
-                android:textStyle="bold"
-                android:textSize="15dp"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/image4" />
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/image4"
+                android:layout_centerHorizontal="true"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

@@ -9,16 +9,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.mindoverflow.scoutshub.R
 
 
-class VideoActivity: AppCompatActivity() {
+class VideoMainActivity: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_instrucoes_video)
+        setContentView(R.layout.activity_instrucoes_video_main)
 
         supportActionBar!!.hide()
 
-        val backButton = findViewById<ImageButton>(R.id.btnBack)
-
+        // go back to previous activity
+        val backButton = findViewById<ImageButton>(R.id.buttonBack)
         backButton.setOnClickListener {
             finish()
         }

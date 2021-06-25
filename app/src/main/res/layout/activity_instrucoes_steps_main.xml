@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/ic_backward_arrow"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:text="Guia de Instruções"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:text="Passo a passo"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/idEdtCourseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_toStartOf="@id/idBtnSave"
+        android:layout_toLeftOf="@id/idBtnSave"
+        android:background="@drawable/rounded_corner"
+        android:layout_below="@+id/subtitle"
+        android:hint="Titulo"
+        android:padding="15dp" />
+
+    <EditText
+        android:id="@+id/idEdtCourseDescription"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/idEdtCourseName"
+        android:layout_toLeftOf="@id/idBtnAdd"
+        android:hint="Descrição"
+        android:layout_marginTop="10dp"
+        android:padding="15dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/rounded_corner"/>
+
+    <Button
+        android:id="@+id/idBtnAdd"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/idEdtCourseName"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/rounded_corner"
+        android:text="Adicionar" />
+
+    <Button
+        android:id="@+id/idBtnSave"
+        android:layout_width="120dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="50dp"
+        android:text="Guardar "
+        android:background="@drawable/rounded_corner"
+        android:layout_below="@+id/subtitle"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/idRVCourses"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/idEdtCourseDescription"
+        android:layout_marginTop="20dp"/>
+
+</RelativeLayout>

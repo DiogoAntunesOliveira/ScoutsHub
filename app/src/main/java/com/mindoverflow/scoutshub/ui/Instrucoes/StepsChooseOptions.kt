@@ -6,7 +6,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.mindoverflow.scoutshub.R
 
-class StepsOptionsActivity: AppCompatActivity() {
+class StepsChooseOptions: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -14,39 +14,33 @@ class StepsOptionsActivity: AppCompatActivity() {
 
         supportActionBar!!.hide()
 
-        val backButton = findViewById<ImageButton>(R.id.btnBack)
-
+        // go back to previous activity
+        val backButton = findViewById<ImageButton>(R.id.buttonBack)
         backButton.setOnClickListener {
             finish()
         }
 
-        // declaração de variáveis
         val option1 = findViewById<ImageButton>(R.id.image1)
-        val option2 = findViewById<ImageButton>(R.id.image2)
-        val option3 = findViewById<ImageButton>(R.id.image3)
-        val option4 = findViewById<ImageButton>(R.id.image4)
-
         option1.setOnClickListener {
-
-            val intent = Intent(this, StepsActivityShowData::class.java)
+            val intent = Intent(this, StepsMainActivity::class.java)
             startActivity(intent)
         }
 
+        val option2 = findViewById<ImageButton>(R.id.image2)
         option2.setOnClickListener {
-
-            val intent = Intent(this, StepsActivityShowData::class.java)
+            val intent = Intent(this, StepsMainActivity::class.java)
             startActivity(intent)
         }
 
+        val option3 = findViewById<ImageButton>(R.id.image3)
         option3.setOnClickListener {
-
-            val intent = Intent(this, StepsActivityShowData::class.java)
+            val intent = Intent(this, StepsMainActivity::class.java)
             startActivity(intent)
         }
 
+        val option4 = findViewById<ImageButton>(R.id.image4)
         option4.setOnClickListener {
-
-            val intent = Intent(this, StepsActivityShowData::class.java)
+            val intent = Intent(this, StepsMainActivity::class.java)
             startActivity(intent)
         }
     }

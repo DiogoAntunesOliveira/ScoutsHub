@@ -7,10 +7,10 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/buttonBack"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/ic_backward_arrow"/>
 
@@ -21,29 +21,31 @@
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:id="@+id/subTitle"
+        android:id="@+id/subtitle"
         android:text="Como gostaria de ver as intruções?"
         android:textSize="15sp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="90dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/title"
         android:layout_centerHorizontal="true"/>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardVideo"
+        android:id="@+id/cardViewVideo"
         android:layout_width="225dp"
         android:layout_height="225dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/subtitle"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="170dp"
         app:cardCornerRadius="@dimen/_30sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -52,49 +54,44 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/instructions_image_video"
-                android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/descriptionVideo"
+                android:text="Ver através de video"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/black"
-                android:text="Ver através de video"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageVideo" />
+                android:layout_below="@+id/imageVideo"
+                android:layout_centerHorizontal="true"/>
 
             <Button
-                android:id="@+id/btnVideo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:id="@+id/buttonVideo"
                 android:text="Video"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionVideo" />
+                android:background="@drawable/rounded_corner"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/descriptionVideo"
+                android:layout_centerHorizontal="true"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardSteps"
+        android:id="@+id/cardViewSteps"
         android:layout_width="225dp"
         android:layout_height="225dp"
-        android:layout_below="@+id/cardVideo"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/cardViewVideo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
         app:cardCornerRadius="@dimen/_30sdp">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -103,35 +100,30 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:background="@drawable/instructions_image_steps"
-                android:layout_marginTop="15dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.496"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginTop="20dp"
+                android:layout_centerHorizontal="true"/>
 
             <TextView
                 android:id="@+id/descriptionSteps"
+                android:text="Ver através de passos"
+                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textColor="@color/black"
-                android:text="Ver através de passos"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageSteps" />
+                android:layout_below="@+id/imageSteps"
+                android:layout_centerHorizontal="true"/>
 
             <Button
-                android:id="@+id/btnSteps"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:id="@+id/buttonSteps"
                 android:text="Passos"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descriptionSteps" />
+                android:background="@drawable/rounded_corner"
+                android:layout_width="125dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/descriptionSteps"
+                android:layout_centerHorizontal="true"/>
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 

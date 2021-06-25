@@ -67,12 +67,11 @@
         <activity android:name=".ui.Login.Signup2Activity" />
         <activity android:name=".ui.Login.PopUp" />
         <activity android:name=".ui.Login.WelcomebackActivity" />
-        <activity android:name=".ui.Instrucoes.InstrucoesActivity" />
-        <activity android:name=".ui.Instrucoes.StepsActivityShowData" />
-        <activity android:name=".ui.Instrucoes.StepsActivityEditData"/>
-        <activity android:name=".ui.Instrucoes.StepsOptionsActivity" />
-        <activity android:name=".ui.Instrucoes.VideoActivity" />
-        <activity android:name=".ui.Instrucoes.VideoOptionsActivity" />
+        <activity android:name=".ui.Instrucoes.InstrucoesActivity"/>
+        <activity android:name=".ui.Instrucoes.StepsChooseOptions"/>
+        <activity android:name=".ui.Instrucoes.StepsMainActivity" />
+        <activity android:name=".ui.Instrucoes.VideoChooseOptions"/>
+        <activity android:name=".ui.Instrucoes.VideoMainActivity"/>
         <activity android:name=".ui.ProfileViewActivity" />
         <activity android:name=".ui.ProfileUserEditActivity" />
         <activity android:name=".ui.ProfileAdmEditActivity" />

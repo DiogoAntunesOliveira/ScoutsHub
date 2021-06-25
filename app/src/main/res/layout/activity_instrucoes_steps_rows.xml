@@ -13,30 +13,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!--text view for our title-->
+        <!--text view for our course name-->
         <TextView
-            android:id="@+id/showTitle"
-            android:layout_width="302dp"
+            android:id="@+id/idTVCourseName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_toEndOf="@+id/image"
-            android:padding="5dp"
-            android:text="Titulo"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <!--text view for our description-->
-        <TextView
-            android:id="@+id/showDescription"
-            android:layout_width="299dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/showTitle"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@+id/image"
             android:padding="8dp"
-            android:text="Descrição"
+            android:text="Course Name"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <!--text view for our course description-->
+        <TextView
+            android:id="@+id/idTVCourseDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/idTVCourseName"
+            android:padding="5dp"
+            android:text="COurse Description"
             android:textColor="@color/black" />
 
     </RelativeLayout>

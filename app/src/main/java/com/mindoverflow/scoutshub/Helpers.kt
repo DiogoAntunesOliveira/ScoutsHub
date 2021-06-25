@@ -16,6 +16,8 @@ import java.util.*
 
 object Helpers {
 
+
+
     fun getImageUrl(url: String, imageView: ImageView) {
 
         GlobalScope.launch(Dispatchers.IO) {

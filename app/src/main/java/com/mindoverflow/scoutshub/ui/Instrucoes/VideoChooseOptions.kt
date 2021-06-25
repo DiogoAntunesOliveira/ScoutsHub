@@ -6,8 +6,7 @@ import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
 import com.mindoverflow.scoutshub.R
 
-
-class VideoOptionsActivity: AppCompatActivity() {
+class VideoChooseOptions: AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,43 +14,36 @@ class VideoOptionsActivity: AppCompatActivity() {
 
         supportActionBar!!.hide()
 
-        val backButton = findViewById<ImageButton>(R.id.btnBack)
-
+        // go back to previous activity
+        val backButton = findViewById<ImageButton>(R.id.buttonBack)
         backButton.setOnClickListener {
             finish()
         }
 
-        // declaração de variáveis
         val option1 = findViewById<ImageButton>(R.id.image1)
-        val option2 = findViewById<ImageButton>(R.id.image2)
-        val option3 = findViewById<ImageButton>(R.id.image3)
-        val option4 = findViewById<ImageButton>(R.id.image4)
-
-
         option1.setOnClickListener {
-            // enviar para a outra activity o "link" do video que queremos visualizar (fogueira)
-            val intent = Intent(this, VideoActivity::class.java)
+            val intent = Intent(this, VideoMainActivity::class.java)
             //intent.putExtra("data", "android.resource://" + packageName.toString() + "/" + R.raw.fire_video)
             startActivity(intent)
         }
 
+        val option2 = findViewById<ImageButton>(R.id.image2)
         option2.setOnClickListener {
-            // enviar para a outra activity o "link" do video que queremos visualizar (tenda)
-            val intent = Intent(this, VideoActivity::class.java)
+            val intent = Intent(this, VideoMainActivity::class.java)
             //intent.putExtra("data", "android.resource://" + packageName.toString() + "/" + R.raw.tent_video)
             startActivity(intent)
         }
 
+        val option3 = findViewById<ImageButton>(R.id.image3)
         option3.setOnClickListener {
-            // enviar para a outra activity o "link" do video que queremos visualizar (mapa)
-            val intent = Intent(this, VideoActivity::class.java)
+            val intent = Intent(this, VideoMainActivity::class.java)
             //intent.putExtra("data", "android.resource://" + packageName.toString() + "/" + R.raw.knot_video)
             startActivity(intent)
         }
 
+        val option4 = findViewById<ImageButton>(R.id.image4)
         option4.setOnClickListener {
-            // enviar para a outra activity o "link" do video que queremos visualizar (mapa)
-            val intent = Intent(this, VideoActivity::class.java)
+            val intent = Intent(this, VideoMainActivity::class.java)
             //intent.putExtra("data", "android.resource://" + packageName.toString() + "/" + R.raw.map_video)
             startActivity(intent)
         }

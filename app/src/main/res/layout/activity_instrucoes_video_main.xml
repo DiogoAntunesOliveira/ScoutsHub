@@ -7,10 +7,10 @@
     android:layout_height="match_parent">
 
     <ImageButton
-        android:id="@+id/btnBack"
+        android:id="@+id/buttonBack"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginLeft="20dp"
         android:background="@drawable/ic_backward_arrow"/>
 
@@ -22,33 +22,31 @@
         android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/subtitle"
-        android:text="Ver instruções"
+        android:text="Ver video"
         android:textSize="15sp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_marginTop="90dp"
-        android:layout_centerHorizontal="true"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/title"/>
 
-    <ListView
-        android:id="@+id/list"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/subtitle"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="100dp">
 
-    <ImageButton
-        android:id="@+id/btnAddInstruction"
-        android:layout_width="75dp"
-        android:layout_height="75dp"
-        android:background="@drawable/instructions_image_plus_button"
-        android:layout_margin="15dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"/>
+        <VideoView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="250dp" />
+
+    </FrameLayout>
 
 </RelativeLayout>
