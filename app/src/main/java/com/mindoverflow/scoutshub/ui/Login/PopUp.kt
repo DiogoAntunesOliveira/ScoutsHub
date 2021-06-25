@@ -36,7 +36,7 @@ class PopUp : AppCompatActivity() {
 
             utilizador.email_utilizador = sharedPreferences.getString("mail", null)
             utilizador.palavra_pass = sharedPreferences.getString("pass1", null)
-            utilizador.id_tipo = 1
+            utilizador.id_tipo = 999
 
             GlobalScope.launch(Dispatchers.IO) {
                 val url = getURL()
