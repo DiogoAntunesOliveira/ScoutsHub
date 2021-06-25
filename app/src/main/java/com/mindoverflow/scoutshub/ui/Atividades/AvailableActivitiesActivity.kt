@@ -108,6 +108,7 @@ class AvailableActivitiesActivity : AppCompatActivity() {
             val cardImageView = rowView.findViewById<ImageView>(R.id.imageViewCard)
             val buttonAcepetRequest = rowView.findViewById<Button>(R.id.buttonCardAvailableActivityAccept)
             var buttonRejectRequest = rowView.findViewById<Button>(R.id.buttonCardAvailableActivityReject)
+            var locationData = rowView.findViewById<TextView>(R.id.locationActivity)
 
             var formatedDataInicial = Helpers.DateFormaterApi(cardAvalableActivities[position].dataInicio.toString())
             var formatedDataFimOver =  Helpers.DateFormaterApi(cardAvalableActivities[position].dataFim.toString())
@@ -123,6 +124,11 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                 intent.putExtra("LOCATION_LONGITUDE", cardAvalableActivities[position].longitude)
                 startActivity(intent)
             }
+
+            if(cardAvalableActivities[position].local != null){
+                locationData.text = cardAvalableActivities[position].local
+            }
+            else {locationData.text = "Local indisponivel"}
 
             buttonAcepetRequest.setOnClickListener{
 
