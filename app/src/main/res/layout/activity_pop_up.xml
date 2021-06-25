@@ -25,7 +25,7 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="@+id/view5"
         app:layout_constraintTop_toTopOf="@+id/view5"
-        tools:srcCompat="@drawable/ic_acept_button" />
+        app:srcCompat="@drawable/ic_acept_button" />
 
     <TextView
         android:id="@+id/textView4"
