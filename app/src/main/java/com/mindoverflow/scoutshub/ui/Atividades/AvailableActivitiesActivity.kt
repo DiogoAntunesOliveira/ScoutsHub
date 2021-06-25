@@ -124,7 +124,7 @@ class AvailableActivitiesActivity : AppCompatActivity() {
                 intent.putExtra("LOCATION_LONGITUDE", cardAvalableActivities[position].longitude)
                 startActivity(intent)
             }
-            
+
             if(cardAvalableActivities[position].local != null){
                 locationData.text = cardAvalableActivities[position].local
             }
