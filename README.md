@@ -43,10 +43,10 @@ Proposto realizar um projeto que consiste em desenvolver uma aplicação para o 
   ## Adobe Xd
   O software Adobe Xd , desenvolvido pela Adobe Inc. é uma ferramenta que permite fazer design de aplicações móveis e de web, este também permite criação de wireframes e protótipos.
 
-  DBeaver
+ ## DBeaver
   O DBeaver é um software cliente SQL open-source , que é usado na administração de base de dados .
 
-  Docker
+ ## Docker
   Foi também utilizado um docker através dos Amazon Web Services (AWS), o docker é uma plataforma de software que permite a criação, o teste e a implantação de aplicações rapidamente.
 
 
