@@ -20,28 +20,27 @@ _________________________________
 
 A aplicação permitirá organizar as atividades por agrupamento, por secção e em cada secção será possível gerir várias equipas. Cada equipa poderá ter vários membros e cada membro poderá ter um ou mais cargos associados. Ao nível do agrupamento, os dirigentes terão a possibilidade de coordenar as seções em função da sua equipa.
 
-# ScoutsHub
 https://user-images.githubusercontent.com/77450825/123513662-25055400-d686-11eb-9e6b-27f11b2903f7.mp4
 
 
 Proposto realizar um projeto que consiste em desenvolver uma aplicação para o grupo de voluntários do “Agrupamento 85 - Barroselas”, cujo objetivo é facilitar a preparação das suas atividades no seu quotidiano e agilizar as atividades desenvolvidas pelo agrupamento, tendo sido todos os objetivos foram cumpridos.
 
-## Ferramentas utilizadas
+# Ferramentas utilizadas
 Amazon S3 ou Amazon Simple Storage Service é um serviço oferecido pela Amazon Web Services , este providência  armazenamento através de uma interface web service 
 
-Android Studio
+## Android Studio
 O software Android Studio é um ambiente de desenvolvimento integrado (IDE) gratuito para desenvolvimento para a plataforma Android . Este software foi utilizado na realização , programação e testes da aplicação móvel.
 
-Visual Studio Code
+## Visual Studio Code
 O software Visual Studio Code é um editor de código gratuito e permite desenvolvimento em diversas linguagens de programação .Este software foi utilizado para a programação da API. 
 
-MYSQL Workbench
+## MYSQL Workbench
 O software MYSQL Workbench é uma ferramenta que integra o desenvolvimento , administração e design da base de dados tudo em software.
 
-Adobe Illustrator e Adobe Photoshop
+## Adobe Illustrator e Adobe Photoshop
 O software Adobe Illustrator e Adobe Photoshop são ambos desenvolvidos pela Adobe Inc, ambos são editores gráficos , porém o Adobe Illustrator é um editor de imagens vetoriais.
 
-Adobe Xd
+## Adobe Xd
 O software Adobe Xd , desenvolvido pela Adobe Inc. é uma ferramenta que permite fazer design de aplicações móveis e de web, este também permite criação de wireframes e protótipos.
 
 DBeaver
