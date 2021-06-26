@@ -13,4 +13,5 @@ Alexandre Tinoco
 Romeu Costa
 
 André Filipe Freitas
-[gif](https://cdn.discordapp.com/attachments/689891154149376033/858327861076426752/ScoutsHub.gif)
+
+https://user-images.githubusercontent.com/77450825/123513662-25055400-d686-11eb-9e6b-27f11b2903f7.mp4
