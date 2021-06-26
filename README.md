@@ -24,6 +24,9 @@ https://user-images.githubusercontent.com/77450825/123513662-25055400-d686-11eb-
 
 
 Proposto realizar um projeto que consiste em desenvolver uma aplicação para o grupo de voluntários do “Agrupamento 85 - Barroselas”, cujo objetivo é facilitar a preparação das suas atividades no seu quotidiano e agilizar as atividades desenvolvidas pelo agrupamento, tendo sido todos os objetivos foram cumpridos.
+  
+  # Kotlin
+  Kotlin é uma Linguagem de programação multiplataforma, orientada a objetos e funcional, concisa e estaticamente tipada, desenvolvida pela JetBrains em 2011, que       compila para a Máquina virtual Java e que também pode ser traduzida para a linguagem JavaScript e compilada para código nativo.
 
   # Ferramentas utilizadas
   Amazon S3 ou Amazon Simple Storage Service é um serviço oferecido pela Amazon Web Services , este providência  armazenamento através de uma interface web service 
