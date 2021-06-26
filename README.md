@@ -1,19 +1,4 @@
 # ScoutsHub
-
-Projeto de Aplicações Moveis
-
-José Diogo Oliveira
-
-Jorge Miguel Sá
-
-Francisco Simão
-
-Alexandre Tinoco
-
-Romeu Costa
-
-André Filipe Freitas
-
 _________________________________
 
 # Demostração da app ScoutsHub
@@ -52,5 +37,20 @@ Proposto realizar um projeto que consiste em desenvolver uma aplicação para o 
  ## Docker
   Foi também utilizado um docker através dos Amazon Web Services (AWS), o docker é uma plataforma de software que permite a criação, o teste e a implantação de aplicações rapidamente.
 
+_________________________________
+
+Projeto de Aplicações Moveis
+
+José Diogo Oliveira
+
+Jorge Miguel Sá
+
+Francisco Simão
+
+Alexandre Tinoco
+
+Romeu Costa
+
+André Filipe Freitas
 
 
